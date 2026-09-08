@@ -86,6 +86,22 @@
     .gold-glow-lg {
       box-shadow: 0 0 45px rgba(255, 184, 0, 0.4);
     }
+    /* [NOVO] Painel flutuante e movível da sala */
+    #room-status-bar {
+      transition: box-shadow 0.15s ease, opacity 0.15s ease;
+    }
+    #room-status-bar.is-dragging {
+      opacity: 0.9;
+      box-shadow: 0 0 0 2px rgba(255, 184, 0, 0.5), 0 20px 40px rgba(0, 0, 0, 0.5);
+      cursor: grabbing;
+    }
+    #room-status-drag-handle {
+      cursor: grab;
+      touch-action: none;
+    }
+    #room-status-drag-handle:active {
+      cursor: grabbing;
+    }
   </style>
 </head>
 <body class="min-h-screen flex flex-col bg-[#0B0C10] text-gray-100 antialiased selection:bg-amber-500 selection:text-black">
@@ -855,8 +871,13 @@
       </section>
 
       <!-- ==================== CONTROLE FLUTUANTE DE SALA (NOVO PARA TESTE) ==================== -->
-      <!-- ==================== CONTROLE FLUTUANTE DE SALA ==================== -->
-      <div id="room-status-bar" class="fixed bottom-4 right-4 z-50 glass-panel px-4 py-3 rounded-2xl border border-white/10 shadow-2xl flex items-center gap-4">
+      <!-- ==================== CONTROLE FLUTUANTE DE SALA (MOVÍVEL) ==================== -->
+      <div id="room-status-bar" class="fixed bottom-4 right-4 z-50 glass-panel px-3 py-3 rounded-2xl border border-white/10 shadow-2xl flex items-center gap-3 select-none">
+        <!-- [NOVO] Alça de arraste: segure e arraste para tirar o painel da frente de outros elementos -->
+        <div id="room-status-drag-handle" class="flex items-center justify-center w-7 h-7 rounded-lg bg-white/5 hover:bg-white/10 border border-white/10 shrink-0" title="Arraste para mover este painel">
+          <i data-lucide="move" class="w-4 h-4 text-gray-400 pointer-events-none"></i>
+        </div>
+
         <div class="flex items-center gap-3">
           <div class="flex items-center gap-2">
             <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse"></span>
@@ -874,6 +895,10 @@
           </button>
           <button onclick="leaveRoom()" class="px-3 py-1.5 bg-red-500/20 hover:bg-red-500/30 border border-red-500/30 text-red-400 text-xs font-bold rounded-lg transition flex items-center gap-1.5">
             <i data-lucide="log-out" class="w-3.5 h-3.5"></i> Sair
+          </button>
+          <!-- [NOVO] Volta o painel para o canto padrão (inferior direito) -->
+          <button onclick="resetRoomBarPosition()" class="px-2 py-1.5 bg-white/5 hover:bg-white/10 border border-white/10 text-gray-400 hover:text-white text-xs font-bold rounded-lg transition" title="Voltar painel para o canto padrão">
+            <i data-lucide="corner-down-right" class="w-3.5 h-3.5 pointer-events-none"></i>
           </button>
         </div>
       </div>
@@ -1350,7 +1375,7 @@
     window.onload = async function() {
       lucide.createIcons();
 
-      // Carrega a base de times a partir do JSON antes de qualquer render que dependa dela
+      // [NOVO] Carrega a base de times a partir do JSON antes de qualquer render que dependa dela
       await loadTeamsDatabase();
 
       renderDatabase();
@@ -1358,6 +1383,7 @@
       updateRoulettePoolInfo();
       renderRanking();
       drawRouletteWheel(0);
+      initDraggableRoomBar(); // [NOVO] Ativa o arrastar do painel flutuante de sala
 
       // [NOVO] Recupera o apelido salvo de sessões anteriores
       const nickInput = document.getElementById('my-nickname');
@@ -1421,7 +1447,16 @@
 
       ctx.clearRect(0, 0, width, height);
 
-      const items = roulettePool.length > 0 ? roulettePool : GOGOSZ_TEAMS;
+      // [CORREÇÃO DE BUG] A roleta deve desenhar sempre o pool já filtrado — nunca
+      // a base inteira — para não sugerir visualmente times fora dos filtros ativos.
+      const items = roulettePool;
+      if (items.length === 0) {
+        ctx.fillStyle = '#6B7280';
+        ctx.font = 'bold 13px Inter';
+        ctx.textAlign = 'center';
+        ctx.fillText('Nenhum time com os filtros atuais', centerX, centerY);
+        return;
+      }
       const displayItems = items.length > 24 ? items.slice(0, 24) : items;
       const sliceAngle = (Math.PI * 2) / displayItems.length;
 
@@ -1470,7 +1505,13 @@
     }
 
     function pickBalancedPair() {
-      const pool = roulettePool.length >= 2 ? roulettePool : GOGOSZ_TEAMS;
+      // [CORREÇÃO DE BUG] O sorteio deve respeitar SEMPRE o pool já filtrado (roulettePool).
+      // Antes, quando o pool filtrado tinha menos de 2 times, o código caía para
+      // GOGOSZ_TEAMS (a base inteira, sem filtro nenhum), fazendo o sorteio ignorar
+      // completamente a Liga/Escalão/Região selecionados pelo usuário.
+      const pool = roulettePool;
+      if (pool.length < 2) return null;
+
       const balanceMode = document.getElementById('balance-mode').value;
 
       let t1 = pool[Math.floor(Math.random() * pool.length)];
@@ -1485,6 +1526,9 @@
         candidates = candidates.filter(t => t.region === targetRegion && Math.abs(t.stars - t1.stars) <= 0.5);
       }
 
+      // Se ninguém no pool atende ao critério de equilíbrio (ex.: EURO_LATAM sem
+      // times da região oposta no pool filtrado), relaxamos apenas o critério de
+      // equilíbrio — mas continuamos restritos ao pool filtrado, nunca à base inteira.
       if (candidates.length === 0) {
         candidates = pool.filter(t => t.id !== t1.id);
       }
@@ -1495,8 +1539,17 @@
 
     function spinRoulette() {
       if (isSpinning) return;
-      if (roulettePool.length < 2 && document.getElementById('chk-remove-drawn').checked) {
+
+      // Se o pool ficou pequeno só por causa dos times já sorteados/removidos, tenta recuperar
+      if (roulettePool.length < 2 && removedTeamIds.size > 0 && document.getElementById('chk-remove-drawn').checked) {
         restoreAllRemovedTeams();
+      }
+
+      // [CORREÇÃO DE BUG] Se mesmo assim não houver times suficientes com os filtros
+      // atuais, avisa o usuário em vez de sortear de qualquer time da base inteira.
+      if (roulettePool.length < 2) {
+        alert('Times insuficientes com os filtros atuais (Liga / Escalão / Região). Amplie os filtros selecionados para sortear.');
+        return;
       }
 
       isSpinning = true;
@@ -1504,6 +1557,13 @@
       document.getElementById('wheel-status-text').textContent = 'Girando a Roleta GOGOSZ...';
 
       const pair = pickBalancedPair();
+      if (!pair) {
+        isSpinning = false;
+        document.getElementById('btn-spin').disabled = false;
+        document.getElementById('wheel-status-text').textContent = 'Pronto para o sorteio.';
+        alert('Não foi possível formar um confronto com os filtros atuais.');
+        return;
+      }
       const team1 = pair[0];
       const team2 = pair[1];
 
@@ -1532,7 +1592,16 @@
     }
 
     function quickDrawMatch() {
+      // Mesma correção do sorteio principal: nunca ignorar os filtros selecionados
+      if (roulettePool.length < 2 && removedTeamIds.size > 0) {
+        restoreAllRemovedTeams();
+      }
+      if (roulettePool.length < 2) {
+        alert('Times insuficientes com os filtros atuais (Liga / Escalão / Região). Amplie os filtros selecionados para sortear.');
+        return;
+      }
       const pair = pickBalancedPair();
+      if (!pair) return;
       displayMatchResult(pair[0], pair[1]);
       playBeep(700, 0.1);
     }
@@ -1689,6 +1758,10 @@
       }
 
       const pair = pickBalancedPair();
+      if (!pair) {
+        alert('Times insuficientes com os filtros atuais (Liga / Escalão / Região) para sortear o confronto do draft.');
+        return;
+      }
 
       document.getElementById('draft-p1-names').textContent = sideA;
       document.getElementById('draft-p2-names').textContent = sideB;
@@ -2129,6 +2202,112 @@
       document.getElementById('lobby-screen').classList.remove('hidden');
       
       switchLobbyView('home');
+    }
+
+    // ==================== [NOVO] PAINEL DE SALA MOVÍVEL (DRAG) ====================
+    // Permite arrastar o #room-status-bar para qualquer canto da tela, para tirá-lo
+    // temporariamente de cima de outros elementos. A posição escolhida é lembrada
+    // (localStorage) entre sessões; o botão de "reset" volta ao canto padrão.
+    const ROOM_BAR_POS_KEY = 'gogosz_room_bar_pos';
+
+    function clampRoomBarPosition(x, y) {
+      const bar = document.getElementById('room-status-bar');
+      const rect = bar.getBoundingClientRect();
+      const margin = 4;
+      const maxX = Math.max(margin, window.innerWidth - rect.width - margin);
+      const maxY = Math.max(margin, window.innerHeight - rect.height - margin);
+      return {
+        x: Math.min(Math.max(x, margin), maxX),
+        y: Math.min(Math.max(y, margin), maxY)
+      };
+    }
+
+    function applyRoomBarPosition(x, y) {
+      const bar = document.getElementById('room-status-bar');
+      const { x: clampedX, y: clampedY } = clampRoomBarPosition(x, y);
+      bar.style.left = `${clampedX}px`;
+      bar.style.top = `${clampedY}px`;
+      bar.style.right = 'auto';
+      bar.style.bottom = 'auto';
+    }
+
+    function saveRoomBarPosition() {
+      const bar = document.getElementById('room-status-bar');
+      try {
+        localStorage.setItem(ROOM_BAR_POS_KEY, JSON.stringify({ left: bar.style.left, top: bar.style.top }));
+      } catch (e) { /* localStorage indisponível: apenas ignora, mantém a posição em tela */ }
+    }
+
+    function restoreRoomBarPosition() {
+      try {
+        const saved = JSON.parse(localStorage.getItem(ROOM_BAR_POS_KEY));
+        if (saved && saved.left && saved.top) {
+          const bar = document.getElementById('room-status-bar');
+          bar.style.left = saved.left;
+          bar.style.top = saved.top;
+          bar.style.right = 'auto';
+          bar.style.bottom = 'auto';
+          // Garante que a posição salva ainda é válida caso a janela tenha mudado de tamanho
+          const rect = bar.getBoundingClientRect();
+          applyRoomBarPosition(rect.left, rect.top);
+        }
+      } catch (e) { /* sem posição salva: mantém o padrão via CSS (bottom-4 right-4) */ }
+    }
+
+    // [NOVO] Botão "Voltar ao canto padrão": limpa qualquer posição customizada
+    function resetRoomBarPosition() {
+      const bar = document.getElementById('room-status-bar');
+      bar.style.left = '';
+      bar.style.top = '';
+      bar.style.right = '';
+      bar.style.bottom = '';
+      try { localStorage.removeItem(ROOM_BAR_POS_KEY); } catch (e) { /* ignora */ }
+      playBeep(600, 0.1);
+    }
+
+    function initDraggableRoomBar() {
+      const bar = document.getElementById('room-status-bar');
+      const handle = document.getElementById('room-status-drag-handle');
+      if (!bar || !handle) return;
+
+      let dragging = false;
+      let offsetX = 0;
+      let offsetY = 0;
+
+      handle.addEventListener('pointerdown', (e) => {
+        dragging = true;
+        bar.classList.add('is-dragging');
+        const rect = bar.getBoundingClientRect();
+        offsetX = e.clientX - rect.left;
+        offsetY = e.clientY - rect.top;
+        handle.setPointerCapture(e.pointerId);
+        e.preventDefault();
+      });
+
+      handle.addEventListener('pointermove', (e) => {
+        if (!dragging) return;
+        applyRoomBarPosition(e.clientX - offsetX, e.clientY - offsetY);
+      });
+
+      function endDrag() {
+        if (!dragging) return;
+        dragging = false;
+        bar.classList.remove('is-dragging');
+        saveRoomBarPosition();
+      }
+
+      handle.addEventListener('pointerup', endDrag);
+      handle.addEventListener('pointercancel', endDrag);
+
+      // Mantém o painel dentro da tela se a janela for redimensionada
+      window.addEventListener('resize', () => {
+        const rect = bar.getBoundingClientRect();
+        if (bar.style.left || bar.style.top) {
+          applyRoomBarPosition(rect.left, rect.top);
+        }
+      });
+
+      restoreRoomBarPosition();
     }
 
     // Evento de Teste (Ping) mantido da Etapa 1
