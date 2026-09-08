@@ -5,7 +5,12 @@ const path = require('path');
 
 const app = express();
 const server = http.createServer(app);
-const io = new Server(server, { cors: { origin: 'https://roleta-tsr.vercel.app/', methods: ['GET', 'POST'] } });
+const io = new Server(server, {
+  cors: {
+    origin: "https://roleta-tsr.vercel.app",
+    methods: ["GET", "POST"]
+  }
+});
 
 app.use(express.static(path.join(process.cwd(), 'public')));
 
