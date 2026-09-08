@@ -1,7 +1,0 @@
-{
-  "functions": {
-    "api/socket.js": {
-      "maxDuration": 300
-    }
-  }
-}
