@@ -1656,33 +1656,39 @@
       return str;
     }
     
+    // [CORREÇÃO DE BUG] resetMD3Series ficava incompleto: não recriava statusText/subText/g3.active,
+    // não reabilitava os inputs de placar (ficavam travados após um jogo salvo), não repassava a
+    // atualização de UI via renderMD3UI() e não sincronizava o reset com os demais da sala.
     function resetMD3Series() {
       md3State = {
-        player1: 'Jogador A',
-        player2: 'Jogador B',
+        player1: md3State.player1 || 'Jogador A', // mantém os jogadores já selecionados
+        player2: md3State.player2 || 'Jogador B',
         team1: null,
         team2: null,
         g1: { s1: null, s2: null, saved: false },
         g2: { s1: null, s2: null, saved: false },
-        g3: { s1: null, s2: null, saved: false },
+        g3: { s1: null, s2: null, saved: false, active: false },
         completed: false,
-        winner: null
+        winner: null,
+        statusText: 'Série em Andamento',
+        subText: 'Preencha os placares dos jogos acima para determinar o campeão da melhor de 3.'
       };
 
       [1, 2, 3].forEach(i => {
-        document.getElementById(`md3-g${i}-score1`).value = '';
-        document.getElementById(`md3-g${i}-score2`).value = '';
-        document.getElementById(`md3-g${i}-status`).textContent = 'Pendente';
-        document.getElementById(`md3-g${i}-status`).className = 'text-[10px] font-bold px-2 py-0.5 rounded bg-amber-500/20 text-amber-300';
+        const s1Input = document.getElementById(`md3-g${i}-score1`);
+        const s2Input = document.getElementById(`md3-g${i}-score2`);
+        s1Input.value = '';
+        s2Input.value = '';
+        // Jogos 1 e 2 voltam liberados para o Host; o Jogo 3 só libera se houver empate (feito em renderMD3UI)
+        s1Input.disabled = (i === 3) ? true : !currentRoom.isHost;
+        s2Input.disabled = (i === 3) ? true : !currentRoom.isHost;
       });
 
       const cardG3 = document.getElementById('md3-g3-card');
       cardG3.classList.add('opacity-60');
-      document.getElementById('md3-g3-score1').disabled = true;
-      document.getElementById('md3-g3-score2').disabled = true;
 
-      document.getElementById('md3-series-winner-text').textContent = 'Série em Andamento';
-      document.getElementById('md3-series-subtext').textContent = 'Preencha os placares dos jogos acima.';
+      renderMD3UI();  // [CORREÇÃO] Reaplica todo o estado visual (botões, status, cards) de forma consistente
+      syncMD3State(); // [CORREÇÃO] Propaga o reinício da série para todos os participantes da sala
     }
 
     function addPlayerToList() {
@@ -1832,6 +1838,11 @@
       if (md3State.g1.saved) recordMatchResult(p1, md3State.g1.s1, p2, md3State.g1.s2);
       if (md3State.g2.saved) recordMatchResult(p2, md3State.g2.s1, p1, md3State.g2.s2);
       if (md3State.g3.saved) recordMatchResult(p1, md3State.g3.s1, p2, md3State.g3.s2, md3State.winner);
+
+      // [CORREÇÃO DE BUG] Depois de salvar a série no ranking, ela ficava "completa"
+      // para sempre — os placares e o time sorteado continuavam na tela e os inputs
+      // ficavam travados, impedindo iniciar uma nova série. Agora reinicia automaticamente.
+      resetMD3Series();
 
       switchTab('ranking');
     }
