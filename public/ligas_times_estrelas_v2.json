@@ -1,0 +1,2252 @@
+{
+  "escala_estrelas": {
+    "0.5": "Elenco extremamente fraco",
+    "1": "Elenco muito fraco",
+    "1.5": "Elenco fraco",
+    "2": "Elenco abaixo da média",
+    "2.5": "Elenco mediano",
+    "3": "Elenco bom",
+    "3.5": "Elenco muito bom",
+    "4": "Elenco forte",
+    "4.5": "Elenco de elite",
+    "5": "Elenco de elite mundial"
+  },
+  "observacao": "As estrelas representam uma estimativa relativa da força do elenco. Os valores possíveis são 0.5, 1, 1.5, 2, 2.5, 3, 3.5, 4, 4.5 e 5.",
+  "ligas": [
+    {
+      "liga": "ARGENTINA — Liga Profesional de Fútbol",
+      "times": [
+        {
+          "nome": "Argentinos Juniors",
+          "estrelas": 3.0
+        },
+        {
+          "nome": "Aldosivi",
+          "estrelas": 3.0
+        },
+        {
+          "nome": "Atlético Tucumán",
+          "estrelas": 3.0
+        },
+        {
+          "nome": "Banfield",
+          "estrelas": 3.0
+        },
+        {
+          "nome": "Barracas Central",
+          "estrelas": 3.0
+        },
+        {
+          "nome": "Belgrano",
+          "estrelas": 3.5
+        },
+        {
+          "nome": "Boca Juniors",
+          "estrelas": 4.5
+        },
+        {
+          "nome": "Central Córdoba",
+          "estrelas": 3.0
+        },
+        {
+          "nome": "Defensa y Justicia",
+          "estrelas": 3.5
+        },
+        {
+          "nome": "Deportivo Riestra",
+          "estrelas": 2.5
+        },
+        {
+          "nome": "Estudiantes",
+          "estrelas": 3.5
+        },
+        {
+          "nome": "Estudiantes de Río Cuarto",
+          "estrelas": 3.0
+        },
+        {
+          "nome": "Gimnasia y Esgrima La Plata",
+          "estrelas": 3.0
+        },
+        {
+          "nome": "Gimnasia de Mendoza",
+          "estrelas": 3.0
+        },
+        {
+          "nome": "Huracán",
+          "estrelas": 3.5
+        },
+        {
+          "nome": "Independiente",
+          "estrelas": 4.5
+        },
+        {
+          "nome": "Independiente Rivadavia",
+          "estrelas": 3.0
+        },
+        {
+          "nome": "Instituto",
+          "estrelas": 3.0
+        },
+        {
+          "nome": "Lanús",
+          "estrelas": 3.5
+        },
+        {
+          "nome": "Newell's Old Boys",
+          "estrelas": 3.5
+        },
+        {
+          "nome": "Platense",
+          "estrelas": 3.0
+        },
+        {
+          "nome": "Racing Club",
+          "estrelas": 4.5
+        },
+        {
+          "nome": "River Plate",
+          "estrelas": 2.5
+        },
+        {
+          "nome": "Rosario Central",
+          "estrelas": 3.5
+        },
+        {
+          "nome": "San Lorenzo",
+          "estrelas": 3.5
+        },
+        {
+          "nome": "Sarmiento",
+          "estrelas": 3.0
+        },
+        {
+          "nome": "Talleres",
+          "estrelas": 3.5
+        },
+        {
+          "nome": "Tigre",
+          "estrelas": 3.0
+        },
+        {
+          "nome": "Unión",
+          "estrelas": 3.0
+        },
+        {
+          "nome": "Vélez Sarsfield",
+          "estrelas": 3.5
+        }
+      ]
+    },
+    {
+      "liga": "ARGENTINA — Primera Nacional (2ª divisão)",
+      "times": [
+        {
+          "nome": "Acassuso",
+          "estrelas": 2.5
+        },
+        {
+          "nome": "Agropecuario Argentino",
+          "estrelas": 2.5
+        },
+        {
+          "nome": "All Boys",
+          "estrelas": 2.5
+        },
+        {
+          "nome": "Almagro",
+          "estrelas": 2.5
+        },
+        {
+          "nome": "Almirante Brown",
+          "estrelas": 2.5
+        },
+        {
+          "nome": "Atlanta",
+          "estrelas": 2.5
+        },
+        {
+          "nome": "Atlético de Rafaela",
+          "estrelas": 2.0
+        },
+        {
+          "nome": "Central Norte",
+          "estrelas": 2.5
+        },
+        {
+          "nome": "Chacarita Juniors",
+          "estrelas": 2.5
+        },
+        {
+          "nome": "Chaco For Ever",
+          "estrelas": 2.0
+        },
+        {
+          "nome": "Ciudad de Bolívar",
+          "estrelas": 2.0
+        },
+        {
+          "nome": "Colegiales",
+          "estrelas": 2.5
+        },
+        {
+          "nome": "Colón",
+          "estrelas": 2.5
+        },
+        {
+          "nome": "Defensores de Belgrano",
+          "estrelas": 2.5
+        },
+        {
+          "nome": "Deportivo Madryn",
+          "estrelas": 2.5
+        },
+        {
+          "nome": "Deportivo Maipú",
+          "estrelas": 2.5
+        },
+        {
+          "nome": "Deportivo Morón",
+          "estrelas": 2.5
+        },
+        {
+          "nome": "Estudiantes (BA)",
+          "estrelas": 2.5
+        },
+        {
+          "nome": "Ferrocarril Midland",
+          "estrelas": 2.5
+        },
+        {
+          "nome": "Ferro Carril Oeste",
+          "estrelas": 2.5
+        },
+        {
+          "nome": "Gimnasia y Esgrima de Jujuy",
+          "estrelas": 2.5
+        },
+        {
+          "nome": "Gimnasia y Tiro",
+          "estrelas": 2.5
+        },
+        {
+          "nome": "Godoy Cruz",
+          "estrelas": 3.5
+        },
+        {
+          "nome": "Güemes",
+          "estrelas": 2.5
+        },
+        {
+          "nome": "Los Andes",
+          "estrelas": 2.5
+        },
+        {
+          "nome": "Mitre (Santiago del Estero)",
+          "estrelas": 2.5
+        },
+        {
+          "nome": "Nueva Chicago",
+          "estrelas": 2.5
+        },
+        {
+          "nome": "Patronato",
+          "estrelas": 2.5
+        },
+        {
+          "nome": "Quilmes",
+          "estrelas": 2.5
+        },
+        {
+          "nome": "Racing de Córdoba",
+          "estrelas": 2.5
+        },
+        {
+          "nome": "San Martín de San Juan",
+          "estrelas": 2.5
+        },
+        {
+          "nome": "San Martín de Tucumán",
+          "estrelas": 3.5
+        },
+        {
+          "nome": "San Miguel",
+          "estrelas": 2.5
+        },
+        {
+          "nome": "San Telmo",
+          "estrelas": 2.5
+        },
+        {
+          "nome": "Temperley",
+          "estrelas": 2.5
+        },
+        {
+          "nome": "Tristán Suárez",
+          "estrelas": 2.5
+        }
+      ]
+    },
+    {
+      "liga": "BOLÍVIA — División Profesional",
+      "times": [
+        {
+          "nome": "ABB",
+          "estrelas": 2.5
+        },
+        {
+          "nome": "Always Ready",
+          "estrelas": 3.5
+        },
+        {
+          "nome": "Aurora",
+          "estrelas": 2.5
+        },
+        {
+          "nome": "Blooming",
+          "estrelas": 2.5
+        },
+        {
+          "nome": "Bolívar",
+          "estrelas": 3.5
+        },
+        {
+          "nome": "Club Deportivo Guabirá",
+          "estrelas": 2.5
+        },
+        {
+          "nome": "GV San José",
+          "estrelas": 2.5
+        },
+        {
+          "nome": "Independiente Petrolero",
+          "estrelas": 2.5
+        },
+        {
+          "nome": "Nacional Potosí",
+          "estrelas": 2.5
+        },
+        {
+          "nome": "Oriente Petrolero",
+          "estrelas": 2.5
+        },
+        {
+          "nome": "Real Oruro",
+          "estrelas": 2.5
+        },
+        {
+          "nome": "Real Potosí",
+          "estrelas": 2.5
+        },
+        {
+          "nome": "Real Tomayapo",
+          "estrelas": 2.5
+        },
+        {
+          "nome": "San Antonio Bulo Bulo",
+          "estrelas": 2.5
+        },
+        {
+          "nome": "The Strongest",
+          "estrelas": 3.5
+        },
+        {
+          "nome": "Universitario de Vinto",
+          "estrelas": 2.5
+        }
+      ]
+    },
+    {
+      "liga": "BRASIL — Brasileirão Série A",
+      "times": [
+        {
+          "nome": "Athletico-PR",
+          "estrelas": 4.0
+        },
+        {
+          "nome": "Atlético-MG",
+          "estrelas": 4.5
+        },
+        {
+          "nome": "Bahia",
+          "estrelas": 4.0
+        },
+        {
+          "nome": "Botafogo",
+          "estrelas": 4.5
+        },
+        {
+          "nome": "Chapecoense",
+          "estrelas": 3.5
+        },
+        {
+          "nome": "Corinthians",
+          "estrelas": 4.5
+        },
+        {
+          "nome": "Coritiba",
+          "estrelas": 3.0
+        },
+        {
+          "nome": "Cruzeiro",
+          "estrelas": 4.5
+        },
+        {
+          "nome": "Flamengo",
+          "estrelas": 5.0
+        },
+        {
+          "nome": "Fluminense",
+          "estrelas": 4.5
+        },
+        {
+          "nome": "Grêmio",
+          "estrelas": 4.5
+        },
+        {
+          "nome": "Internacional",
+          "estrelas": 4.5
+        },
+        {
+          "nome": "Mirassol",
+          "estrelas": 3.5
+        },
+        {
+          "nome": "Palmeiras",
+          "estrelas": 5.0
+        },
+        {
+          "nome": "Red Bull Bragantino",
+          "estrelas": 3.5
+        },
+        {
+          "nome": "Remo",
+          "estrelas": 3.5
+        },
+        {
+          "nome": "Santos",
+          "estrelas": 4.0
+        },
+        {
+          "nome": "São Paulo",
+          "estrelas": 4.5
+        },
+        {
+          "nome": "Vasco da Gama",
+          "estrelas": 4.0
+        },
+        {
+          "nome": "Vitória",
+          "estrelas": 3.5
+        }
+      ]
+    },
+    {
+      "liga": "BRASIL — Brasileirão Série B",
+      "times": [
+        {
+          "nome": "América-MG",
+          "estrelas": 3.0
+        },
+        {
+          "nome": "Athletic-MG",
+          "estrelas": 2.5
+        },
+        {
+          "nome": "Atlético-GO",
+          "estrelas": 2.5
+        },
+        {
+          "nome": "Avaí",
+          "estrelas": 3.0
+        },
+        {
+          "nome": "Botafogo-SP",
+          "estrelas": 2.5
+        },
+        {
+          "nome": "Ceará",
+          "estrelas": 4.0
+        },
+        {
+          "nome": "CRB",
+          "estrelas": 3.0
+        },
+        {
+          "nome": "Criciúma",
+          "estrelas": 3.0
+        },
+        {
+          "nome": "Cuiabá",
+          "estrelas": 3.0
+        },
+        {
+          "nome": "Fortaleza",
+          "estrelas": 4.0
+        },
+        {
+          "nome": "Goiás",
+          "estrelas": 3.0
+        },
+        {
+          "nome": "Juventude",
+          "estrelas": 3.0
+        },
+        {
+          "nome": "Londrina",
+          "estrelas": 2.5
+        },
+        {
+          "nome": "Náutico",
+          "estrelas": 2.5
+        },
+        {
+          "nome": "Novorizontino",
+          "estrelas": 3.0
+        },
+        {
+          "nome": "Operário-PR",
+          "estrelas": 3.0
+        },
+        {
+          "nome": "Ponte Preta",
+          "estrelas": 3.0
+        },
+        {
+          "nome": "São Bernardo",
+          "estrelas": 2.5
+        },
+        {
+          "nome": "Sport",
+          "estrelas": 4.0
+        },
+        {
+          "nome": "Vila Nova",
+          "estrelas": 3.0
+        }
+      ]
+    },
+    {
+      "liga": "BRASIL — Brasileirão Série C",
+      "times": [
+        {
+          "nome": "Amazonas",
+          "estrelas": 2.0
+        },
+        {
+          "nome": "Anápolis",
+          "estrelas": 2.0
+        },
+        {
+          "nome": "Barra-SC",
+          "estrelas": 2.0
+        },
+        {
+          "nome": "Botafogo-PB",
+          "estrelas": 2.0
+        },
+        {
+          "nome": "Brusque",
+          "estrelas": 2.0
+        },
+        {
+          "nome": "Caxias",
+          "estrelas": 3.0
+        },
+        {
+          "nome": "Confiança",
+          "estrelas": 3.0
+        },
+        {
+          "nome": "Ferroviária",
+          "estrelas": 3.0
+        },
+        {
+          "nome": "Figueirense",
+          "estrelas": 3.0
+        },
+        {
+          "nome": "Floresta",
+          "estrelas": 2.0
+        },
+        {
+          "nome": "Guarani",
+          "estrelas": 3.0
+        },
+        {
+          "nome": "Inter de Limeira",
+          "estrelas": 2.0
+        },
+        {
+          "nome": "Itabaiana",
+          "estrelas": 2.0
+        },
+        {
+          "nome": "Ituano",
+          "estrelas": 2.0
+        },
+        {
+          "nome": "Maranhão",
+          "estrelas": 2.0
+        },
+        {
+          "nome": "Maringá",
+          "estrelas": 2.0
+        },
+        {
+          "nome": "Paysandu",
+          "estrelas": 3.0
+        },
+        {
+          "nome": "Santa Cruz",
+          "estrelas": 3.0
+        },
+        {
+          "nome": "Volta Redonda",
+          "estrelas": 3.0
+        },
+        {
+          "nome": "Ypiranga-RS",
+          "estrelas": 2.0
+        }
+      ]
+    },
+    {
+      "liga": "BRASIL — Brasileirão Série D",
+      "times": [
+        {
+          "nome": "Nacional-AM",
+          "estrelas": 3.0
+        },
+        {
+          "nome": "Manaus",
+          "estrelas": 3.0
+        },
+        {
+          "nome": "Manauara",
+          "estrelas": 1.5
+        },
+        {
+          "nome": "GAS-RR",
+          "estrelas": 1.5
+        },
+        {
+          "nome": "Monte Roraima",
+          "estrelas": 1.5
+        },
+        {
+          "nome": "São Raimundo-RR",
+          "estrelas": 1.5
+        },
+        {
+          "nome": "Independência-AC",
+          "estrelas": 1.5
+        },
+        {
+          "nome": "Galvez",
+          "estrelas": 1.5
+        },
+        {
+          "nome": "Humaitá",
+          "estrelas": 1.5
+        },
+        {
+          "nome": "Porto Velho",
+          "estrelas": 1.5
+        },
+        {
+          "nome": "Guaporé",
+          "estrelas": 1.5
+        },
+        {
+          "nome": "Araguaína",
+          "estrelas": 1.5
+        },
+        {
+          "nome": "Gama",
+          "estrelas": 3.0
+        },
+        {
+          "nome": "Brasiliense",
+          "estrelas": 3.0
+        },
+        {
+          "nome": "Luverdense",
+          "estrelas": 1.5
+        },
+        {
+          "nome": "Primavera-MT",
+          "estrelas": 1.5
+        },
+        {
+          "nome": "Inhumas",
+          "estrelas": 1.5
+        },
+        {
+          "nome": "Aparecidense",
+          "estrelas": 1.5
+        },
+        {
+          "nome": "Capital-DF",
+          "estrelas": 1.5
+        },
+        {
+          "nome": "Ceilândia",
+          "estrelas": 1.5
+        },
+        {
+          "nome": "Mixto",
+          "estrelas": 1.5
+        },
+        {
+          "nome": "Operário-MS",
+          "estrelas": 1.5
+        },
+        {
+          "nome": "União Rondonópolis",
+          "estrelas": 1.5
+        },
+        {
+          "nome": "Goiatuba",
+          "estrelas": 1.5
+        },
+        {
+          "nome": "Trem",
+          "estrelas": 1.5
+        },
+        {
+          "nome": "Oratório",
+          "estrelas": 1.5
+        },
+        {
+          "nome": "Tuna Luso",
+          "estrelas": 1.5
+        },
+        {
+          "nome": "Águia de Marabá",
+          "estrelas": 1.5
+        },
+        {
+          "nome": "Tocantinópolis",
+          "estrelas": 1.5
+        },
+        {
+          "nome": "Imperatriz",
+          "estrelas": 1.5
+        },
+        {
+          "nome": "Sampaio Corrêa-MA",
+          "estrelas": 3.0
+        },
+        {
+          "nome": "Moto Club",
+          "estrelas": 1.5
+        },
+        {
+          "nome": "IAPE",
+          "estrelas": 1.5
+        },
+        {
+          "nome": "Maracanã",
+          "estrelas": 1.5
+        },
+        {
+          "nome": "Iguatu",
+          "estrelas": 1.5
+        },
+        {
+          "nome": "Parnahyba",
+          "estrelas": 1.5
+        },
+        {
+          "nome": "Ferroviário-CE",
+          "estrelas": 3.0
+        },
+        {
+          "nome": "Tirol",
+          "estrelas": 1.5
+        },
+        {
+          "nome": "Atlético-CE",
+          "estrelas": 1.5
+        },
+        {
+          "nome": "Altos",
+          "estrelas": 1.5
+        },
+        {
+          "nome": "Piauí",
+          "estrelas": 1.5
+        },
+        {
+          "nome": "Fluminense-PI",
+          "estrelas": 1.5
+        },
+        {
+          "nome": "ABC",
+          "estrelas": 3.0
+        },
+        {
+          "nome": "América-RN",
+          "estrelas": 1.5
+        },
+        {
+          "nome": "Laguna",
+          "estrelas": 1.5
+        },
+        {
+          "nome": "Sousa",
+          "estrelas": 1.5
+        },
+        {
+          "nome": "Maguary",
+          "estrelas": 1.5
+        },
+        {
+          "nome": "Central",
+          "estrelas": 1.5
+        },
+        {
+          "nome": "Retrô",
+          "estrelas": 3.0
+        },
+        {
+          "nome": "Decisão",
+          "estrelas": 1.5
+        },
+        {
+          "nome": "Serra Branca",
+          "estrelas": 1.5
+        },
+        {
+          "nome": "Treze",
+          "estrelas": 3.0
+        },
+        {
+          "nome": "Lagarto",
+          "estrelas": 1.5
+        },
+        {
+          "nome": "Sergipe",
+          "estrelas": 1.5
+        },
+        {
+          "nome": "ASA",
+          "estrelas": 3.0
+        },
+        {
+          "nome": "CSA",
+          "estrelas": 3.0
+        },
+        {
+          "nome": "CSE",
+          "estrelas": 1.5
+        },
+        {
+          "nome": "Jacuipense",
+          "estrelas": 1.5
+        },
+        {
+          "nome": "Atlético-BA",
+          "estrelas": 1.5
+        },
+        {
+          "nome": "Juazeirense",
+          "estrelas": 1.5
+        },
+        {
+          "nome": "Uberlândia",
+          "estrelas": 1.5
+        },
+        {
+          "nome": "Betim",
+          "estrelas": 1.5
+        },
+        {
+          "nome": "CRAC",
+          "estrelas": 1.5
+        },
+        {
+          "nome": "ABECAT Ouvidorense",
+          "estrelas": 1.5
+        },
+        {
+          "nome": "Operário-MS",
+          "estrelas": 1.5
+        },
+        {
+          "nome": "Ivinhema",
+          "estrelas": 1.5
+        },
+        {
+          "nome": "Porto-BA",
+          "estrelas": 1.5
+        },
+        {
+          "nome": "Rio Branco-ES",
+          "estrelas": 1.5
+        },
+        {
+          "nome": "Vitória-ES",
+          "estrelas": 1.5
+        },
+        {
+          "nome": "Real Noroeste",
+          "estrelas": 1.5
+        },
+        {
+          "nome": "Tombense",
+          "estrelas": 3.0
+        },
+        {
+          "nome": "Democrata-GV",
+          "estrelas": 1.5
+        },
+        {
+          "nome": "Madureira",
+          "estrelas": 3.0
+        },
+        {
+          "nome": "Portuguesa-RJ",
+          "estrelas": 3.0
+        },
+        {
+          "nome": "America-RJ",
+          "estrelas": 1.5
+        },
+        {
+          "nome": "Portuguesa-SP",
+          "estrelas": 3.0
+        },
+        {
+          "nome": "Água Santa",
+          "estrelas": 1.5
+        },
+        {
+          "nome": "Pouso Alegre",
+          "estrelas": 1.5
+        },
+        {
+          "nome": "Nova Iguaçu",
+          "estrelas": 1.5
+        },
+        {
+          "nome": "Sampaio Corrêa-RJ",
+          "estrelas": 1.5
+        },
+        {
+          "nome": "Maricá",
+          "estrelas": 1.5
+        },
+        {
+          "nome": "XV de Piracicaba",
+          "estrelas": 1.5
+        },
+        {
+          "nome": "Noroeste",
+          "estrelas": 1.5
+        },
+        {
+          "nome": "Velo Clube",
+          "estrelas": 1.5
+        },
+        {
+          "nome": "Cianorte",
+          "estrelas": 3.0
+        },
+        {
+          "nome": "FC Cascavel",
+          "estrelas": 1.5
+        },
+        {
+          "nome": "Santa Catarina",
+          "estrelas": 1.5
+        },
+        {
+          "nome": "Joinville",
+          "estrelas": 3.0
+        },
+        {
+          "nome": "Guarany de Bagé",
+          "estrelas": 1.5
+        },
+        {
+          "nome": "São Luiz",
+          "estrelas": 1.5
+        },
+        {
+          "nome": "Blumenau",
+          "estrelas": 1.5
+        },
+        {
+          "nome": "Marcílio Dias",
+          "estrelas": 1.5
+        },
+        {
+          "nome": "São Joseense",
+          "estrelas": 1.5
+        },
+        {
+          "nome": "Azuriz",
+          "estrelas": 1.5
+        },
+        {
+          "nome": "São José-RS",
+          "estrelas": 3.0
+        },
+        {
+          "nome": "Brasil de Pelotas",
+          "estrelas": 1.5
+        }
+      ]
+    },
+    {
+      "liga": "CHILE — Primera División / Campeonato Itaú",
+      "times": [
+        {
+          "nome": "Audax Italiano",
+          "estrelas": 2.5
+        },
+        {
+          "nome": "Cobresal",
+          "estrelas": 2.5
+        },
+        {
+          "nome": "Colo-Colo",
+          "estrelas": 4.0
+        },
+        {
+          "nome": "Coquimbo Unido",
+          "estrelas": 2.5
+        },
+        {
+          "nome": "Deportes Concepción",
+          "estrelas": 3.5
+        },
+        {
+          "nome": "Deportes La Serena",
+          "estrelas": 2.5
+        },
+        {
+          "nome": "Deportes Limache",
+          "estrelas": 2.5
+        },
+        {
+          "nome": "Everton",
+          "estrelas": 3.5
+        },
+        {
+          "nome": "Huachipato",
+          "estrelas": 3.5
+        },
+        {
+          "nome": "Ñublense",
+          "estrelas": 2.5
+        },
+        {
+          "nome": "O'Higgins",
+          "estrelas": 2.5
+        },
+        {
+          "nome": "Palestino",
+          "estrelas": 3.5
+        },
+        {
+          "nome": "Unión La Calera",
+          "estrelas": 2.5
+        },
+        {
+          "nome": "Universidad Católica",
+          "estrelas": 3.5
+        },
+        {
+          "nome": "Universidad de Chile",
+          "estrelas": 4.0
+        },
+        {
+          "nome": "Universidad de Concepción",
+          "estrelas": 3.0
+        }
+      ]
+    },
+    {
+      "liga": "COLÔMBIA — Liga BetPlay DIMAYOR",
+      "times": [
+        {
+          "nome": "Atlético Bucaramanga",
+          "estrelas": 2.5
+        },
+        {
+          "nome": "Atlético Nacional",
+          "estrelas": 4.0
+        },
+        {
+          "nome": "Boyacá Chicó",
+          "estrelas": 3.0
+        },
+        {
+          "nome": "Deportes Tolima",
+          "estrelas": 3.0
+        },
+        {
+          "nome": "Deportivo Cali",
+          "estrelas": 2.5
+        },
+        {
+          "nome": "Deportivo Pasto",
+          "estrelas": 2.5
+        },
+        {
+          "nome": "Fortaleza CEIF",
+          "estrelas": 2.5
+        },
+        {
+          "nome": "Independiente Medellín",
+          "estrelas": 4.0
+        },
+        {
+          "nome": "Independiente Santa Fe",
+          "estrelas": 3.0
+        },
+        {
+          "nome": "Jaguares de Córdoba",
+          "estrelas": 2.5
+        },
+        {
+          "nome": "Junior",
+          "estrelas": 4.0
+        },
+        {
+          "nome": "La Equidad",
+          "estrelas": 2.5
+        },
+        {
+          "nome": "Llaneros",
+          "estrelas": 2.5
+        },
+        {
+          "nome": "Millonarios",
+          "estrelas": 4.0
+        },
+        {
+          "nome": "Once Caldas",
+          "estrelas": 2.5
+        },
+        {
+          "nome": "Real Cundinamarca",
+          "estrelas": 2.5
+        },
+        {
+          "nome": "Águilas Doradas",
+          "estrelas": 2.5
+        },
+        {
+          "nome": "Unión Magdalena",
+          "estrelas": 2.5
+        },
+        {
+          "nome": "Alianza FC",
+          "estrelas": 2.5
+        },
+        {
+          "nome": "Envigado",
+          "estrelas": 2.5
+        }
+      ]
+    },
+    {
+      "liga": "EQUADOR — LigaPro Serie A",
+      "times": [
+        {
+          "nome": "Aucas",
+          "estrelas": 2.5
+        },
+        {
+          "nome": "Barcelona SC",
+          "estrelas": 3.5
+        },
+        {
+          "nome": "Delfín",
+          "estrelas": 2.5
+        },
+        {
+          "nome": "Deportivo Cuenca",
+          "estrelas": 3.5
+        },
+        {
+          "nome": "Emelec",
+          "estrelas": 3.5
+        },
+        {
+          "nome": "Guayaquil City",
+          "estrelas": 2.5
+        },
+        {
+          "nome": "Independiente del Valle",
+          "estrelas": 4.0
+        },
+        {
+          "nome": "LDU Quito",
+          "estrelas": 4.0
+        },
+        {
+          "nome": "Leones del Norte",
+          "estrelas": 2.5
+        },
+        {
+          "nome": "Libertad",
+          "estrelas": 2.5
+        },
+        {
+          "nome": "Macará",
+          "estrelas": 2.5
+        },
+        {
+          "nome": "Manta",
+          "estrelas": 2.5
+        },
+        {
+          "nome": "Mushuc Runa",
+          "estrelas": 2.5
+        },
+        {
+          "nome": "Orense",
+          "estrelas": 2.5
+        },
+        {
+          "nome": "Técnico Universitario",
+          "estrelas": 2.5
+        },
+        {
+          "nome": "Universidad Católica",
+          "estrelas": 3.5
+        }
+      ]
+    },
+    {
+      "liga": "PARAGUAI — Primera División",
+      "times": [
+        {
+          "nome": "2 de Mayo",
+          "estrelas": 3.0
+        },
+        {
+          "nome": "Ameliano",
+          "estrelas": 3.0
+        },
+        {
+          "nome": "Cerro Porteño",
+          "estrelas": 4.0
+        },
+        {
+          "nome": "Club Guaraní",
+          "estrelas": 3.0
+        },
+        {
+          "nome": "General Caballero JLM",
+          "estrelas": 3.0
+        },
+        {
+          "nome": "Guaraní de Fram",
+          "estrelas": 3.0
+        },
+        {
+          "nome": "Libertad",
+          "estrelas": 2.5
+        },
+        {
+          "nome": "Nacional",
+          "estrelas": 3.5
+        },
+        {
+          "nome": "Olimpia",
+          "estrelas": 4.0
+        },
+        {
+          "nome": "Sportivo Luqueño",
+          "estrelas": 3.5
+        },
+        {
+          "nome": "Sportivo San Lorenzo",
+          "estrelas": 3.0
+        },
+        {
+          "nome": "Trinidense",
+          "estrelas": 3.0
+        }
+      ]
+    },
+    {
+      "liga": "PERU — Liga 1",
+      "times": [
+        {
+          "nome": "ADT",
+          "estrelas": 2.5
+        },
+        {
+          "nome": "Alianza Atlético",
+          "estrelas": 2.5
+        },
+        {
+          "nome": "Alianza Lima",
+          "estrelas": 4.0
+        },
+        {
+          "nome": "Atlético Grau",
+          "estrelas": 2.5
+        },
+        {
+          "nome": "Cienciano",
+          "estrelas": 3.5
+        },
+        {
+          "nome": "Comerciantes Unidos",
+          "estrelas": 2.5
+        },
+        {
+          "nome": "Cusco FC",
+          "estrelas": 2.5
+        },
+        {
+          "nome": "Deportivo Garcilaso",
+          "estrelas": 2.5
+        },
+        {
+          "nome": "Deportivo Moquegua",
+          "estrelas": 2.5
+        },
+        {
+          "nome": "FBC Melgar",
+          "estrelas": 2.5
+        },
+        {
+          "nome": "FC Cajamarca",
+          "estrelas": 2.5
+        },
+        {
+          "nome": "Juan Pablo II College",
+          "estrelas": 2.5
+        },
+        {
+          "nome": "Los Chankas",
+          "estrelas": 2.5
+        },
+        {
+          "nome": "Sport Boys",
+          "estrelas": 3.5
+        },
+        {
+          "nome": "Sport Huancayo",
+          "estrelas": 2.5
+        },
+        {
+          "nome": "Sporting Cristal",
+          "estrelas": 4.0
+        },
+        {
+          "nome": "Universitario",
+          "estrelas": 4.0
+        },
+        {
+          "nome": "UTC",
+          "estrelas": 2.5
+        }
+      ]
+    },
+    {
+      "liga": "URUGUAI — Primera División",
+      "times": [
+        {
+          "nome": "Boston River",
+          "estrelas": 2.5
+        },
+        {
+          "nome": "Cerro Largo",
+          "estrelas": 2.5
+        },
+        {
+          "nome": "Danubio",
+          "estrelas": 3.5
+        },
+        {
+          "nome": "Defensor Sporting",
+          "estrelas": 3.5
+        },
+        {
+          "nome": "Juventud",
+          "estrelas": 2.5
+        },
+        {
+          "nome": "Liverpool",
+          "estrelas": 3.5
+        },
+        {
+          "nome": "Montevideo City Torque",
+          "estrelas": 2.5
+        },
+        {
+          "nome": "Montevideo Wanderers",
+          "estrelas": 3.5
+        },
+        {
+          "nome": "Nacional",
+          "estrelas": 3.5
+        },
+        {
+          "nome": "Peñarol",
+          "estrelas": 4.0
+        },
+        {
+          "nome": "Plaza Colonia",
+          "estrelas": 2.5
+        },
+        {
+          "nome": "Progreso",
+          "estrelas": 2.5
+        },
+        {
+          "nome": "Racing Club de Montevideo",
+          "estrelas": 2.5
+        },
+        {
+          "nome": "River Plate",
+          "estrelas": 2.5
+        },
+        {
+          "nome": "Wanderers",
+          "estrelas": 2.5
+        },
+        {
+          "nome": "Torque",
+          "estrelas": 2.5
+        }
+      ]
+    },
+    {
+      "liga": "VENEZUELA — Liga Venezuela",
+      "times": [
+        {
+          "nome": "Academia Anzoátegui",
+          "estrelas": 2.5
+        },
+        {
+          "nome": "Academia Puerto Cabello",
+          "estrelas": 2.5
+        },
+        {
+          "nome": "Carabobo",
+          "estrelas": 2.5
+        },
+        {
+          "nome": "Caracas FC",
+          "estrelas": 3.5
+        },
+        {
+          "nome": "Deportivo La Guaira",
+          "estrelas": 2.5
+        },
+        {
+          "nome": "Deportivo Táchira",
+          "estrelas": 3.5
+        },
+        {
+          "nome": "Estudiantes de Mérida",
+          "estrelas": 2.5
+        },
+        {
+          "nome": "Metropolitanos",
+          "estrelas": 2.5
+        },
+        {
+          "nome": "Monagas",
+          "estrelas": 2.5
+        },
+        {
+          "nome": "Portuguesa FC",
+          "estrelas": 2.5
+        },
+        {
+          "nome": "Rayo Zuliano",
+          "estrelas": 2.5
+        },
+        {
+          "nome": "Trujillanos",
+          "estrelas": 2.5
+        },
+        {
+          "nome": "UCV FC",
+          "estrelas": 2.5
+        },
+        {
+          "nome": "Zamora",
+          "estrelas": 2.5
+        }
+      ]
+    },
+    {
+      "liga": "COSTA RICA — Liga Promerica",
+      "times": [
+        {
+          "nome": "Alajuelense",
+          "estrelas": 3.5
+        },
+        {
+          "nome": "Cartaginés",
+          "estrelas": 2.5
+        },
+        {
+          "nome": "Deportivo Saprissa",
+          "estrelas": 3.5
+        },
+        {
+          "nome": "Herediano",
+          "estrelas": 3.5
+        },
+        {
+          "nome": "Guanacasteca",
+          "estrelas": 2.5
+        },
+        {
+          "nome": "Municipal Liberia",
+          "estrelas": 2.5
+        },
+        {
+          "nome": "Pérez Zeledón",
+          "estrelas": 2.5
+        },
+        {
+          "nome": "Puntarenas",
+          "estrelas": 2.5
+        },
+        {
+          "nome": "San Carlos",
+          "estrelas": 2.5
+        },
+        {
+          "nome": "Sporting FC",
+          "estrelas": 2.5
+        },
+        {
+          "nome": "Escorpiones de Belén",
+          "estrelas": 2.5
+        },
+        {
+          "nome": "Santos de Guápiles",
+          "estrelas": 2.5
+        }
+      ]
+    },
+    {
+      "liga": "ESTADOS UNIDOS / CANADÁ — MLS",
+      "times": [
+        {
+          "nome": "Atlanta United",
+          "estrelas": 3.0
+        },
+        {
+          "nome": "Austin FC",
+          "estrelas": 3.0
+        },
+        {
+          "nome": "Charlotte FC",
+          "estrelas": 3.0
+        },
+        {
+          "nome": "Chicago Fire",
+          "estrelas": 3.0
+        },
+        {
+          "nome": "FC Cincinnati",
+          "estrelas": 4.0
+        },
+        {
+          "nome": "Colorado Rapids",
+          "estrelas": 3.0
+        },
+        {
+          "nome": "Columbus Crew",
+          "estrelas": 4.0
+        },
+        {
+          "nome": "D.C. United",
+          "estrelas": 3.0
+        },
+        {
+          "nome": "FC Dallas",
+          "estrelas": 3.0
+        },
+        {
+          "nome": "Houston Dynamo",
+          "estrelas": 3.0
+        },
+        {
+          "nome": "LA Galaxy",
+          "estrelas": 4.0
+        },
+        {
+          "nome": "Los Angeles FC",
+          "estrelas": 4.0
+        },
+        {
+          "nome": "Inter Miami",
+          "estrelas": 4.0
+        },
+        {
+          "nome": "Minnesota United",
+          "estrelas": 3.5
+        },
+        {
+          "nome": "CF Montréal",
+          "estrelas": 3.0
+        },
+        {
+          "nome": "Nashville SC",
+          "estrelas": 3.5
+        },
+        {
+          "nome": "New England Revolution",
+          "estrelas": 3.0
+        },
+        {
+          "nome": "New York Red Bulls",
+          "estrelas": 3.0
+        },
+        {
+          "nome": "New York City FC",
+          "estrelas": 3.5
+        },
+        {
+          "nome": "Orlando City",
+          "estrelas": 3.5
+        },
+        {
+          "nome": "Philadelphia Union",
+          "estrelas": 3.5
+        },
+        {
+          "nome": "Portland Timbers",
+          "estrelas": 3.5
+        },
+        {
+          "nome": "Real Salt Lake",
+          "estrelas": 3.5
+        },
+        {
+          "nome": "San Diego FC",
+          "estrelas": 3.0
+        },
+        {
+          "nome": "San Jose Earthquakes",
+          "estrelas": 3.0
+        },
+        {
+          "nome": "Seattle Sounders",
+          "estrelas": 4.0
+        },
+        {
+          "nome": "Sporting Kansas City",
+          "estrelas": 3.0
+        },
+        {
+          "nome": "St. Louis City",
+          "estrelas": 3.0
+        },
+        {
+          "nome": "Toronto FC",
+          "estrelas": 3.5
+        },
+        {
+          "nome": "Vancouver Whitecaps",
+          "estrelas": 4.0
+        }
+      ]
+    },
+    {
+      "liga": "MÉXICO — Liga MX",
+      "times": [
+        {
+          "nome": "América",
+          "estrelas": 4.5
+        },
+        {
+          "nome": "Atlas",
+          "estrelas": 4.0
+        },
+        {
+          "nome": "Atlético de San Luis",
+          "estrelas": 3.5
+        },
+        {
+          "nome": "Cruz Azul",
+          "estrelas": 4.5
+        },
+        {
+          "nome": "Guadalajara (Chivas)",
+          "estrelas": 4.0
+        },
+        {
+          "nome": "Juárez",
+          "estrelas": 3.5
+        },
+        {
+          "nome": "León",
+          "estrelas": 4.0
+        },
+        {
+          "nome": "Mazatlán",
+          "estrelas": 3.5
+        },
+        {
+          "nome": "Monterrey",
+          "estrelas": 4.5
+        },
+        {
+          "nome": "Necaxa",
+          "estrelas": 3.5
+        },
+        {
+          "nome": "Pachuca",
+          "estrelas": 4.0
+        },
+        {
+          "nome": "Puebla",
+          "estrelas": 3.5
+        },
+        {
+          "nome": "Querétaro",
+          "estrelas": 3.5
+        },
+        {
+          "nome": "Santos Laguna",
+          "estrelas": 3.5
+        },
+        {
+          "nome": "Tigres UANL",
+          "estrelas": 4.5
+        },
+        {
+          "nome": "Tijuana",
+          "estrelas": 3.5
+        },
+        {
+          "nome": "Toluca",
+          "estrelas": 4.0
+        },
+        {
+          "nome": "Pumas UNAM",
+          "estrelas": 4.0
+        }
+      ]
+    },
+    {
+      "liga": "ALEMANHA — Bundesliga",
+      "times": [
+        {
+          "nome": "FC Augsburg",
+          "estrelas": 3.5
+        },
+        {
+          "nome": "Bayern München",
+          "estrelas": 5.0
+        },
+        {
+          "nome": "Borussia Dortmund",
+          "estrelas": 4.5
+        },
+        {
+          "nome": "Borussia Mönchengladbach",
+          "estrelas": 4.0
+        },
+        {
+          "nome": "SC Freiburg",
+          "estrelas": 4.0
+        },
+        {
+          "nome": "Eintracht Frankfurt",
+          "estrelas": 4.0
+        },
+        {
+          "nome": "TSG Hoffenheim",
+          "estrelas": 3.5
+        },
+        {
+          "nome": "Bayer Leverkusen",
+          "estrelas": 4.5
+        },
+        {
+          "nome": "Mainz 05",
+          "estrelas": 3.0
+        },
+        {
+          "nome": "Union Berlin",
+          "estrelas": 3.0
+        },
+        {
+          "nome": "RB Leipzig",
+          "estrelas": 4.0
+        },
+        {
+          "nome": "VfB Stuttgart",
+          "estrelas": 4.0
+        },
+        {
+          "nome": "Werder Bremen",
+          "estrelas": 3.0
+        },
+        {
+          "nome": "Hamburger SV",
+          "estrelas": 3.5
+        },
+        {
+          "nome": "1. FC Köln",
+          "estrelas": 3.5
+        },
+        {
+          "nome": "SV Elversberg",
+          "estrelas": 3.5
+        },
+        {
+          "nome": "SC Paderborn",
+          "estrelas": 3.5
+        },
+        {
+          "nome": "Schalke 04",
+          "estrelas": 3.5
+        }
+      ]
+    },
+    {
+      "liga": "ESPANHA — La Liga EA Sports",
+      "times": [
+        {
+          "nome": "Alavés",
+          "estrelas": 3.5
+        },
+        {
+          "nome": "Athletic Bilbao",
+          "estrelas": 4.0
+        },
+        {
+          "nome": "Atlético de Madrid",
+          "estrelas": 4.5
+        },
+        {
+          "nome": "Barcelona",
+          "estrelas": 5.0
+        },
+        {
+          "nome": "Celta de Vigo",
+          "estrelas": 3.5
+        },
+        {
+          "nome": "Deportivo La Coruña",
+          "estrelas": 3.5
+        },
+        {
+          "nome": "Elche",
+          "estrelas": 3.5
+        },
+        {
+          "nome": "Espanyol",
+          "estrelas": 3.5
+        },
+        {
+          "nome": "Getafe",
+          "estrelas": 3.5
+        },
+        {
+          "nome": "Levante",
+          "estrelas": 3.5
+        },
+        {
+          "nome": "Málaga",
+          "estrelas": 3.5
+        },
+        {
+          "nome": "Osasuna",
+          "estrelas": 3.5
+        },
+        {
+          "nome": "Racing Santander",
+          "estrelas": 3.5
+        },
+        {
+          "nome": "Rayo Vallecano",
+          "estrelas": 3.5
+        },
+        {
+          "nome": "Real Betis",
+          "estrelas": 4.0
+        },
+        {
+          "nome": "Real Madrid",
+          "estrelas": 5.0
+        },
+        {
+          "nome": "Real Sociedad",
+          "estrelas": 4.0
+        },
+        {
+          "nome": "Sevilla",
+          "estrelas": 4.0
+        },
+        {
+          "nome": "Valencia",
+          "estrelas": 4.0
+        },
+        {
+          "nome": "Villarreal",
+          "estrelas": 4.0
+        }
+      ]
+    },
+    {
+      "liga": "FRANÇA — Ligue 1 McDonald's",
+      "times": [
+        {
+          "nome": "Angers",
+          "estrelas": 3.0
+        },
+        {
+          "nome": "Auxerre",
+          "estrelas": 3.0
+        },
+        {
+          "nome": "Brest",
+          "estrelas": 3.0
+        },
+        {
+          "nome": "Le Havre",
+          "estrelas": 3.0
+        },
+        {
+          "nome": "Le Mans",
+          "estrelas": 3.0
+        },
+        {
+          "nome": "Lens",
+          "estrelas": 3.0
+        },
+        {
+          "nome": "Lille",
+          "estrelas": 4.0
+        },
+        {
+          "nome": "Lorient",
+          "estrelas": 3.0
+        },
+        {
+          "nome": "Lyon",
+          "estrelas": 4.0
+        },
+        {
+          "nome": "Marseille",
+          "estrelas": 4.0
+        },
+        {
+          "nome": "Monaco",
+          "estrelas": 4.5
+        },
+        {
+          "nome": "Nice",
+          "estrelas": 4.0
+        },
+        {
+          "nome": "Paris FC",
+          "estrelas": 3.0
+        },
+        {
+          "nome": "Paris Saint-Germain",
+          "estrelas": 5.0
+        },
+        {
+          "nome": "Rennes",
+          "estrelas": 3.0
+        },
+        {
+          "nome": "Strasbourg",
+          "estrelas": 3.0
+        },
+        {
+          "nome": "Toulouse",
+          "estrelas": 3.0
+        },
+        {
+          "nome": "Troyes",
+          "estrelas": 3.0
+        }
+      ]
+    },
+    {
+      "liga": "INGLATERRA — Premier League",
+      "times": [
+        {
+          "nome": "Arsenal",
+          "estrelas": 5.0
+        },
+        {
+          "nome": "Aston Villa",
+          "estrelas": 4.5
+        },
+        {
+          "nome": "Bournemouth",
+          "estrelas": 3.5
+        },
+        {
+          "nome": "Brentford",
+          "estrelas": 3.5
+        },
+        {
+          "nome": "Brighton & Hove Albion",
+          "estrelas": 4.0
+        },
+        {
+          "nome": "Chelsea",
+          "estrelas": 4.5
+        },
+        {
+          "nome": "Coventry City",
+          "estrelas": 3.0
+        },
+        {
+          "nome": "Crystal Palace",
+          "estrelas": 4.0
+        },
+        {
+          "nome": "Everton",
+          "estrelas": 3.5
+        },
+        {
+          "nome": "Fulham",
+          "estrelas": 3.5
+        },
+        {
+          "nome": "Hull City",
+          "estrelas": 3.5
+        },
+        {
+          "nome": "Ipswich Town",
+          "estrelas": 3.0
+        },
+        {
+          "nome": "Leeds United",
+          "estrelas": 3.0
+        },
+        {
+          "nome": "Liverpool",
+          "estrelas": 3.5
+        },
+        {
+          "nome": "Manchester City",
+          "estrelas": 5.0
+        },
+        {
+          "nome": "Manchester United",
+          "estrelas": 4.5
+        },
+        {
+          "nome": "Newcastle United",
+          "estrelas": 4.5
+        },
+        {
+          "nome": "Nottingham Forest",
+          "estrelas": 4.0
+        },
+        {
+          "nome": "Sunderland",
+          "estrelas": 3.5
+        },
+        {
+          "nome": "Tottenham Hotspur",
+          "estrelas": 4.5
+        }
+      ]
+    },
+    {
+      "liga": "INGLATERRA — EFL Championship",
+      "times": [
+        {
+          "nome": "Birmingham City",
+          "estrelas": 3.0
+        },
+        {
+          "nome": "Blackburn Rovers",
+          "estrelas": 2.5
+        },
+        {
+          "nome": "Bristol City",
+          "estrelas": 2.5
+        },
+        {
+          "nome": "Bristol Rovers",
+          "estrelas": 2.5
+        },
+        {
+          "nome": "Burnley",
+          "estrelas": 3.0
+        },
+        {
+          "nome": "Cardiff City",
+          "estrelas": 2.5
+        },
+        {
+          "nome": "Derby County",
+          "estrelas": 2.5
+        },
+        {
+          "nome": "Hull City",
+          "estrelas": 2.5
+        },
+        {
+          "nome": "Ipswich Town",
+          "estrelas": 3.0
+        },
+        {
+          "nome": "Leicester City",
+          "estrelas": 3.0
+        },
+        {
+          "nome": "Lincoln City",
+          "estrelas": 2.5
+        },
+        {
+          "nome": "Middlesbrough",
+          "estrelas": 3.0
+        },
+        {
+          "nome": "Millwall",
+          "estrelas": 2.5
+        },
+        {
+          "nome": "Norwich City",
+          "estrelas": 3.0
+        },
+        {
+          "nome": "Oxford United",
+          "estrelas": 2.5
+        },
+        {
+          "nome": "Preston North End",
+          "estrelas": 2.5
+        },
+        {
+          "nome": "Queens Park Rangers",
+          "estrelas": 2.5
+        },
+        {
+          "nome": "Sheffield United",
+          "estrelas": 3.0
+        },
+        {
+          "nome": "Southampton",
+          "estrelas": 3.0
+        },
+        {
+          "nome": "Stoke City",
+          "estrelas": 2.5
+        },
+        {
+          "nome": "Swansea City",
+          "estrelas": 2.5
+        },
+        {
+          "nome": "West Bromwich Albion",
+          "estrelas": 3.0
+        },
+        {
+          "nome": "Wolverhampton Wanderers",
+          "estrelas": 3.0
+        },
+        {
+          "nome": "Bolton Wanderers",
+          "estrelas": 2.5
+        }
+      ]
+    },
+    {
+      "liga": "ITÁLIA — Serie A Enilive",
+      "times": [
+        {
+          "nome": "Atalanta",
+          "estrelas": 4.5
+        },
+        {
+          "nome": "Bologna",
+          "estrelas": 4.0
+        },
+        {
+          "nome": "Cagliari",
+          "estrelas": 3.5
+        },
+        {
+          "nome": "Como",
+          "estrelas": 3.5
+        },
+        {
+          "nome": "Fiorentina",
+          "estrelas": 4.0
+        },
+        {
+          "nome": "Frosinone",
+          "estrelas": 3.5
+        },
+        {
+          "nome": "Genoa",
+          "estrelas": 3.5
+        },
+        {
+          "nome": "Inter",
+          "estrelas": 5.0
+        },
+        {
+          "nome": "Juventus",
+          "estrelas": 4.5
+        },
+        {
+          "nome": "Lazio",
+          "estrelas": 4.0
+        },
+        {
+          "nome": "Lecce",
+          "estrelas": 3.5
+        },
+        {
+          "nome": "Milan",
+          "estrelas": 4.5
+        },
+        {
+          "nome": "Monza",
+          "estrelas": 3.5
+        },
+        {
+          "nome": "Napoli",
+          "estrelas": 4.5
+        },
+        {
+          "nome": "Parma",
+          "estrelas": 3.5
+        },
+        {
+          "nome": "Roma",
+          "estrelas": 4.5
+        },
+        {
+          "nome": "Sassuolo",
+          "estrelas": 3.5
+        },
+        {
+          "nome": "Torino",
+          "estrelas": 3.5
+        },
+        {
+          "nome": "Udinese",
+          "estrelas": 3.5
+        },
+        {
+          "nome": "Vene",
+          "estrelas": 3.5
+        }
+      ]
+    }
+  ]
+}

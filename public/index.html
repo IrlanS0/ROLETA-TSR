@@ -199,7 +199,7 @@
             <h1 class="text-2xl font-black tracking-wider uppercase font-teko leading-none gold-gradient-text">
               GOGOSZ PATCH <span class="text-xs px-2 py-0.5 rounded bg-amber-500/20 text-amber-400 border border-amber-500/30 ml-1">CONMEBOL</span>
             </h1>
-            <p class="text-xs text-gray-400">Hub de Sorteios Equilibrados, MD3 & Ranking da Galera (490+ Times)</p>
+            <p class="text-xs text-gray-400">Hub de Sorteios Equilibrados, MD3 & Ranking da Galera (530+ Times)</p>
           </div>
         </div>
 
@@ -268,7 +268,7 @@
             <div>
               <label class="block text-xs font-bold uppercase tracking-wider text-amber-400 mb-1.5">Liga / Campeonato</label>
               <select id="league-filter" onchange="updateRoulettePoolInfo()" class="w-full bg-[#111319] border border-white/10 rounded-xl px-3.5 py-2.5 text-xs font-semibold text-white focus:outline-none focus:border-amber-500">
-                <option value="ALL">🌐 Todas as Ligas (490+ Times)</option>
+                <option value="ALL">🌐 Todas as Ligas (530+ Times)</option>
                 <optgroup label="🇦🇷 Argentina">
                   <option value="ARG_LFP">Liga Profesional de Fútbol (30)</option>
                   <option value="ARG_PN">Primera Nacional (36)</option>
@@ -323,6 +323,10 @@
                 </optgroup>
                 <optgroup label="🏴󠁧󠁢󠁥󠁮󠁧󠁿 Inglaterra">
                   <option value="ENG_PL">Premier League (20)</option>
+                  <option value="ENG_CH">EFL Championship (24)</option>
+                </optgroup>
+                <optgroup label="🇮🇹 Itália">
+                  <option value="ITA_SA">Serie A Enilive (20)</option>
                 </optgroup>
               </select>
             </div>
@@ -838,7 +842,7 @@
         <div class="glass-panel p-5 rounded-2xl flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
           <div>
             <h2 class="text-3xl font-extrabold text-white tracking-tight">Catálogo de Times GOGOSZ PATCH</h2>
-            <p class="text-sm text-gray-400 mt-1">Conheça as 490+ equipes incluídas em todas as ligas e divisões do patch.</p>
+            <p class="text-sm text-gray-400 mt-1">Conheça as 530+ equipes incluídas em todas as ligas e divisões do patch.</p>
           </div>
           
           <input type="text" id="db-search" oninput="renderDatabase()" placeholder="Buscar time, liga ou país..." class="bg-[#111319] border border-white/10 rounded-xl px-4 py-2 text-sm font-semibold focus:outline-none focus:border-amber-500 w-full md:w-72">
@@ -919,39 +923,77 @@
 
   <!-- ==================== JAVASCRIPT ORIGINAL E LÓGICA DE SALA ==================== -->
   <script>
-    // COMPLETE DATABASE OF ALL 490+ TEAMS PROMOTED & LISTED BY USER
-    const GOGOSZ_TEAMS = [
-      { id: 'arg_01', name: 'Argentinos Juniors', stars: 4, league: 'ARG_LFP', leagueName: 'Liga Profesional (ARG)', region: 'CONMEBOL', icon: '🔴⚪' },
-      { id: 'arg_02', name: 'Aldosivi', stars: 3.5, league: 'ARG_LFP', leagueName: 'Liga Profesional (ARG)', region: 'CONMEBOL', icon: '🟢🟡' },
-      { id: 'arg_03', name: 'Atlético Tucumán', stars: 3.5, league: 'ARG_LFP', leagueName: 'Liga Profesional (ARG)', region: 'CONMEBOL', icon: '🩵⚪' },
-      { id: 'arg_04', name: 'Banfield', stars: 3.5, league: 'ARG_LFP', leagueName: 'Liga Profesional (ARG)', region: 'CONMEBOL', icon: '🟢⚪' },
-      { id: 'arg_05', name: 'Barracas Central', stars: 3.5, league: 'ARG_LFP', leagueName: 'Liga Profesional (ARG)', region: 'CONMEBOL', icon: '🔴⚪' },
-      { id: 'arg_06', name: 'Belgrano', stars: 4, league: 'ARG_LFP', leagueName: 'Liga Profesional (ARG)', region: 'CONMEBOL', icon: '🩵' },
-      { id: 'arg_07', name: 'Boca Juniors', stars: 4.5, league: 'ARG_LFP', leagueName: 'Liga Profesional (ARG)', region: 'CONMEBOL', icon: '💙💛' },
-      { id: 'arg_08', name: 'Central Córdoba', stars: 3.5, league: 'ARG_LFP', leagueName: 'Liga Profesional (ARG)', region: 'CONMEBOL', icon: '🖤⚪' },
-      { id: 'arg_09', name: 'Defensa y Justicia', stars: 4, league: 'ARG_LFP', leagueName: 'Liga Profesional (ARG)', region: 'CONMEBOL', icon: '🟢🟡' },
-      { id: 'arg_10', name: 'Deportivo Riestra', stars: 3.5, league: 'ARG_LFP', leagueName: 'Liga Profesional (ARG)', region: 'CONMEBOL', icon: '🖤⚪' },
-      { id: 'arg_11', name: 'Estudiantes de La Plata', stars: 4.5, league: 'ARG_LFP', leagueName: 'Liga Profesional (ARG)', region: 'CONMEBOL', icon: '🔴⚪' },
-      { id: 'arg_12', name: 'Estudiantes de Río Cuarto', stars: 3.5, league: 'ARG_LFP', leagueName: 'Liga Profesional (ARG)', region: 'CONMEBOL', icon: '🩵⚪' },
-      { id: 'arg_13', name: 'Gimnasia y Esgrima La Plata', stars: 3.5, league: 'ARG_LFP', leagueName: 'Liga Profesional (ARG)', region: 'CONMEBOL', icon: '💙⚪' },
-      { id: 'arg_14', name: 'Gimnasia de Mendoza', stars: 3.5, league: 'ARG_LFP', leagueName: 'Liga Profesional (ARG)', region: 'CONMEBOL', icon: '🖤⚪' },
-      { id: 'arg_15', name: 'Huracán', stars: 4, league: 'ARG_LFP', leagueName: 'Liga Profesional (ARG)', region: 'CONMEBOL', icon: '⚪🔴' },
-      { id: 'arg_16', name: 'Independiente', stars: 4, league: 'ARG_LFP', leagueName: 'Liga Profesional (ARG)', region: 'CONMEBOL', icon: '🔴' },
-      { id: 'arg_17', name: 'Independiente Rivadavia', stars: 3.5, league: 'ARG_LFP', leagueName: 'Liga Profesional (ARG)', region: 'CONMEBOL', icon: '💙' },
-      { id: 'arg_18', name: 'Instituto', stars: 3.5, league: 'ARG_LFP', leagueName: 'Liga Profesional (ARG)', region: 'CONMEBOL', icon: '🔴⚪' },
-      { id: 'arg_19', name: 'Lanús', stars: 4, league: 'ARG_LFP', leagueName: 'Liga Profesional (ARG)', region: 'CONMEBOL', icon: '🍷' },
-      { id: 'arg_20', name: "Newell's Old Boys", stars: 4, league: 'ARG_LFP', leagueName: 'Liga Profesional (ARG)', region: 'CONMEBOL', icon: '🔴🖤' },
-      { id: 'arg_21', name: 'Platense', stars: 3.5, league: 'ARG_LFP', leagueName: 'Liga Profesional (ARG)', region: 'CONMEBOL', icon: '🤎⚪' },
-      { id: 'arg_22', name: 'Racing Club', stars: 4.5, league: 'ARG_LFP', leagueName: 'Liga Profesional (ARG)', region: 'CONMEBOL', icon: '🩵⚪' },
-      { id: 'arg_23', name: 'River Plate', stars: 4.5, league: 'ARG_LFP', leagueName: 'Liga Profesional (ARG)', region: 'CONMEBOL', icon: '⚪🔴' },
-      { id: 'arg_24', name: 'Rosario Central', stars: 4, league: 'ARG_LFP', leagueName: 'Liga Profesional (ARG)', region: 'CONMEBOL', icon: '🟡💙' },
-      { id: 'arg_25', name: 'San Lorenzo', stars: 4, league: 'ARG_LFP', leagueName: 'Liga Profesional (ARG)', region: 'CONMEBOL', icon: '🔴💙' },
-      { id: 'arg_26', name: 'Sarmiento', stars: 3.5, league: 'ARG_LFP', leagueName: 'Liga Profesional (ARG)', region: 'CONMEBOL', icon: '🟢⚪' },
-      { id: 'arg_27', name: 'Talleres', stars: 4.5, league: 'ARG_LFP', leagueName: 'Liga Profesional (ARG)', region: 'CONMEBOL', icon: '💙⚪' },
-      { id: 'arg_28', name: 'Tigre', stars: 3.5, league: 'ARG_LFP', leagueName: 'Liga Profesional (ARG)', region: 'CONMEBOL', icon: '🔵🔴' },
-      { id: 'arg_29', name: 'Unión', stars: 3.5, league: 'ARG_LFP', leagueName: 'Liga Profesional (ARG)', region: 'CONMEBOL', icon: '🔴⚪' },
-      { id: 'arg_30', name: 'Vélez Sarsfield', stars: 4.5, league: 'ARG_LFP', leagueName: 'Liga Profesional (ARG)', region: 'CONMEBOL', icon: '⚪💙' }
-    ];
+    // Base de times carregada dinamicamente a partir de ligas_times_estrelas_v2.json
+    let GOGOSZ_TEAMS = [];
+    let teamsDatabaseLoaded = false;
+
+    // Metadados de cada liga do JSON: código usado nos filtros, nome de exibição,
+    // região (para o filtro de continente) e ícone/bandeira exibidos nos cards.
+    const LEAGUE_META = {
+      'ARGENTINA — Liga Profesional de Fútbol':    { code: 'ARG_LFP', leagueName: 'Liga Profesional (ARG)',   region: 'CONMEBOL', flag: '🇦🇷' },
+      'ARGENTINA — Primera Nacional (2ª divisão)': { code: 'ARG_PN',  leagueName: 'Primera Nacional (ARG)',   region: 'CONMEBOL', flag: '🇦🇷' },
+      'BOLÍVIA — División Profesional':            { code: 'BOL_DIV', leagueName: 'División Profesional (BOL)', region: 'CONMEBOL', flag: '🇧🇴' },
+      'BRASIL — Brasileirão Série A':              { code: 'BRA_SA',  leagueName: 'Brasileirão Série A',      region: 'CONMEBOL', flag: '🇧🇷' },
+      'BRASIL — Brasileirão Série B':              { code: 'BRA_SB',  leagueName: 'Brasileirão Série B',      region: 'CONMEBOL', flag: '🇧🇷' },
+      'BRASIL — Brasileirão Série C':              { code: 'BRA_SC',  leagueName: 'Brasileirão Série C',      region: 'CONMEBOL', flag: '🇧🇷' },
+      'BRASIL — Brasileirão Série D':              { code: 'BRA_SD',  leagueName: 'Brasileirão Série D',      region: 'CONMEBOL', flag: '🇧🇷' },
+      'CHILE — Primera División / Campeonato Itaú':{ code: 'CHI_PD',  leagueName: 'Primera División (CHI)',    region: 'CONMEBOL', flag: '🇨🇱' },
+      'COLÔMBIA — Liga BetPlay DIMAYOR':           { code: 'COL_LBP', leagueName: 'Liga BetPlay DIMAYOR (COL)', region: 'CONMEBOL', flag: '🇨🇴' },
+      'EQUADOR — LigaPro Serie A':                 { code: 'ECU_LPA', leagueName: 'LigaPro Serie A (ECU)',    region: 'CONMEBOL', flag: '🇪🇨' },
+      'PARAGUAI — Primera División':               { code: 'PAR_PD',  leagueName: 'Primera División (PAR)',   region: 'CONMEBOL', flag: '🇵🇾' },
+      'PERU — Liga 1':                             { code: 'PER_L1',  leagueName: 'Liga 1 (PER)',             region: 'CONMEBOL', flag: '🇵🇪' },
+      'URUGUAI — Primera División':                { code: 'URU_PD',  leagueName: 'Primera División (URU)',   region: 'CONMEBOL', flag: '🇺🇾' },
+      'VENEZUELA — Liga Venezuela':                { code: 'VEN_LV',  leagueName: 'Liga Venezuela',           region: 'CONMEBOL', flag: '🇻🇪' },
+      'COSTA RICA — Liga Promerica':               { code: 'CRC_LP',  leagueName: 'Liga Promerica (CRC)',     region: 'CONCACAF', flag: '🇨🇷' },
+      'ESTADOS UNIDOS / CANADÁ — MLS':             { code: 'USA_MLS', leagueName: 'MLS (EUA/CAN)',            region: 'CONCACAF', flag: '🇺🇸' },
+      'MÉXICO — Liga MX':                          { code: 'MEX_LMX', leagueName: 'Liga MX (MEX)',            region: 'CONCACAF', flag: '🇲🇽' },
+      'ALEMANHA — Bundesliga':                     { code: 'GER_BL',  leagueName: 'Bundesliga (GER)',         region: 'UEFA',     flag: '🇩🇪' },
+      'ESPANHA — La Liga EA Sports':                { code: 'ESP_LL',  leagueName: 'La Liga (ESP)',            region: 'UEFA',     flag: '🇪🇸' },
+      "FRANÇA — Ligue 1 McDonald's":                { code: 'FRA_L1',  leagueName: 'Ligue 1 (FRA)',            region: 'UEFA',     flag: '🇫🇷' },
+      'INGLATERRA — Premier League':                { code: 'ENG_PL',  leagueName: 'Premier League (ENG)',     region: 'UEFA',     flag: '🏴' },
+      'INGLATERRA — EFL Championship':              { code: 'ENG_CH',  leagueName: 'EFL Championship (ENG)',   region: 'UEFA',     flag: '🏴' },
+      'ITÁLIA — Serie A Enilive':                    { code: 'ITA_SA',  leagueName: 'Serie A (ITA)',            region: 'UEFA',     flag: '🇮🇹' }
+    };
+
+    // Baixa e converte ligas_times_estrelas_v2.json para o formato usado pelo app
+    async function loadTeamsDatabase() {
+      try {
+        const response = await fetch('ligas_times_estrelas_v2.json');
+        if (!response.ok) throw new Error(`HTTP ${response.status}`);
+        const data = await response.json();
+
+        const teams = [];
+        (data.ligas || []).forEach(liga => {
+          const meta = LEAGUE_META[liga.liga] || {
+            code: liga.liga.replace(/[^A-Z0-9]+/gi, '_').toUpperCase().slice(0, 12),
+            leagueName: liga.liga,
+            region: 'ALL',
+            flag: '⚽'
+          };
+
+          (liga.times || []).forEach((time, idx) => {
+            teams.push({
+              id: `${meta.code.toLowerCase()}_${String(idx + 1).padStart(2, '0')}`,
+              name: time.nome,
+              stars: time.estrelas,
+              league: meta.code,
+              leagueName: meta.leagueName,
+              region: meta.region,
+              icon: meta.flag
+            });
+          });
+        });
+
+        GOGOSZ_TEAMS = teams;
+        teamsDatabaseLoaded = true;
+        console.log(`[TIMES] Base carregada: ${GOGOSZ_TEAMS.length} times em ${Object.keys(LEAGUE_META).length} ligas.`);
+      } catch (err) {
+        console.error('[TIMES] Falha ao carregar ligas_times_estrelas_v2.json:', err);
+        GOGOSZ_TEAMS = [];
+        teamsDatabaseLoaded = false;
+        alert('Não foi possível carregar a base de times (ligas_times_estrelas_v2.json). Verifique se o arquivo está publicado junto com o site.');
+      }
+    }
 
     let currentTab = 'roulette';
     let removedTeamIds = new Set();
@@ -1305,8 +1347,12 @@
     let rankingStats = {};
     let duplaRankingStats = {}; // [NOVO] Ranking exclusivo de duplas
 
-    window.onload = function() {
+    window.onload = async function() {
       lucide.createIcons();
+
+      // Carrega a base de times a partir do JSON antes de qualquer render que dependa dela
+      await loadTeamsDatabase();
+
       renderDatabase();
       renderPlayersList();
       updateRoulettePoolInfo();
