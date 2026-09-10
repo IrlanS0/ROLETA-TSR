@@ -1071,25 +1071,35 @@
       return true;
     }
 
-    // [NOVO] Liga/desliga o modo "times diferentes por confronto".
+    // Liga/desliga o modo "times diferentes por confronto".
     // Não reinicia a série: placares e times de jogos já JOGADOS continuam guardados até o Host
     // salvar a série no ranking (ou reiniciar manualmente).
+    // [NOVO] Liga/desliga o modo "times diferentes por confronto" com recuperação inteligente.
     function toggleMD3DifferentTeams() {
       if (!currentRoom.isHost) return;
       md3State.differentTeams = document.getElementById('chk-md3-different-teams').checked;
 
-      // [BUGFIX] Limpa os times de qualquer jogo que AINDA NÃO foi jogado/salvo, pra não deixar
-      // times "presos" de um modo no outro (ex: no modo padrão os 3 jogos recebem o mesmo par de
-      // times de uma vez — ao trocar pro modo alternativo, um Jogo 2 ou 3 ainda não jogado ficava
-      // preso com times antigos, bloqueando o botão "Sortear Times" com o aviso de "confirme o
-      // placar atual" mesmo sem nenhum jogo em andamento de verdade). Jogos já salvos não são
-      // tocados — seus times continuam guardados até a série ser salva no ranking.
-      ['g1', 'g2', 'g3'].forEach(key => {
-        if (!md3State[key].saved) {
-          md3State[key].team1 = null;
-          md3State[key].team2 = null;
+      if (md3State.differentTeams) {
+        // Mudando PARA times diferentes (LIGADO):
+        // Mantém os times do jogo atual intactos.
+        // Limpa apenas o Jogo 2 e Jogo 3 se não estiverem salvos, para obrigar novo sorteio depois.
+        if (!md3State.g2.saved) { md3State.g2.team1 = null; md3State.g2.team2 = null; }
+        if (!md3State.g3.saved) { md3State.g3.team1 = null; md3State.g3.team2 = null; }
+      } else {
+        // Voltando PARA o modo normal (DESLIGADO):
+        // Propaga os times do Jogo 1 para os Jogos 2 e 3 (se não estiverem salvos).
+        // Jogo 2 recebe os times com mando invertido.
+        if (md3State.g1.team1 && md3State.g1.team2) {
+          if (!md3State.g2.saved) {
+            md3State.g2.team1 = md3State.g1.team2;
+            md3State.g2.team2 = md3State.g1.team1;
+          }
+          if (!md3State.g3.saved) {
+            md3State.g3.team1 = md3State.g1.team1;
+            md3State.g3.team2 = md3State.g1.team2;
+          }
         }
-      });
+      }
 
       syncMD3State();
       renderMD3UI();
