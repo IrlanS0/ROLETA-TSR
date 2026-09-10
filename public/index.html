@@ -86,26 +86,19 @@
     .gold-glow-lg {
       box-shadow: 0 0 45px rgba(255, 184, 0, 0.4);
     }
-    /* [NOVO] Painel flutuante e movível da sala */
-    #room-status-bar {
-      transition: box-shadow 0.15s ease, opacity 0.15s ease;
+    /* [NOVO] Dropdown de informações da sala (dentro do nav) */
+    #room-info-panel {
+      animation: room-info-fade-in 0.12s ease-out;
     }
-    #room-status-bar.is-dragging {
-      opacity: 0.9;
-      box-shadow: 0 0 0 2px rgba(255, 184, 0, 0.5), 0 20px 40px rgba(0, 0, 0, 0.5);
-      cursor: grabbing;
-    }
-    #room-status-drag-handle {
-      cursor: grab;
-      touch-action: none;
-    }
-    #room-status-drag-handle:active {
-      cursor: grabbing;
+    @keyframes room-info-fade-in {
+      from { opacity: 0; transform: translateY(-4px); }
+      to { opacity: 1; transform: translateY(0); }
     }
   </style>
 </head>
 <body class="min-h-screen flex flex-col bg-[#0B0C10] text-gray-100 antialiased selection:bg-amber-500 selection:text-black">
 
+  <!-- ==================== LOBBY (NOVO) ==================== -->
   <!-- ==================== LOBBY ==================== -->
   <div id="lobby-screen" class="fixed inset-0 z-50 bg-[#0B0C10] flex items-center justify-center p-4">
     <div class="glass-panel max-w-md w-full p-8 rounded-2xl space-y-6 text-center border-amber-500/30 shadow-2xl relative overflow-hidden">
@@ -218,29 +211,57 @@
           </div>
         </div>
 
-        <!-- Navigation Tabs -->
-        <nav class="flex items-center gap-1 bg-[#151720] p-1.5 rounded-xl border border-white/10 overflow-x-auto max-w-full">
-          <button onclick="switchTab('roulette')" id="tab-roulette" class="nav-btn flex items-center gap-2 px-3 py-1.5 rounded-lg text-sm font-semibold transition-all bg-amber-500 text-black shadow-md">
-            <i data-lucide="dices" class="w-4 h-4"></i>
-            <span>Roleta Balanceada</span>
+        <!-- Navigation + Info da Sala + Sair -->
+        <div class="flex items-center gap-2 w-full md:w-auto">
+          <nav class="flex-1 flex items-center gap-1 bg-[#151720] p-1.5 rounded-xl border border-white/10 max-w-full min-w-0">
+            <!-- [NOVO] Ícone informativo da sala: fica fixo (não rola com as abas) -->
+            <div class="relative shrink-0">
+              <button id="btn-room-info" onclick="toggleRoomInfoPanel()" class="flex items-center justify-center w-8 h-8 rounded-lg bg-white/5 hover:bg-white/10 border border-amber-500/30 text-amber-400 font-black text-sm transition-all" title="Informações da sala">
+                i
+              </button>
+              <div id="room-info-panel" class="hidden absolute left-0 top-full mt-2 w-64 glass-panel border border-white/10 rounded-xl p-4 shadow-2xl z-50 space-y-3">
+                <div class="flex items-center gap-2">
+                  <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse"></span>
+                  <span class="text-xs font-bold text-gray-300">Sala: <span id="display-room-id" class="text-amber-400 font-black">---</span></span>
+                </div>
+                <div class="text-xs font-bold text-gray-300">Você: <span id="display-room-role" class="px-1.5 py-0.5 rounded font-black">---</span></div>
+                <div class="text-xs font-bold text-gray-300">Apelido: <span id="display-my-nickname" class="text-white font-black">---</span></div>
+                <button id="btn-send-test" onclick="sendTestToRoom()" class="hidden w-full px-3 py-1.5 bg-amber-500/20 hover:bg-amber-500/30 border border-amber-500/30 text-amber-300 text-xs font-bold rounded-lg transition">
+                  Ping Teste
+                </button>
+              </div>
+            </div>
+
+            <div class="flex items-center gap-1 overflow-x-auto">
+              <button onclick="switchTab('roulette')" id="tab-roulette" class="nav-btn flex items-center gap-2 px-3 py-1.5 rounded-lg text-sm font-semibold transition-all bg-amber-500 text-black shadow-md">
+                <i data-lucide="dices" class="w-4 h-4"></i>
+                <span>Roleta Balanceada</span>
+              </button>
+              <button onclick="switchTab('md3')" id="tab-md3" class="nav-btn flex items-center gap-2 px-3 py-1.5 rounded-lg text-sm font-semibold text-gray-400 hover:text-amber-400 transition-all">
+                <i data-lucide="swords" class="w-4 h-4"></i>
+                <span>Modo MD3</span>
+              </button>
+              <button onclick="switchTab('draft')" id="tab-draft" class="nav-btn flex items-center gap-2 px-3 py-1.5 rounded-lg text-sm font-semibold text-gray-400 hover:text-amber-400 transition-all">
+                <i data-lucide="users" class="w-4 h-4"></i>
+                <span>1v1 & Duplas</span>
+              </button>
+              <button onclick="switchTab('ranking')" id="tab-ranking" class="nav-btn flex items-center gap-2 px-3 py-1.5 rounded-lg text-sm font-semibold text-gray-400 hover:text-amber-400 transition-all">
+                <i data-lucide="trophy" class="w-4 h-4"></i>
+                <span>Ranking Geral</span>
+              </button>
+              <button onclick="switchTab('database')" id="tab-database" class="nav-btn flex items-center gap-2 px-3 py-1.5 rounded-lg text-sm font-semibold text-gray-400 hover:text-amber-400 transition-all">
+                <i data-lucide="shield" class="w-4 h-4"></i>
+                <span>Catálogo de Times</span>
+              </button>
+            </div>
+          </nav>
+
+          <!-- [NOVO] Botão Sair, sempre visível e acessível, fora da área que rola -->
+          <button onclick="leaveRoom()" class="shrink-0 flex items-center gap-1.5 px-3 py-2 bg-red-500/20 hover:bg-red-500/30 border border-red-500/30 text-red-400 text-xs font-bold rounded-lg transition" title="Sair da sala">
+            <i data-lucide="log-out" class="w-4 h-4 pointer-events-none"></i>
+            <span class="hidden sm:inline">Sair</span>
           </button>
-          <button onclick="switchTab('md3')" id="tab-md3" class="nav-btn flex items-center gap-2 px-3 py-1.5 rounded-lg text-sm font-semibold text-gray-400 hover:text-amber-400 transition-all">
-            <i data-lucide="swords" class="w-4 h-4"></i>
-            <span>Modo MD3</span>
-          </button>
-          <button onclick="switchTab('draft')" id="tab-draft" class="nav-btn flex items-center gap-2 px-3 py-1.5 rounded-lg text-sm font-semibold text-gray-400 hover:text-amber-400 transition-all">
-            <i data-lucide="users" class="w-4 h-4"></i>
-            <span>1v1 & Duplas</span>
-          </button>
-          <button onclick="switchTab('ranking')" id="tab-ranking" class="nav-btn flex items-center gap-2 px-3 py-1.5 rounded-lg text-sm font-semibold text-gray-400 hover:text-amber-400 transition-all">
-            <i data-lucide="trophy" class="w-4 h-4"></i>
-            <span>Ranking Geral</span>
-          </button>
-          <button onclick="switchTab('database')" id="tab-database" class="nav-btn flex items-center gap-2 px-3 py-1.5 rounded-lg text-sm font-semibold text-gray-400 hover:text-amber-400 transition-all">
-            <i data-lucide="shield" class="w-4 h-4"></i>
-            <span>Catálogo de Times</span>
-          </button>
-        </nav>
+        </div>
       </div>
     </header>
 
@@ -869,39 +890,6 @@
 
       </section>
 
-      <!-- ==================== CONTROLE FLUTUANTE DE SALA (NOVO PARA TESTE) ==================== -->
-      <!-- ==================== CONTROLE FLUTUANTE DE SALA (MOVÍVEL) ==================== -->
-      <div id="room-status-bar" class="fixed bottom-4 right-4 z-50 glass-panel px-3 py-3 rounded-2xl border border-white/10 shadow-2xl flex items-center gap-3 select-none">
-        <!-- [NOVO] Alça de arraste: segure e arraste para tirar o painel da frente de outros elementos -->
-        <div id="room-status-drag-handle" class="flex items-center justify-center w-7 h-7 rounded-lg bg-white/5 hover:bg-white/10 border border-white/10 shrink-0" title="Arraste para mover este painel">
-          <i data-lucide="move" class="w-4 h-4 text-gray-400 pointer-events-none"></i>
-        </div>
-
-        <div class="flex items-center gap-3">
-          <div class="flex items-center gap-2">
-            <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse"></span>
-            <span class="text-xs font-bold text-gray-300">Sala: <span id="display-room-id" class="text-amber-400 font-black">---</span></span>
-          </div>
-          <span class="text-gray-600">|</span>
-          <span class="text-xs font-bold text-gray-300">Você: <span id="display-room-role" class="px-1.5 py-0.5 rounded font-black">---</span></span>
-          <span class="text-gray-600">|</span>
-          <span class="text-xs font-bold text-gray-300">Apelido: <span id="display-my-nickname" class="text-white font-black">---</span></span>
-        </div>
-        
-        <div class="flex items-center gap-2 border-l border-white/10 pl-4 ml-1">
-          <button id="btn-send-test" onclick="sendTestToRoom()" class="hidden px-3 py-1.5 bg-amber-500/20 hover:bg-amber-500/30 border border-amber-500/30 text-amber-300 text-xs font-bold rounded-lg transition">
-            Ping Teste
-          </button>
-          <button onclick="leaveRoom()" class="px-3 py-1.5 bg-red-500/20 hover:bg-red-500/30 border border-red-500/30 text-red-400 text-xs font-bold rounded-lg transition flex items-center gap-1.5">
-            <i data-lucide="log-out" class="w-3.5 h-3.5"></i> Sair
-          </button>
-          <!-- [NOVO] Volta o painel para o canto padrão (inferior direito) -->
-          <button onclick="resetRoomBarPosition()" class="px-2 py-1.5 bg-white/5 hover:bg-white/10 border border-white/10 text-gray-400 hover:text-white text-xs font-bold rounded-lg transition" title="Voltar painel para o canto padrão">
-            <i data-lucide="corner-down-right" class="w-3.5 h-3.5 pointer-events-none"></i>
-          </button>
-        </div>
-      </div>
-
     </main>
 
   </div> <!-- FINAL DO APP-CONTENT -->
@@ -1384,7 +1372,6 @@
       updateRoulettePoolInfo();
       renderRanking();
       drawRouletteWheel(0);
-      initDraggableRoomBar(); // [NOVO] Ativa o arrastar do painel flutuante de sala
 
       // [NOVO] Recupera o apelido salvo de sessões anteriores
       const nickInput = document.getElementById('my-nickname');
@@ -1830,6 +1817,22 @@
       syncRanking(); // [BUGFIX] Repassa os rankings atualizados para todos da sala (inclui participantes)
     }
 
+    // [NOVO] Soma o título do confronto MD3 para quem venceu a série, independente de ter ido ao 3º jogo
+    function awardMD3Title(winnerName) {
+      if (!winnerName) return;
+
+      const isDuplaMatch = duplas.some(d => d.name === winnerName);
+      const target = isDuplaMatch ? duplaRankingStats : rankingStats;
+
+      if (!target[winnerName]) {
+        target[winnerName] = { pts: 0, j: 0, v: 0, e: 0, d: 0, gp: 0, gc: 0, titles: 0 };
+      }
+      target[winnerName].titles += 1;
+
+      renderRanking();
+      syncRanking();
+    }
+
     function applyMD3ToRanking() {
       if (!md3State.completed) return;
 
@@ -1838,7 +1841,11 @@
 
       if (md3State.g1.saved) recordMatchResult(p1, md3State.g1.s1, p2, md3State.g1.s2);
       if (md3State.g2.saved) recordMatchResult(p2, md3State.g2.s1, p1, md3State.g2.s2);
-      if (md3State.g3.saved) recordMatchResult(p1, md3State.g3.s1, p2, md3State.g3.s2, md3State.winner);
+      if (md3State.g3.saved) recordMatchResult(p1, md3State.g3.s1, p2, md3State.g3.s2);
+
+      // [BUGFIX] Antes o título só era contado quando a série ia ao 3º jogo; agora vai
+      // sempre para quem venceu o confronto (md3State.winner), não importa como terminou.
+      awardMD3Title(md3State.winner);
 
       // [CORREÇÃO DE BUG] Depois de salvar a série no ranking, ela ficava "completa"
       // para sempre — os placares e o time sorteado continuavam na tela e os inputs
@@ -2216,111 +2223,21 @@
       switchLobbyView('home');
     }
 
-    // ==================== [NOVO] PAINEL DE SALA MOVÍVEL (DRAG) ====================
-    // Permite arrastar o #room-status-bar para qualquer canto da tela, para tirá-lo
-    // temporariamente de cima de outros elementos. A posição escolhida é lembrada
-    // (localStorage) entre sessões; o botão de "reset" volta ao canto padrão.
-    const ROOM_BAR_POS_KEY = 'gogosz_room_bar_pos';
-
-    function clampRoomBarPosition(x, y) {
-      const bar = document.getElementById('room-status-bar');
-      const rect = bar.getBoundingClientRect();
-      const margin = 4;
-      const maxX = Math.max(margin, window.innerWidth - rect.width - margin);
-      const maxY = Math.max(margin, window.innerHeight - rect.height - margin);
-      return {
-        x: Math.min(Math.max(x, margin), maxX),
-        y: Math.min(Math.max(y, margin), maxY)
-      };
+    // ==================== [NOVO] PAINEL DE INFORMAÇÕES DA SALA (DROPDOWN NO NAV) ====================
+    function toggleRoomInfoPanel() {
+      const panel = document.getElementById('room-info-panel');
+      panel.classList.toggle('hidden');
     }
 
-    function applyRoomBarPosition(x, y) {
-      const bar = document.getElementById('room-status-bar');
-      const { x: clampedX, y: clampedY } = clampRoomBarPosition(x, y);
-      bar.style.left = `${clampedX}px`;
-      bar.style.top = `${clampedY}px`;
-      bar.style.right = 'auto';
-      bar.style.bottom = 'auto';
-    }
-
-    function saveRoomBarPosition() {
-      const bar = document.getElementById('room-status-bar');
-      try {
-        localStorage.setItem(ROOM_BAR_POS_KEY, JSON.stringify({ left: bar.style.left, top: bar.style.top }));
-      } catch (e) { /* localStorage indisponível: apenas ignora, mantém a posição em tela */ }
-    }
-
-    function restoreRoomBarPosition() {
-      try {
-        const saved = JSON.parse(localStorage.getItem(ROOM_BAR_POS_KEY));
-        if (saved && saved.left && saved.top) {
-          const bar = document.getElementById('room-status-bar');
-          bar.style.left = saved.left;
-          bar.style.top = saved.top;
-          bar.style.right = 'auto';
-          bar.style.bottom = 'auto';
-          // Garante que a posição salva ainda é válida caso a janela tenha mudado de tamanho
-          const rect = bar.getBoundingClientRect();
-          applyRoomBarPosition(rect.left, rect.top);
-        }
-      } catch (e) { /* sem posição salva: mantém o padrão via CSS (bottom-4 right-4) */ }
-    }
-
-    // [NOVO] Botão "Voltar ao canto padrão": limpa qualquer posição customizada
-    function resetRoomBarPosition() {
-      const bar = document.getElementById('room-status-bar');
-      bar.style.left = '';
-      bar.style.top = '';
-      bar.style.right = '';
-      bar.style.bottom = '';
-      try { localStorage.removeItem(ROOM_BAR_POS_KEY); } catch (e) { /* ignora */ }
-      playBeep(600, 0.1);
-    }
-
-    function initDraggableRoomBar() {
-      const bar = document.getElementById('room-status-bar');
-      const handle = document.getElementById('room-status-drag-handle');
-      if (!bar || !handle) return;
-
-      let dragging = false;
-      let offsetX = 0;
-      let offsetY = 0;
-
-      handle.addEventListener('pointerdown', (e) => {
-        dragging = true;
-        bar.classList.add('is-dragging');
-        const rect = bar.getBoundingClientRect();
-        offsetX = e.clientX - rect.left;
-        offsetY = e.clientY - rect.top;
-        handle.setPointerCapture(e.pointerId);
-        e.preventDefault();
-      });
-
-      handle.addEventListener('pointermove', (e) => {
-        if (!dragging) return;
-        applyRoomBarPosition(e.clientX - offsetX, e.clientY - offsetY);
-      });
-
-      function endDrag() {
-        if (!dragging) return;
-        dragging = false;
-        bar.classList.remove('is-dragging');
-        saveRoomBarPosition();
+    // Fecha o painel ao clicar fora dele
+    document.addEventListener('click', (e) => {
+      const panel = document.getElementById('room-info-panel');
+      const btn = document.getElementById('btn-room-info');
+      if (!panel || panel.classList.contains('hidden')) return;
+      if (!panel.contains(e.target) && e.target !== btn) {
+        panel.classList.add('hidden');
       }
-
-      handle.addEventListener('pointerup', endDrag);
-      handle.addEventListener('pointercancel', endDrag);
-
-      // Mantém o painel dentro da tela se a janela for redimensionada
-      window.addEventListener('resize', () => {
-        const rect = bar.getBoundingClientRect();
-        if (bar.style.left || bar.style.top) {
-          applyRoomBarPosition(rect.left, rect.top);
-        }
-      });
-
-      restoreRoomBarPosition();
-    }
+    });
 
     // Evento de Teste (Ping) mantido da Etapa 1
     function sendTestToRoom() {
