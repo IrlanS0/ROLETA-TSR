@@ -1043,14 +1043,11 @@
       subText: 'Preencha os placares dos jogos acima para determinar o campeão.'
     };
 
-    // [NOVO] Descobre qual confronto (g1/g2/g3) deve receber o próximo sorteio enviado pelo Host.
-    // No modo "times diferentes", cada jogo só libera para sorteio depois que o anterior for salvo.
+    // Descobre qual confronto (g1/g2/g3) deve receber o próximo sorteio enviado pelo Host.
     function getNextPendingMD3Game() {
-      if (!md3State.g1.team1 || !md3State.g1.team2) return 'g1';
-      if (!md3State.g1.saved) return null; // ainda jogando o 1º confronto
-      if (!md3State.g2.team1 || !md3State.g2.team2) return 'g2';
-      if (!md3State.g2.saved) return null; // ainda jogando o 2º confronto
-      if (md3State.g3.active && (!md3State.g3.team1 || !md3State.g3.team2)) return 'g3';
+      if (!md3State.g1.saved) return 'g1';
+      if (!md3State.g2.saved) return 'g2';
+      if (md3State.g3.active && !md3State.g3.saved) return 'g3';
       return null; // nada pendente (série decidida ou aguardando resultado do derradeiro)
     }
 
@@ -1451,8 +1448,10 @@
         return;
       }
 
-      // 1. Atualiza o objeto do estado local do MD3
-      md3State[`g${gameNum}`] = { s1: s1, s2: s2, saved: true };
+      // 1. Atualiza o objeto do estado local do MD3 (CORRIGIDO para preservar os times)
+      md3State[`g${gameNum}`].s1 = s1;
+      md3State[`g${gameNum}`].s2 = s2;
+      md3State[`g${gameNum}`].saved = true;
 
       // 2. Recalcula o fluxo da série (se vai pra jogo 3 ou se acabou)
       calculateMD3Outcome(); 
