@@ -563,6 +563,21 @@
           </div>
         </div>
 
+        <!-- [NOVO] Toggle: mesmos times nos 3 jogos OU sorteio novo para cada confronto -->
+        <div class="glass-panel p-4 rounded-2xl flex flex-col md:flex-row md:items-center gap-3">
+          <label class="inline-flex items-center gap-2.5 cursor-pointer select-none">
+            <input type="checkbox" id="chk-md3-different-teams" onchange="toggleMD3DifferentTeams()" class="w-4 h-4 accent-amber-500">
+            <span class="text-sm font-bold text-gray-200">Jogar com times diferentes no MD3</span>
+          </label>
+          <span class="text-xs text-gray-500 italic md:flex-1">
+            Desmarcado: os mesmos 2 times valem para os 3 jogos. Marcado: cada confronto exige um novo sorteio (o Jogo 2 só libera depois de sortear mais 2 times, e o Jogo 3 depois de outro sorteio, se necessário).
+          </span>
+          <!-- [NOVO] Atalho: manda direto pro sorteio e já sorteia os times do próximo confronto pendente -->
+          <button id="btn-md3-draw-next" onclick="goDrawTeamsForMD3()" class="hidden px-4 py-2 bg-amber-500 hover:bg-amber-400 text-black font-extrabold text-xs rounded-xl transition flex items-center gap-1.5 whitespace-nowrap">
+            <i data-lucide="dices" class="w-4 h-4"></i> Sortear Times
+          </button>
+        </div>
+
         <!-- Match 1, Match 2, Match 3 Cards Grid -->
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
           
@@ -1018,16 +1033,115 @@
     let md3State = {
       player1: 'Jogador A',
       player2: 'Jogador B',
-      team1: null,
-      team2: null,
-      g1: { s1: null, s2: null, saved: false },
-      g2: { s1: null, s2: null, saved: false },
-      g3: { s1: null, s2: null, saved: false, active: false },
+      differentTeams: false, // [NOVO] false = mesmos times nos 3 jogos | true = 1 sorteio novo por confronto
+      g1: { team1: null, team2: null, s1: null, s2: null, saved: false },
+      g2: { team1: null, team2: null, s1: null, s2: null, saved: false },
+      g3: { team1: null, team2: null, s1: null, s2: null, saved: false, active: false },
       completed: false,
       winner: null,
       statusText: 'Série em Andamento',
       subText: 'Preencha os placares dos jogos acima para determinar o campeão.'
     };
+
+    // [NOVO] Descobre qual confronto (g1/g2/g3) deve receber o próximo sorteio enviado pelo Host.
+    // No modo "times diferentes", cada jogo só libera para sorteio depois que o anterior for salvo.
+    function getNextPendingMD3Game() {
+      if (!md3State.g1.team1 || !md3State.g1.team2) return 'g1';
+      if (!md3State.g1.saved) return null; // ainda jogando o 1º confronto
+      if (!md3State.g2.team1 || !md3State.g2.team2) return 'g2';
+      if (!md3State.g2.saved) return null; // ainda jogando o 2º confronto
+      if (md3State.g3.active && (!md3State.g3.team1 || !md3State.g3.team2)) return 'g3';
+      return null; // nada pendente (série decidida ou aguardando resultado do derradeiro)
+    }
+
+    // [BUGFIX] Função central que aplica um confronto sorteado (t1 x t2) ao md3State,
+    // respeitando o modo escolhido. Usada tanto pelo botão da Roleta quanto pelo atalho
+    // "Sortear Times", pra nunca precisar de um segundo sorteio pra "confirmar" o mesmo jogo.
+    // Retorna true se aplicou, ou false se não havia confronto pendente pra receber.
+    function assignDrawToMD3(t1, t2) {
+      if (!md3State.differentTeams) {
+        // Modo padrão: o mesmo confronto vale para os 3 jogos (mando invertido no Jogo 2)
+        md3State.g1.team1 = t1; md3State.g1.team2 = t2;
+        md3State.g2.team1 = t2; md3State.g2.team2 = t1;
+        md3State.g3.team1 = t1; md3State.g3.team2 = t2;
+        return true;
+      }
+
+      const target = getNextPendingMD3Game();
+      if (!target) return false;
+      md3State[target].team1 = t1;
+      md3State[target].team2 = t2;
+      return true;
+    }
+
+    // [NOVO] Liga/desliga o modo "times diferentes por confronto".
+    // Não reinicia a série: placares e times de jogos já JOGADOS continuam guardados até o Host
+    // salvar a série no ranking (ou reiniciar manualmente).
+    function toggleMD3DifferentTeams() {
+      if (!currentRoom.isHost) return;
+      md3State.differentTeams = document.getElementById('chk-md3-different-teams').checked;
+
+      // [BUGFIX] Limpa os times de qualquer jogo que AINDA NÃO foi jogado/salvo, pra não deixar
+      // times "presos" de um modo no outro (ex: no modo padrão os 3 jogos recebem o mesmo par de
+      // times de uma vez — ao trocar pro modo alternativo, um Jogo 2 ou 3 ainda não jogado ficava
+      // preso com times antigos, bloqueando o botão "Sortear Times" com o aviso de "confirme o
+      // placar atual" mesmo sem nenhum jogo em andamento de verdade). Jogos já salvos não são
+      // tocados — seus times continuam guardados até a série ser salva no ranking.
+      ['g1', 'g2', 'g3'].forEach(key => {
+        if (!md3State[key].saved) {
+          md3State[key].team1 = null;
+          md3State[key].team2 = null;
+        }
+      });
+
+      syncMD3State();
+      renderMD3UI();
+    }
+
+    // [BUGFIX] Atalho do modo "times diferentes": sorteia E já salva os times do confronto
+    // pendente em UMA única ação (antes exigia sortear e depois clicar em "Jogar este confronto
+    // no Modo MD3" na aba de Sorteio — o que parecia "precisar sortear duas vezes").
+    function goDrawTeamsForMD3() {
+      if (!currentRoom.isHost || !md3State.differentTeams) return;
+
+      const target = getNextPendingMD3Game();
+      if (!target) {
+        alert(md3State.completed
+          ? 'A série MD3 já foi concluída! Clique em "Reiniciar Série MD3" para começar uma nova.'
+          : 'Confirme o placar do confronto atual no Modo MD3 antes de sortear o próximo.');
+        return;
+      }
+
+      if (roulettePool.length < 2 && removedTeamIds.size > 0 && document.getElementById('chk-remove-drawn').checked) {
+        restoreAllRemovedTeams();
+      }
+      if (roulettePool.length < 2) {
+        alert('Times insuficientes com os filtros atuais (Liga / Escalão / Região). Amplie os filtros selecionados para sortear.');
+        return;
+      }
+      const pair = pickBalancedPair();
+      if (!pair) {
+        alert('Não foi possível formar um confronto com os filtros atuais.');
+        return;
+      }
+
+      switchTab('roulette');
+      displayMatchResult(pair[0], pair[1]); // Mostra o confronto sorteado na tela de Sorteio
+      playBeep(700, 0.1);
+
+      // [BUGFIX] Já aplica direto ao jogo pendente do MD3 — sem precisar de um segundo clique
+      assignDrawToMD3(pair[0], pair[1]);
+      syncMD3State();
+
+      // Como já foi salvo automaticamente, evita que o Host clique de novo achando que falta algo
+      const btnMD3 = document.getElementById('btn-send-md3');
+      if (btnMD3) {
+        btnMD3.disabled = true;
+        btnMD3.classList.add('opacity-50', 'cursor-not-allowed');
+      }
+      const wheelStatus = document.getElementById('wheel-status-text');
+      if (wheelStatus) wheelStatus.textContent = '✅ Times sorteados e já salvos no Modo MD3!';
+    }
 
     // [NOVO] Emite o estado atual para o servidor repassar (Apenas HOST)
     function syncMD3State() {
@@ -1191,30 +1305,48 @@
       // Nomes dos Jogadores (selects com os participantes da sala)
       renderMD3PlayerOptions();
 
-      // Escudos e Nomes dos Times nos Card
-      if (md3State.team1 && md3State.team2) {
-        document.getElementById('md3-g1-t1-name').textContent = md3State.team1.name;
-        document.getElementById('md3-g1-t2-name').textContent = md3State.team2.name;
-        document.getElementById('md3-g2-t1-name').textContent = md3State.team2.name;
-        document.getElementById('md3-g2-t2-name').textContent = md3State.team1.name;
-        document.getElementById('md3-g3-t1-name').textContent = md3State.team1.name;
-        document.getElementById('md3-g3-t2-name').textContent = md3State.team2.name;
-      } else {
-        document.getElementById('md3-g1-t1-name').textContent = 'Time 1';
-        document.getElementById('md3-g1-t2-name').textContent = 'Time 2';
-        document.getElementById('md3-g2-t1-name').textContent = 'Time 2';
-        document.getElementById('md3-g2-t2-name').textContent = 'Time 1';
-        document.getElementById('md3-g3-t1-name').textContent = 'Time 1';
-        document.getElementById('md3-g3-t2-name').textContent = 'Time 2';
+      // [NOVO] Toggle de "times diferentes" refletido na UI (só o Host pode mexer)
+      const chkDiffTeams = document.getElementById('chk-md3-different-teams');
+      if (chkDiffTeams) {
+        chkDiffTeams.checked = !!md3State.differentTeams;
+        chkDiffTeams.disabled = !isHost;
       }
 
-      // Renderiza Jogos (1, 2 e 3)
+      // [NOVO] Botão de atalho "Sortear Times": só aparece pro Host, no modo "times diferentes",
+      // e quando existe um confronto pendente aguardando sorteio.
+      const btnDrawNext = document.getElementById('btn-md3-draw-next');
+      if (btnDrawNext) {
+        const nextTarget = md3State.differentTeams ? getNextPendingMD3Game() : null;
+        if (isHost && nextTarget) {
+          const gameLabel = nextTarget === 'g3' ? 'o Derradeiro' : (nextTarget === 'g1' ? 'o Jogo 1' : 'o Jogo 2');
+          btnDrawNext.innerHTML = `<i data-lucide="dices" class="w-4 h-4"></i> Sortear Times para ${gameLabel}`;
+          btnDrawNext.classList.remove('hidden');
+          lucide.createIcons();
+        } else {
+          btnDrawNext.classList.add('hidden');
+        }
+      }
+
+      // Renderiza Jogos (1, 2 e 3) — cada um com os próprios times, placar e trava
       [1, 2, 3].forEach(i => {
         const g = md3State[`g${i}`];
         const s1Input = document.getElementById(`md3-g${i}-score1`);
         const s2Input = document.getElementById(`md3-g${i}-score2`);
         const status = document.getElementById(`md3-g${i}-status`);
         const btn = document.getElementById(`btn-save-g${i}`);
+        const t1NameEl = document.getElementById(`md3-g${i}-t1-name`);
+        const t2NameEl = document.getElementById(`md3-g${i}-t2-name`);
+
+        const hasTeams = !!(g.team1 && g.team2);
+
+        // Escudos e Nomes dos Times deste confronto específico
+        if (hasTeams) {
+          t1NameEl.textContent = g.team1.name;
+          t2NameEl.textContent = g.team2.name;
+        } else {
+          t1NameEl.textContent = (i === 3 && !md3State.g3.active) ? 'Time 1' : 'Aguardando Sorteio...';
+          t2NameEl.textContent = (i === 3 && !md3State.g3.active) ? 'Time 2' : 'Aguardando Sorteio...';
+        }
 
         if(document.activeElement !== s1Input) s1Input.value = g.s1 !== null ? g.s1 : '';
         if(document.activeElement !== s2Input) s2Input.value = g.s2 !== null ? g.s2 : '';
@@ -1223,6 +1355,13 @@
         if (g.saved) {
           status.textContent = 'Concluído';
           status.className = 'text-[10px] font-bold px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-300';
+          if(btn) btn.classList.add('hidden');
+          s1Input.disabled = true;
+          s2Input.disabled = true;
+        } else if (!hasTeams) {
+          // [NOVO] Confronto ainda não liberado: faltam times sorteados para este jogo específico
+          status.textContent = (i === 3 && !md3State.g3.active) ? 'Só se Houver Empate' : 'Aguardando Sorteio';
+          status.className = 'text-[10px] font-bold px-2 py-0.5 rounded bg-gray-500/20 text-gray-400';
           if(btn) btn.classList.add('hidden');
           s1Input.disabled = true;
           s2Input.disabled = true;
@@ -1244,11 +1383,18 @@
       // Visibilidade específica do Jogo 3
       const cardG3 = document.getElementById('md3-g3-card');
       const btnG3 = document.getElementById('btn-save-g3');
+      const g3HasTeams = !!(md3State.g3.team1 && md3State.g3.team2);
       if (md3State.g3.active) {
         cardG3.classList.remove('opacity-60');
-        if (isHost && !md3State.g3.saved) {
+        if (isHost && !md3State.g3.saved && g3HasTeams) {
           btnG3.disabled = false;
           btnG3.classList.remove('opacity-50', 'cursor-not-allowed', 'hidden');
+        } else if (!g3HasTeams) {
+          // [NOVO] Derradeiro ativo, mas ainda sem times sorteados (modo "times diferentes")
+          btnG3.disabled = true;
+          btnG3.classList.add('opacity-50', 'cursor-not-allowed');
+          document.getElementById('md3-g3-score1').disabled = true;
+          document.getElementById('md3-g3-score2').disabled = true;
         }
       } else {
         cardG3.classList.add('opacity-60');
@@ -1277,8 +1423,15 @@
 
     function sendMatchToMD3() {
       if (!currentMatchDraw || !currentRoom.isHost) return;
-      md3State.team1 = currentMatchDraw.t1;
-      md3State.team2 = currentMatchDraw.t2;
+
+      const applied = assignDrawToMD3(currentMatchDraw.t1, currentMatchDraw.t2);
+      if (!applied) {
+        alert(md3State.completed
+          ? 'A série MD3 já foi concluída! Clique em "Reiniciar Série MD3" para começar uma nova.'
+          : 'Confirme o placar do confronto atual no Modo MD3 antes de sortear o próximo.');
+        return;
+      }
+
       syncMD3State();
       renderMD3UI();
       switchTab('md3');
@@ -1651,11 +1804,10 @@
       md3State = {
         player1: md3State.player1 || 'Jogador A', // mantém os jogadores já selecionados
         player2: md3State.player2 || 'Jogador B',
-        team1: null,
-        team2: null,
-        g1: { s1: null, s2: null, saved: false },
-        g2: { s1: null, s2: null, saved: false },
-        g3: { s1: null, s2: null, saved: false, active: false },
+        differentTeams: !!md3State.differentTeams, // [NOVO] mantém o modo escolhido (mesmos times ou não)
+        g1: { team1: null, team2: null, s1: null, s2: null, saved: false },
+        g2: { team1: null, team2: null, s1: null, s2: null, saved: false },
+        g3: { team1: null, team2: null, s1: null, s2: null, saved: false, active: false },
         completed: false,
         winner: null,
         statusText: 'Série em Andamento',
