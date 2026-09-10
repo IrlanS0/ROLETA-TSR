@@ -106,7 +106,6 @@
 </head>
 <body class="min-h-screen flex flex-col bg-[#0B0C10] text-gray-100 antialiased selection:bg-amber-500 selection:text-black">
 
-  <!-- ==================== LOBBY (NOVO) ==================== -->
   <!-- ==================== LOBBY ==================== -->
   <div id="lobby-screen" class="fixed inset-0 z-50 bg-[#0B0C10] flex items-center justify-center p-4">
     <div class="glass-panel max-w-md w-full p-8 rounded-2xl space-y-6 text-center border-amber-500/30 shadow-2xl relative overflow-hidden">
@@ -1339,8 +1338,10 @@
       }
 
       if (g1.saved && g2.saved) {
-        if (p1Wins === 2) finishMD3Series(md3State.player1);
-        else if (p2Wins === 2) finishMD3Series(md3State.player2);
+        // [BUGFIX] MD3 = melhor de 3: quem tiver mais vitórias nos 2 primeiros jogos já vence a série
+        // (antes só declarava campeão em caso de 2 a 0, forçando um 3º jogo desnecessário em placares como 1 a 0)
+        if (p1Wins > p2Wins) finishMD3Series(md3State.player1);
+        else if (p2Wins > p1Wins) finishMD3Series(md3State.player2);
         else {
           md3State.g3.active = true;
           md3State.statusText = 'Empate! Tudo será decidido no Derradeiro!';
