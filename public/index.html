@@ -985,7 +985,7 @@
     // Baixa e converte ligas_times_estrelas_v2.json para o formato usado pelo app
     async function loadTeamsDatabase() {
       try {
-        const response = await fetch('ligas_times_estrelas_v2.json');
+        const response = await fetch('dados_times.json');
         if (!response.ok) throw new Error(`HTTP ${response.status}`);
         const data = await response.json();
 
@@ -1015,10 +1015,10 @@
         teamsDatabaseLoaded = true;
         console.log(`[TIMES] Base carregada: ${GOGOSZ_TEAMS.length} times em ${Object.keys(LEAGUE_META).length} ligas.`);
       } catch (err) {
-        console.error('[TIMES] Falha ao carregar ligas_times_estrelas_v2.json:', err);
+        console.error('[TIMES] Falha ao carregar dados_times.json:', err);
         GOGOSZ_TEAMS = [];
         teamsDatabaseLoaded = false;
-        alert('Não foi possível carregar a base de times (ligas_times_estrelas_v2.json). Verifique se o arquivo está publicado junto com o site.');
+        alert('Não foi possível carregar a base de times (dados_times.json). Verifique se o arquivo está publicado junto com o site.');
       }
     }
 
