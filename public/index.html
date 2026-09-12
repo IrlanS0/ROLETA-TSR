@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>GOGOSZ Patch CONMEBOL - Sorteador, MD3 & Ranking</title>
+  <title>Roleta - Sorteador, MD3 & Ranking</title>
   
   <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
@@ -13,7 +13,7 @@
       theme: {
         extend: {
           colors: {
-            gogosz: {
+            Roleta: {
               gold: '#FFB800',
               goldLight: '#FFE57F',
               goldDark: '#C78F00',
@@ -98,7 +98,6 @@
 </head>
 <body class="min-h-screen flex flex-col bg-[#0B0C10] text-gray-100 antialiased selection:bg-amber-500 selection:text-black">
 
-  <!-- ==================== LOBBY (NOVO) ==================== -->
   <!-- ==================== LOBBY ==================== -->
   <div id="lobby-screen" class="fixed inset-0 z-50 bg-[#0B0C10] flex items-center justify-center p-4">
     <div class="glass-panel max-w-md w-full p-8 rounded-2xl space-y-6 text-center border-amber-500/30 shadow-2xl relative overflow-hidden">
@@ -106,7 +105,7 @@
       <!-- Efeito visual no topo do card -->
       <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-amber-500 via-amber-300 to-amber-600"></div>
 
-      <h1 class="text-4xl font-black font-teko gold-gradient-text tracking-wider uppercase">Gogosz Patch</h1>
+      <h1 class="text-4xl font-black font-teko gold-gradient-text tracking-wider uppercase">Roleta</h1>
       
       <!-- TELA 1: HOME DO LOBBY -->
       <div id="view-lobby-home" class="space-y-4 pt-2">
@@ -177,7 +176,7 @@
         <div class="space-y-3 text-left">
           <div>
             <label class="text-xs font-bold uppercase text-gray-400 ml-1">ID da Sala</label>
-            <input type="text" id="join-room-id" placeholder="Ex: GOGOSZ-1234" class="w-full mt-1 bg-[#111319] border border-white/10 rounded-xl px-4 py-3 text-sm font-black uppercase text-amber-400 focus:outline-none focus:border-amber-500 text-center tracking-widest">
+            <input type="text" id="join-room-id" placeholder="Ex: Roleta-1234" class="w-full mt-1 bg-[#111319] border border-white/10 rounded-xl px-4 py-3 text-sm font-black uppercase text-amber-400 focus:outline-none focus:border-amber-500 text-center tracking-widest">
           </div>
           <div>
             <label class="text-xs font-bold uppercase text-gray-400 ml-1">Senha (Se houver)</label>
@@ -196,16 +195,16 @@
   <div id="app-content" class="hidden flex-1 flex-col w-full h-full">
 
     <!-- Top Navigation Header -->
-    <header class="sticky top-0 z-40 bg-[#0D0E12]/95 border-b border-gogosz-border/60 backdrop-blur-md px-4 py-3">
+    <header class="sticky top-0 z-40 bg-[#0D0E12]/95 border-b border-Roleta-border/60 backdrop-blur-md px-4 py-3">
       <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-3">
         <!-- Logo & Title -->
         <div class="flex items-center gap-3">
           <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-amber-400 to-amber-600 flex items-center justify-center font-extrabold text-black text-xl shadow-lg border border-amber-300">
-            G
+            R
           </div>
           <div>
             <h1 class="text-2xl font-black tracking-wider uppercase font-teko leading-none gold-gradient-text">
-              GOGOSZ PATCH <span class="text-xs px-2 py-0.5 rounded bg-amber-500/20 text-amber-400 border border-amber-500/30 ml-1">CONMEBOL</span>
+              Roleta
             </h1>
             <p class="text-xs text-gray-400">Hub de Sorteios Equilibrados, MD3 & Ranking da Galera (530+ Times)</p>
           </div>
@@ -441,7 +440,7 @@
             <!-- Interactive Wheel Visual -->
             <div class="glass-panel p-6 rounded-2xl flex flex-col items-center justify-center relative min-h-[380px]">
               <div class="text-center mb-4">
-                <span class="text-xs text-amber-400 uppercase tracking-widest font-bold">GOGOSZ Interactive Engine</span>
+                <span class="text-xs text-amber-400 uppercase tracking-widest font-bold">Roleta Interactive Engine</span>
                 <h4 id="wheel-status-text" class="text-xl font-black text-white">Pronto para o Sorteio!</h4>
               </div>
 
@@ -455,7 +454,7 @@
                 
                 <!-- Center Cap -->
                 <div class="absolute w-16 h-16 rounded-full bg-gradient-to-br from-amber-400 to-amber-600 border-4 border-black flex items-center justify-center shadow-lg font-black text-black text-xs font-teko text-center leading-none">
-                  GOGOSZ
+                  Roleta
                 </div>
               </div>
             </div>
@@ -529,7 +528,7 @@
         <div class="glass-panel p-5 rounded-2xl flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
           <div>
             <span class="inline-flex items-center gap-1.5 text-xs font-bold px-2.5 py-1 rounded-full bg-amber-500/10 text-amber-400 border border-amber-500/30 uppercase tracking-wider mb-2">
-              <i data-lucide="crown" class="w-3.5 h-3.5"></i> Formato Exclusivo Amigos GOGOSZ
+              <i data-lucide="crown" class="w-3.5 h-3.5"></i> Roleta Exclusiva Amigos 
             </span>
             <h2 class="text-3xl font-extrabold text-white tracking-tight">Modo MD3 (Melhor de 3 Jogos)</h2>
             <p class="text-sm text-gray-400 mt-1">
@@ -887,13 +886,13 @@
 
       </section>
 
-      <!-- ==================== TAB 5: DATABASE DE TIMES (GOGOSZ PATCH) ==================== -->
+      <!-- ==================== TAB 5: DATABASE DE TIMES (GOGOSZ PATCH por enquanto) ==================== -->
       <section id="view-database" class="tab-content hidden space-y-6">
         
         <div class="glass-panel p-5 rounded-2xl flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
           <div>
-            <h2 class="text-3xl font-extrabold text-white tracking-tight">Catálogo de Times GOGOSZ PATCH</h2>
-            <p class="text-sm text-gray-400 mt-1">Conheça as 530+ equipes incluídas em todas as ligas e divisões do patch.</p>
+            <h2 class="text-3xl font-extrabold text-white tracking-tight">Catálogo de Times do jogo</h2>
+            <p class="text-sm text-gray-400 mt-1">Conheça as 530+ equipes incluídas em todas as ligas e divisões do jogo.</p>
           </div>
           
           <input type="text" id="db-search" oninput="renderDatabase()" placeholder="Buscar time, liga ou país..." class="bg-[#111319] border border-white/10 rounded-xl px-4 py-2 text-sm font-semibold focus:outline-none focus:border-amber-500 w-full md:w-72">
@@ -951,7 +950,7 @@
   <!-- ==================== JAVASCRIPT ORIGINAL E LÓGICA DE SALA ==================== -->
   <script>
     // Base de times carregada dinamicamente a partir de ligas_times_estrelas_v2.json
-    let GOGOSZ_TEAMS = [];
+    let TEAMS = [];
     let teamsDatabaseLoaded = false;
 
     // Metadados de cada liga do JSON: código usado nos filtros, nome de exibição,
@@ -1011,12 +1010,12 @@
           });
         });
 
-        GOGOSZ_TEAMS = teams;
+        TEAMS = teams;
         teamsDatabaseLoaded = true;
-        console.log(`[TIMES] Base carregada: ${GOGOSZ_TEAMS.length} times em ${Object.keys(LEAGUE_META).length} ligas.`);
+        console.log(`[TIMES] Base carregada: ${TEAMS.length} times em ${Object.keys(LEAGUE_META).length} ligas.`);
       } catch (err) {
         console.error('[TIMES] Falha ao carregar dados_times.json:', err);
-        GOGOSZ_TEAMS = [];
+        TEAMS = [];
         teamsDatabaseLoaded = false;
         alert('Não foi possível carregar a base de times (dados_times.json). Verifique se o arquivo está publicado junto com o site.');
       }
@@ -1563,7 +1562,7 @@
       const starFilter = document.getElementById('star-filter').value;
       const regionFilter = document.getElementById('region-filter').value;
 
-      return GOGOSZ_TEAMS.filter(t => {
+      return TEAMS.filter(t => {
         if (removedTeamIds.has(t.id)) return false;
         if (leagueFilter !== 'ALL' && t.league !== leagueFilter) return false;
         if (starFilter !== 'ALL' && t.stars !== parseFloat(starFilter)) return false;
@@ -1657,7 +1656,7 @@
     function pickBalancedPair() {
       // [CORREÇÃO DE BUG] O sorteio deve respeitar SEMPRE o pool já filtrado (roulettePool).
       // Antes, quando o pool filtrado tinha menos de 2 times, o código caía para
-      // GOGOSZ_TEAMS (a base inteira, sem filtro nenhum), fazendo o sorteio ignorar
+      // TEAMS (a base inteira, sem filtro nenhum), fazendo o sorteio ignorar
       // completamente a Liga/Escalão/Região selecionados pelo usuário.
       const pool = roulettePool;
       if (pool.length < 2) return null;
@@ -1704,7 +1703,7 @@
 
       isSpinning = true;
       document.getElementById('btn-spin').disabled = true;
-      document.getElementById('wheel-status-text').textContent = 'Girando a Roleta GOGOSZ...';
+      document.getElementById('wheel-status-text').textContent = 'Girando a Roleta...';
 
       const pair = pickBalancedPair();
       if (!pair) {
@@ -2110,7 +2109,7 @@
       const query = document.getElementById('db-search').value.toLowerCase();
       grid.innerHTML = '';
 
-      const filtered = GOGOSZ_TEAMS.filter(t => 
+      const filtered = TEAMS.filter(t => 
         t.name.toLowerCase().includes(query) || 
         t.leagueName.toLowerCase().includes(query) ||
         t.region.toLowerCase().includes(query)
@@ -2143,7 +2142,7 @@
     };
 
     // [NOVO] Apelido do usuário — persiste entre sessões e relaciona com o nome do jogador no MD3
-    let myNickname = localStorage.getItem('gogosz_nickname') || '';
+    let myNickname = localStorage.getItem('nickname') || '';
 
     function saveNicknameDraft() {
       myNickname = document.getElementById('my-nickname').value.trim();
@@ -2180,7 +2179,7 @@
         return;
       }
       myNickname = nickname;
-      localStorage.setItem('gogosz_nickname', myNickname);
+      localStorage.setItem('nickname', myNickname);
 
       const pass = document.getElementById('create-room-pass').value.trim();
       socket.emit('create_room', { password: pass, nickname: myNickname });
@@ -2232,7 +2231,7 @@
         return;
       }
       myNickname = nickname;
-      localStorage.setItem('gogosz_nickname', myNickname);
+      localStorage.setItem('nickname', myNickname);
 
       const roomIdInput = document.getElementById('join-room-id').value.trim().toUpperCase();
       const passInput = document.getElementById('join-room-pass').value.trim();
