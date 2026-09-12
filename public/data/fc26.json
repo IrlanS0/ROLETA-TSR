@@ -1,0 +1,2635 @@
+{
+  "nome": "EA SPORTS FC 26",
+  "ano": 2025,
+  "tipo": "futebol",
+  "times": {
+    "ARGENTINA — Liga Profesional de Fútbol": [
+      {
+        "name": "Boca Juniors",
+        "estrelas": 3
+      },
+      {
+        "name": "River Plate",
+        "estrelas": 3
+      },
+      {
+        "name": "Racing Club de Avellaneda",
+        "estrelas": 3
+      },
+      {
+        "name": "Rosario Central",
+        "estrelas": 3
+      },
+      {
+        "name": "Estudiantes de La Plata",
+        "estrelas": 3
+      },
+      {
+        "name": "Vélez Sarsfield",
+        "estrelas": 3
+      },
+      {
+        "name": "Lanús",
+        "estrelas": 2.5
+      },
+      {
+        "name": "Argentinos Juniors",
+        "estrelas": 2.5
+      },
+      {
+        "name": "Talleres de Córdoba",
+        "estrelas": 2.5
+      },
+      {
+        "name": "Independiente",
+        "estrelas": 2.5
+      },
+      {
+        "name": "Belgrano de Córdoba",
+        "estrelas": 2.5
+      },
+      {
+        "name": "San Lorenzo de Almagro",
+        "estrelas": 2.5
+      },
+      {
+        "name": "Independiente Rivadavia",
+        "estrelas": 2.5
+      },
+      {
+        "name": "Defensa y Justicia",
+        "estrelas": 2.5
+      },
+      {
+        "name": "Huracán",
+        "estrelas": 2.5
+      },
+      {
+        "name": "Platense",
+        "estrelas": 2.5
+      },
+      {
+        "name": "Instituto de Córdoba",
+        "estrelas": 2
+      },
+      {
+        "name": "Atlético Tucumán",
+        "estrelas": 2
+      },
+      {
+        "name": "Tigre",
+        "estrelas": 2
+      },
+      {
+        "name": "Unión de Santa Fe",
+        "estrelas": 2
+      },
+      {
+        "name": "Barracas Central",
+        "estrelas": 2
+      },
+      {
+        "name": "Banfield",
+        "estrelas": 2
+      },
+      {
+        "name": "Newell's Old Boys",
+        "estrelas": 2
+      },
+      {
+        "name": "Aldosivi",
+        "estrelas": 2
+      },
+      {
+        "name": "Gimnasia y Esgrima La Plata",
+        "estrelas": 2
+      },
+      {
+        "name": "Sarmiento",
+        "estrelas": 2
+      },
+      {
+        "name": "Godoy Cruz",
+        "estrelas": 2
+      },
+      {
+        "name": "Central Córdoba",
+        "estrelas": 1.5
+      },
+      {
+        "name": "Deportivo Riestra",
+        "estrelas": 1.5
+      },
+      {
+        "name": "San Martín de San Juan",
+        "estrelas": 1
+      }
+    ],
+    "Australia A-League": [
+      {
+        "name": "Melbourne Victory",
+        "estrelas": 1.5
+      },
+      {
+        "name": "Sydney FC",
+        "estrelas": 1.5
+      },
+      {
+        "name": "Melbourne City",
+        "estrelas": 1.5
+      },
+      {
+        "name": "Western Sydney Wanderers",
+        "estrelas": 1.5
+      },
+      {
+        "name": "Auckland FC",
+        "estrelas": 1.5
+      },
+      {
+        "name": "Adelaide United",
+        "estrelas": 1.5
+      },
+      {
+        "name": "Newcastle Jets",
+        "estrelas": 1.5
+      },
+      {
+        "name": "Brisbane Roar",
+        "estrelas": 1
+      },
+      {
+        "name": "Perth Glory",
+        "estrelas": 1
+      },
+      {
+        "name": "Macarthur FC",
+        "estrelas": 1
+      },
+      {
+        "name": "Central Coast Mariners",
+        "estrelas": 1
+      },
+      {
+        "name": "Wellington Phoenix",
+        "estrelas": 1
+      }
+    ],
+    "Austria Bundesliga": [
+      {
+        "name": "RB Salzburg",
+        "estrelas": 2
+      },
+      {
+        "name": "LASK",
+        "estrelas": 2
+      },
+      {
+        "name": "SK Rapid",
+        "estrelas": 2
+      },
+      {
+        "name": "Sturm Graz",
+        "estrelas": 2
+      },
+      {
+        "name": "Austria Wien",
+        "estrelas": 2
+      },
+      {
+        "name": "Blau-Weiß Linz",
+        "estrelas": 2
+      },
+      {
+        "name": "Wolfsberger AC",
+        "estrelas": 2
+      },
+      {
+        "name": "SV Ried",
+        "estrelas": 1.5
+      },
+      {
+        "name": "Hartberg",
+        "estrelas": 1.5
+      },
+      {
+        "name": "Altach",
+        "estrelas": 1.5
+      },
+      {
+        "name": "WSG Tirol",
+        "estrelas": 1.5
+      },
+      {
+        "name": "Grazer AK",
+        "estrelas": 1.5
+      }
+    ],
+    "Belgium Pro League": [
+      {
+        "name": "Club Brugge",
+        "estrelas": 3
+      },
+      {
+        "name": "Union Saint-Gilloise",
+        "estrelas": 3
+      },
+      {
+        "name": "Genk",
+        "estrelas": 3
+      },
+      {
+        "name": "Anderlecht",
+        "estrelas": 2.5
+      },
+      {
+        "name": "Antwerp",
+        "estrelas": 2.5
+      },
+      {
+        "name": "Standard Liège",
+        "estrelas": 2.5
+      },
+      {
+        "name": "Gent",
+        "estrelas": 2.5
+      },
+      {
+        "name": "Charleroi",
+        "estrelas": 2
+      },
+      {
+        "name": "Sint-Truiden",
+        "estrelas": 2
+      },
+      {
+        "name": "OH Leuven",
+        "estrelas": 2
+      },
+      {
+        "name": "KV Mechelen",
+        "estrelas": 2
+      },
+      {
+        "name": "Dender",
+        "estrelas": 2
+      },
+      {
+        "name": "Westerlo",
+        "estrelas": 2
+      },
+      {
+        "name": "Zulte Waregem",
+        "estrelas": 2
+      },
+      {
+        "name": "Cercle Brugge",
+        "estrelas": 2
+      },
+      {
+        "name": "RAAL La Louvière",
+        "estrelas": 2
+      }
+    ],
+    "China Super League": [
+      {
+        "name": "Shanghai Port",
+        "estrelas": 2
+      },
+      {
+        "name": "Shanghai Shenhua",
+        "estrelas": 1.5
+      },
+      {
+        "name": "Shandong Taishan",
+        "estrelas": 1.5
+      },
+      {
+        "name": "Beijing Guoan",
+        "estrelas": 1.5
+      },
+      {
+        "name": "Chengdu Rongcheng F.C.",
+        "estrelas": 1.5
+      },
+      {
+        "name": "Tianjin Jinmen Tiger",
+        "estrelas": 1
+      },
+      {
+        "name": "Zhejiang Professional FC",
+        "estrelas": 1
+      },
+      {
+        "name": "Dalian Yingbo FC",
+        "estrelas": 1
+      },
+      {
+        "name": "Changchun Yatai",
+        "estrelas": 1
+      },
+      {
+        "name": "Henan FC",
+        "estrelas": 1
+      },
+      {
+        "name": "Qingdao West Coast FC",
+        "estrelas": 1
+      },
+      {
+        "name": "Meizhou Hakka",
+        "estrelas": 0.5
+      },
+      {
+        "name": "Wuhan Three Towns",
+        "estrelas": 0.5
+      },
+      {
+        "name": "Yunnan Yukun",
+        "estrelas": 0.5
+      },
+      {
+        "name": "Shenzhen Peng City",
+        "estrelas": 0.5
+      },
+      {
+        "name": "Qingdao Hainiu FC",
+        "estrelas": 0.5
+      }
+    ],
+    "Denmark Superliga": [
+      {
+        "name": "FC Midtjylland",
+        "estrelas": 2.5
+      },
+      {
+        "name": "FC København",
+        "estrelas": 2.5
+      },
+      {
+        "name": "AGF",
+        "estrelas": 2.5
+      },
+      {
+        "name": "Brøndby IF",
+        "estrelas": 2
+      },
+      {
+        "name": "Randers FC",
+        "estrelas": 2
+      },
+      {
+        "name": "FC Nordsjælland",
+        "estrelas": 2
+      },
+      {
+        "name": "Viborg FF",
+        "estrelas": 2
+      },
+      {
+        "name": "Silkeborg IF",
+        "estrelas": 1.5
+      },
+      {
+        "name": "Odense Boldklub",
+        "estrelas": 1.5
+      },
+      {
+        "name": "Vejle BK",
+        "estrelas": 1.5
+      },
+      {
+        "name": "Sønderjyske Fodbold",
+        "estrelas": 1.5
+      },
+      {
+        "name": "FC Fredericia",
+        "estrelas": 1
+      }
+    ],
+    "INGLATERRA — EFL Championship": [
+      {
+        "name": "Coventry City",
+        "estrelas": 3
+      },
+      {
+        "name": "Ipswich Town",
+        "estrelas": 3
+      },
+      {
+        "name": "Middlesbrough",
+        "estrelas": 2.5
+      },
+      {
+        "name": "Southampton",
+        "estrelas": 2.5
+      },
+      {
+        "name": "Birmingham City",
+        "estrelas": 2.5
+      },
+      {
+        "name": "Swansea City",
+        "estrelas": 2.5
+      },
+      {
+        "name": "Hull City",
+        "estrelas": 2.5
+      },
+      {
+        "name": "Bristol City",
+        "estrelas": 2.5
+      },
+      {
+        "name": "Leicester City",
+        "estrelas": 2.5
+      },
+      {
+        "name": "Millwall",
+        "estrelas": 2.5
+      },
+      {
+        "name": "Sheffield United",
+        "estrelas": 2.5
+      },
+      {
+        "name": "Norwich City",
+        "estrelas": 2.5
+      },
+      {
+        "name": "West Bromwich Albion",
+        "estrelas": 2.5
+      },
+      {
+        "name": "Watford",
+        "estrelas": 2.5
+      },
+      {
+        "name": "Derby County",
+        "estrelas": 2.5
+      },
+      {
+        "name": "Preston North End",
+        "estrelas": 2.5
+      },
+      {
+        "name": "Stoke City",
+        "estrelas": 2.5
+      },
+      {
+        "name": "Wrexham",
+        "estrelas": 2.5
+      },
+      {
+        "name": "Queens Park Rangers",
+        "estrelas": 2.5
+      },
+      {
+        "name": "Portsmouth",
+        "estrelas": 2
+      },
+      {
+        "name": "Charlton Athletic",
+        "estrelas": 2
+      },
+      {
+        "name": "Oxford United",
+        "estrelas": 2
+      },
+      {
+        "name": "Blackburn Rovers",
+        "estrelas": 2
+      },
+      {
+        "name": "Sheffield Wednesday",
+        "estrelas": 2
+      }
+    ],
+    "England League One": [
+      {
+        "name": "Luton Town",
+        "estrelas": 2
+      },
+      {
+        "name": "Cardiff City",
+        "estrelas": 2
+      },
+      {
+        "name": "Huddersfield Town",
+        "estrelas": 2
+      },
+      {
+        "name": "Bolton Wanderers",
+        "estrelas": 2
+      },
+      {
+        "name": "Plymouth Argyle",
+        "estrelas": 1.5
+      },
+      {
+        "name": "Reading",
+        "estrelas": 1.5
+      },
+      {
+        "name": "Blackpool",
+        "estrelas": 1.5
+      },
+      {
+        "name": "Lincoln City",
+        "estrelas": 1.5
+      },
+      {
+        "name": "Stockport County",
+        "estrelas": 1.5
+      },
+      {
+        "name": "Wycombe Wanderers",
+        "estrelas": 1.5
+      },
+      {
+        "name": "Bradford City",
+        "estrelas": 1.5
+      },
+      {
+        "name": "Stevenage",
+        "estrelas": 1.5
+      },
+      {
+        "name": "Barnsley",
+        "estrelas": 1.5
+      },
+      {
+        "name": "Leyton Orient",
+        "estrelas": 1.5
+      },
+      {
+        "name": "Rotherham United",
+        "estrelas": 1.5
+      },
+      {
+        "name": "Wigan Athletic",
+        "estrelas": 1.5
+      },
+      {
+        "name": "Port Vale",
+        "estrelas": 1.5
+      },
+      {
+        "name": "Peterborough United",
+        "estrelas": 1.5
+      },
+      {
+        "name": "Mansfield Town",
+        "estrelas": 1.5
+      },
+      {
+        "name": "Doncaster Rovers",
+        "estrelas": 1.5
+      },
+      {
+        "name": "Northampton Town",
+        "estrelas": 1
+      },
+      {
+        "name": "Exeter City",
+        "estrelas": 1
+      },
+      {
+        "name": "Burton Albion",
+        "estrelas": 1
+      },
+      {
+        "name": "AFC Wimbledon",
+        "estrelas": 1
+      }
+    ],
+    "England League Two": [
+      {
+        "name": "Milton Keynes Dons",
+        "estrelas": 1.5
+      },
+      {
+        "name": "Chesterfield",
+        "estrelas": 1
+      },
+      {
+        "name": "Cambridge United",
+        "estrelas": 1
+      },
+      {
+        "name": "Notts County",
+        "estrelas": 1
+      },
+      {
+        "name": "Salford City",
+        "estrelas": 1
+      },
+      {
+        "name": "Colchester United",
+        "estrelas": 1
+      },
+      {
+        "name": "Cheltenham Town",
+        "estrelas": 1
+      },
+      {
+        "name": "Walsall",
+        "estrelas": 1
+      },
+      {
+        "name": "Gillingham",
+        "estrelas": 1
+      },
+      {
+        "name": "Swindon Town",
+        "estrelas": 1
+      },
+      {
+        "name": "Barrow",
+        "estrelas": 1
+      },
+      {
+        "name": "Barnet",
+        "estrelas": 1
+      },
+      {
+        "name": "Bristol Rovers",
+        "estrelas": 1
+      },
+      {
+        "name": "Tranmere Rovers",
+        "estrelas": 1
+      },
+      {
+        "name": "Crawley Town",
+        "estrelas": 1
+      },
+      {
+        "name": "Fleetwood Town",
+        "estrelas": 1
+      },
+      {
+        "name": "Bromley",
+        "estrelas": 1
+      },
+      {
+        "name": "Grimsby Town",
+        "estrelas": 1
+      },
+      {
+        "name": "Oldham Athletic",
+        "estrelas": 1
+      },
+      {
+        "name": "Shrewsbury Town",
+        "estrelas": 1
+      },
+      {
+        "name": "Crewe Alexandra",
+        "estrelas": 1
+      },
+      {
+        "name": "Harrogate Town",
+        "estrelas": 1
+      },
+      {
+        "name": "Accrington Stanley",
+        "estrelas": 0.5
+      },
+      {
+        "name": "Newport County",
+        "estrelas": 0.5
+      }
+    ],
+    "England Premier League": [
+      {
+        "name": "Arsenal",
+        "estrelas": 4.5
+      },
+      {
+        "name": "Liverpool",
+        "estrelas": 4.5
+      },
+      {
+        "name": "Manchester City",
+        "estrelas": 4.5
+      },
+      {
+        "name": "Aston Villa",
+        "estrelas": 4
+      },
+      {
+        "name": "Chelsea",
+        "estrelas": 4
+      },
+      {
+        "name": "Newcastle United",
+        "estrelas": 4
+      },
+      {
+        "name": "Manchester United",
+        "estrelas": 4
+      },
+      {
+        "name": "Tottenham Hotspur",
+        "estrelas": 4
+      },
+      {
+        "name": "Nottingham Forest",
+        "estrelas": 4
+      },
+      {
+        "name": "Crystal Palace",
+        "estrelas": 4
+      },
+      {
+        "name": "Everton",
+        "estrelas": 3.5
+      },
+      {
+        "name": "Fulham",
+        "estrelas": 3.5
+      },
+      {
+        "name": "Brighton & Hove Albion",
+        "estrelas": 3.5
+      },
+      {
+        "name": "Brentford",
+        "estrelas": 3.5
+      },
+      {
+        "name": "AFC Bournemouth",
+        "estrelas": 3.5
+      },
+      {
+        "name": "West Ham United",
+        "estrelas": 3.5
+      },
+      {
+        "name": "Sunderland",
+        "estrelas": 3.5
+      },
+      {
+        "name": "Leeds United",
+        "estrelas": 3.5
+      },
+      {
+        "name": "Wolverhampton Wanderers",
+        "estrelas": 3
+      },
+      {
+        "name": "Burnley",
+        "estrelas": 3
+      }
+    ],
+    "FRANÇA — Ligue 1 McDonald's": [
+      {
+        "name": "Paris Saint-Germain",
+        "estrelas": 5
+      },
+      {
+        "name": "Olympique de Marseille",
+        "estrelas": 4
+      },
+      {
+        "name": "AS Monaco",
+        "estrelas": 3.5
+      },
+      {
+        "name": "RC Lens",
+        "estrelas": 3.5
+      },
+      {
+        "name": "LOSC Lille",
+        "estrelas": 3.5
+      },
+      {
+        "name": "Olympique Lyonnais",
+        "estrelas": 3.5
+      },
+      {
+        "name": "Stade Rennais",
+        "estrelas": 3.5
+      },
+      {
+        "name": "OGC Nice",
+        "estrelas": 3
+      },
+      {
+        "name": "RC Strasbourg",
+        "estrelas": 3
+      },
+      {
+        "name": "Paris FC",
+        "estrelas": 3
+      },
+      {
+        "name": "Stade Brestois 29",
+        "estrelas": 3
+      },
+      {
+        "name": "FC Lorient",
+        "estrelas": 3
+      },
+      {
+        "name": "Toulouse FC",
+        "estrelas": 3
+      },
+      {
+        "name": "AJ Auxerre",
+        "estrelas": 2.5
+      },
+      {
+        "name": "FC Nantes",
+        "estrelas": 2.5
+      },
+      {
+        "name": "Angers SCO",
+        "estrelas": 2.5
+      },
+      {
+        "name": "Le Havre AC",
+        "estrelas": 2.5
+      },
+      {
+        "name": "FC Metz",
+        "estrelas": 2.5
+      }
+    ],
+    "France Ligue 2": [
+      {
+        "name": "AS Saint-Étienne",
+        "estrelas": 2.5
+      },
+      {
+        "name": "Stade de Reims",
+        "estrelas": 2
+      },
+      {
+        "name": "Montpellier HSC",
+        "estrelas": 2
+      },
+      {
+        "name": "En Avant Guingamp",
+        "estrelas": 2
+      },
+      {
+        "name": "ESTAC Troyes",
+        "estrelas": 2
+      },
+      {
+        "name": "Amiens SC",
+        "estrelas": 2
+      },
+      {
+        "name": "Red Star FC (FRANCE)",
+        "estrelas": 2
+      },
+      {
+        "name": "USL Dunkerque",
+        "estrelas": 2
+      },
+      {
+        "name": "SC Bastia",
+        "estrelas": 1.5
+      },
+      {
+        "name": "Grenoble Foot 38",
+        "estrelas": 1.5
+      },
+      {
+        "name": "Stade Lavallois MFC",
+        "estrelas": 1.5
+      },
+      {
+        "name": "Clermont Foot",
+        "estrelas": 1.5
+      },
+      {
+        "name": "FC Annecy",
+        "estrelas": 1.5
+      },
+      {
+        "name": "Le Mans FC",
+        "estrelas": 1.5
+      },
+      {
+        "name": "AS Nancy",
+        "estrelas": 1.5
+      },
+      {
+        "name": "Pau FC",
+        "estrelas": 1.5
+      },
+      {
+        "name": "Rodez Aveyron Football",
+        "estrelas": 1.5
+      },
+      {
+        "name": "US Boulogne",
+        "estrelas": 1.5
+      }
+    ],
+    "ALEMANHA — Bundesliga": [
+      {
+        "name": "Bayern München",
+        "estrelas": 5
+      },
+      {
+        "name": "Borussia Dortmund",
+        "estrelas": 4
+      },
+      {
+        "name": "Bayer 04 Leverkusen",
+        "estrelas": 4
+      },
+      {
+        "name": "RB Leipzig",
+        "estrelas": 4
+      },
+      {
+        "name": "VfB Stuttgart",
+        "estrelas": 3.5
+      },
+      {
+        "name": "Eintracht Frankfurt",
+        "estrelas": 3.5
+      },
+      {
+        "name": "TSG 1899 Hoffenheim",
+        "estrelas": 3.5
+      },
+      {
+        "name": "VfL Wolfsburg",
+        "estrelas": 3.5
+      },
+      {
+        "name": "Borussia M'gladbach",
+        "estrelas": 3
+      },
+      {
+        "name": "SC Freiburg",
+        "estrelas": 3
+      },
+      {
+        "name": "Werder Bremen",
+        "estrelas": 3
+      },
+      {
+        "name": "1. FSV Mainz 05",
+        "estrelas": 3
+      },
+      {
+        "name": "Hamburger SV",
+        "estrelas": 3
+      },
+      {
+        "name": "1. FC Köln",
+        "estrelas": 3
+      },
+      {
+        "name": "1. FC Union Berlin",
+        "estrelas": 3
+      },
+      {
+        "name": "FC Augsburg",
+        "estrelas": 3
+      },
+      {
+        "name": "FC St. Pauli",
+        "estrelas": 2.5
+      },
+      {
+        "name": "1. FC Heidenheim",
+        "estrelas": 2.5
+      }
+    ],
+    "Germany 2. Bundesliga": [
+      {
+        "name": "FC Schalke 04",
+        "estrelas": 2.5
+      },
+      {
+        "name": "Hertha BSC",
+        "estrelas": 2.5
+      },
+      {
+        "name": "Hannover 96",
+        "estrelas": 2.5
+      },
+      {
+        "name": "SV Darmstadt 98",
+        "estrelas": 2.5
+      },
+      {
+        "name": "1. FC Kaiserslautern",
+        "estrelas": 2
+      },
+      {
+        "name": "VfL Bochum",
+        "estrelas": 2
+      },
+      {
+        "name": "Holstein Kiel",
+        "estrelas": 2
+      },
+      {
+        "name": "Karlsruher SC",
+        "estrelas": 2
+      },
+      {
+        "name": "Fortuna Düsseldorf",
+        "estrelas": 2
+      },
+      {
+        "name": "Arminia Bielefeld",
+        "estrelas": 2
+      },
+      {
+        "name": "1. FC Nürnberg",
+        "estrelas": 2
+      },
+      {
+        "name": "SV Elversberg",
+        "estrelas": 2
+      },
+      {
+        "name": "SC Paderborn 07",
+        "estrelas": 2
+      },
+      {
+        "name": "1. FC Magdeburg",
+        "estrelas": 2
+      },
+      {
+        "name": "SpVgg Greuther Fürth",
+        "estrelas": 2
+      },
+      {
+        "name": "Dynamo Dresden",
+        "estrelas": 2
+      },
+      {
+        "name": "Preußen Münster",
+        "estrelas": 2
+      },
+      {
+        "name": "Eintracht Braunschweig",
+        "estrelas": 2
+      }
+    ],
+    "Germany 3. Liga": [
+      {
+        "name": "Hansa Rostock",
+        "estrelas": 1.5
+      },
+      {
+        "name": "TSV 1860 München",
+        "estrelas": 1.5
+      },
+      {
+        "name": "Energie Cottbus",
+        "estrelas": 1.5
+      },
+      {
+        "name": "VfL Osnabrück",
+        "estrelas": 1.5
+      },
+      {
+        "name": "SV Wehen Wiesbaden",
+        "estrelas": 1.5
+      },
+      {
+        "name": "1. FC Saarbrücken",
+        "estrelas": 1.5
+      },
+      {
+        "name": "Rot-Weiß Essen",
+        "estrelas": 1.5
+      },
+      {
+        "name": "MSV Duisburg",
+        "estrelas": 1.5
+      },
+      {
+        "name": "Alemannia Aachen",
+        "estrelas": 1.5
+      },
+      {
+        "name": "SSV Ulm 1846",
+        "estrelas": 1.5
+      },
+      {
+        "name": "SC Verl",
+        "estrelas": 1.5
+      },
+      {
+        "name": "Erzgebirge Aue",
+        "estrelas": 1.5
+      },
+      {
+        "name": "Jahn Regensburg",
+        "estrelas": 1.5
+      },
+      {
+        "name": "SV Waldhof Mannheim",
+        "estrelas": 1.5
+      },
+      {
+        "name": "Viktoria Köln",
+        "estrelas": 1.5
+      },
+      {
+        "name": "FC Ingolstadt 04",
+        "estrelas": 1.5
+      },
+      {
+        "name": "1. FC Schweinfurt 05",
+        "estrelas": 1
+      },
+      {
+        "name": "TSV Havelse",
+        "estrelas": 1
+      },
+      {
+        "name": "VfB Stuttgart II",
+        "estrelas": 1
+      },
+      {
+        "name": "TSG 1899 Hoffenheim II",
+        "estrelas": 0.5
+      }
+    ],
+    "Holland Eredivisie": [
+      {
+        "name": "PSV",
+        "estrelas": 3.5
+      },
+      {
+        "name": "Ajax",
+        "estrelas": 3
+      },
+      {
+        "name": "Feyenoord",
+        "estrelas": 3
+      },
+      {
+        "name": "AZ",
+        "estrelas": 3
+      },
+      {
+        "name": "FC Utrecht",
+        "estrelas": 2.5
+      },
+      {
+        "name": "N.E.C. Nijmegen",
+        "estrelas": 2.5
+      },
+      {
+        "name": "FC Twente",
+        "estrelas": 2.5
+      },
+      {
+        "name": "Go Ahead Eagles",
+        "estrelas": 2
+      },
+      {
+        "name": "Fortuna Sittard",
+        "estrelas": 2
+      },
+      {
+        "name": "sc Heerenveen",
+        "estrelas": 2
+      },
+      {
+        "name": "Sparta Rotterdam",
+        "estrelas": 2
+      },
+      {
+        "name": "NAC Breda",
+        "estrelas": 2
+      },
+      {
+        "name": "PEC Zwolle",
+        "estrelas": 2
+      },
+      {
+        "name": "FC Groningen",
+        "estrelas": 2
+      },
+      {
+        "name": "Heracles Almelo",
+        "estrelas": 2
+      },
+      {
+        "name": "FC Volendam",
+        "estrelas": 1.5
+      },
+      {
+        "name": "Excelsior",
+        "estrelas": 1.5
+      },
+      {
+        "name": "Telstar",
+        "estrelas": 1.5
+      }
+    ],
+    "Indian Super League": [
+      {
+        "name": "Mohun Bagan Super Giant",
+        "estrelas": 1.5
+      },
+      {
+        "name": "East Bengal FC",
+        "estrelas": 0.5
+      },
+      {
+        "name": "Chennaiyin FC",
+        "estrelas": 0.5
+      },
+      {
+        "name": "FC Goa",
+        "estrelas": 0.5
+      },
+      {
+        "name": "Bengaluru FC",
+        "estrelas": 0.5
+      },
+      {
+        "name": "United Tigers SC",
+        "estrelas": 0.5
+      },
+      {
+        "name": "Mumbai City FC",
+        "estrelas": 0.5
+      },
+      {
+        "name": "Jamshedpur FC",
+        "estrelas": 0.5
+      },
+      {
+        "name": "NorthEast United",
+        "estrelas": 0.5
+      },
+      {
+        "name": "Odisha FC",
+        "estrelas": 0.5
+      },
+      {
+        "name": "Punjab FC",
+        "estrelas": 0.5
+      },
+      {
+        "name": "SC Delhi",
+        "estrelas": 0.5
+      },
+      {
+        "name": "Kerala Blasters FC",
+        "estrelas": 0.5
+      },
+      {
+        "name": "Mohammedan SC",
+        "estrelas": 0.5
+      }
+    ],
+    "ITÁLIA — Serie A Enilive": [
+      {
+        "name": "Inter",
+        "estrelas": 4.5
+      },
+      {
+        "name": "Napoli",
+        "estrelas": 4
+      },
+      {
+        "name": "Milano FC",
+        "estrelas": 4
+      },
+      {
+        "name": "Juventus",
+        "estrelas": 4
+      },
+      {
+        "name": "Roma",
+        "estrelas": 4
+      },
+      {
+        "name": "Atalanta",
+        "estrelas": 4
+      },
+      {
+        "name": "Lazio",
+        "estrelas": 3.5
+      },
+      {
+        "name": "Como",
+        "estrelas": 3.5
+      },
+      {
+        "name": "Bologna",
+        "estrelas": 3.5
+      },
+      {
+        "name": "Fiorentina",
+        "estrelas": 3.5
+      },
+      {
+        "name": "Torino",
+        "estrelas": 3
+      },
+      {
+        "name": "Sassuolo",
+        "estrelas": 3
+      },
+      {
+        "name": "Parma",
+        "estrelas": 3
+      },
+      {
+        "name": "Udinese",
+        "estrelas": 3
+      },
+      {
+        "name": "Hellas Verona",
+        "estrelas": 3
+      },
+      {
+        "name": "Cagliari",
+        "estrelas": 3
+      },
+      {
+        "name": "Genoa",
+        "estrelas": 3
+      },
+      {
+        "name": "Cremonese",
+        "estrelas": 3
+      },
+      {
+        "name": "Pisa",
+        "estrelas": 2.5
+      },
+      {
+        "name": "Lecce",
+        "estrelas": 2.5
+      }
+    ],
+    "Italy Serie B": [
+      {
+        "name": "Palermo",
+        "estrelas": 2.5
+      },
+      {
+        "name": "Monza",
+        "estrelas": 2.5
+      },
+      {
+        "name": "Venezia",
+        "estrelas": 2.5
+      },
+      {
+        "name": "Sampdoria",
+        "estrelas": 2.5
+      },
+      {
+        "name": "Modena",
+        "estrelas": 2
+      },
+      {
+        "name": "Empoli",
+        "estrelas": 2
+      },
+      {
+        "name": "Pescara",
+        "estrelas": 2
+      },
+      {
+        "name": "Bari",
+        "estrelas": 2
+      },
+      {
+        "name": "Avellino",
+        "estrelas": 2
+      },
+      {
+        "name": "Catanzaro",
+        "estrelas": 2
+      },
+      {
+        "name": "Padova",
+        "estrelas": 2
+      },
+      {
+        "name": "Cesena",
+        "estrelas": 2
+      },
+      {
+        "name": "Frosinone",
+        "estrelas": 2
+      },
+      {
+        "name": "Carrarese",
+        "estrelas": 2
+      },
+      {
+        "name": "Südtirol",
+        "estrelas": 2
+      },
+      {
+        "name": "Spezia",
+        "estrelas": 2
+      },
+      {
+        "name": "Reggiana",
+        "estrelas": 2
+      },
+      {
+        "name": "Mantova",
+        "estrelas": 2
+      },
+      {
+        "name": "Juve Stabia",
+        "estrelas": 2
+      },
+      {
+        "name": "Entella",
+        "estrelas": 2
+      }
+    ],
+    "Korea K League 1": [
+      {
+        "name": "Jeonbuk Hyundai Motors",
+        "estrelas": 2
+      },
+      {
+        "name": "Daejeon Hana Citizen",
+        "estrelas": 2
+      },
+      {
+        "name": "FC Seoul",
+        "estrelas": 2
+      },
+      {
+        "name": "Ulsan HD FC",
+        "estrelas": 2
+      },
+      {
+        "name": "Pohang Steelers",
+        "estrelas": 1.5
+      },
+      {
+        "name": "Gangwon FC",
+        "estrelas": 1.5
+      },
+      {
+        "name": "Jeju SK FC",
+        "estrelas": 1.5
+      },
+      {
+        "name": "Gimcheon Sangmu",
+        "estrelas": 1.5
+      },
+      {
+        "name": "FC Anyang",
+        "estrelas": 1.5
+      },
+      {
+        "name": "Daegu FC",
+        "estrelas": 1.5
+      },
+      {
+        "name": "Suwon FC",
+        "estrelas": 1.5
+      },
+      {
+        "name": "Gwangju FC",
+        "estrelas": 1
+      }
+    ],
+    "Norway Eliteserien": [
+      {
+        "name": "FK Bodø/Glimt",
+        "estrelas": 2.5
+      },
+      {
+        "name": "Viking FK",
+        "estrelas": 2
+      },
+      {
+        "name": "Rosenborg BK",
+        "estrelas": 2
+      },
+      {
+        "name": "SK Brann",
+        "estrelas": 2
+      },
+      {
+        "name": "Molde FK",
+        "estrelas": 2
+      },
+      {
+        "name": "Vålerenga Fotball",
+        "estrelas": 1.5
+      },
+      {
+        "name": "Tromsø IL",
+        "estrelas": 1.5
+      },
+      {
+        "name": "Fredrikstad FK",
+        "estrelas": 1.5
+      },
+      {
+        "name": "Sarpsborg 08",
+        "estrelas": 1.5
+      },
+      {
+        "name": "KFUM-Kameratene Oslo",
+        "estrelas": 1.5
+      },
+      {
+        "name": "Strømsgodset Toppfotball",
+        "estrelas": 1
+      },
+      {
+        "name": "HamKam Fotball",
+        "estrelas": 1
+      },
+      {
+        "name": "Sandefjord Fotball",
+        "estrelas": 1
+      },
+      {
+        "name": "FK Haugesund",
+        "estrelas": 1
+      },
+      {
+        "name": "Bryne FK",
+        "estrelas": 1
+      },
+      {
+        "name": "Kristiansund BK",
+        "estrelas": 1
+      }
+    ],
+    "Poland Ekstraklasa": [
+      {
+        "name": "Lech Poznań",
+        "estrelas": 2.5
+      },
+      {
+        "name": "Widzew Łódź",
+        "estrelas": 2
+      },
+      {
+        "name": "Jagiellonia Białystok",
+        "estrelas": 2
+      },
+      {
+        "name": "Raków Częstochowa",
+        "estrelas": 2
+      },
+      {
+        "name": "Górnik Zabrze",
+        "estrelas": 2
+      },
+      {
+        "name": "Legia Warszawa",
+        "estrelas": 2
+      },
+      {
+        "name": "Pogoń Szczecin",
+        "estrelas": 2
+      },
+      {
+        "name": "GKS Katowice",
+        "estrelas": 2
+      },
+      {
+        "name": "Cracovia",
+        "estrelas": 2
+      },
+      {
+        "name": "Zagłębie Lubin",
+        "estrelas": 1.5
+      },
+      {
+        "name": "Korona Kielce",
+        "estrelas": 1.5
+      },
+      {
+        "name": "Piast Gliwice",
+        "estrelas": 1.5
+      },
+      {
+        "name": "Radomiak Radom",
+        "estrelas": 1.5
+      },
+      {
+        "name": "Lechia Gdańsk",
+        "estrelas": 1.5
+      },
+      {
+        "name": "Motor Lublin",
+        "estrelas": 1.5
+      },
+      {
+        "name": "Wisła Płock",
+        "estrelas": 1.5
+      },
+      {
+        "name": "Arka Gdynia",
+        "estrelas": 1.5
+      },
+      {
+        "name": "Bruk-Bet Termalica Nieciecza",
+        "estrelas": 1.5
+      }
+    ],
+    "Portugal Primeira Liga": [
+      {
+        "name": "Sporting CP",
+        "estrelas": 4
+      },
+      {
+        "name": "Benfica",
+        "estrelas": 3.5
+      },
+      {
+        "name": "FC Porto",
+        "estrelas": 3.5
+      },
+      {
+        "name": "Sporting de Braga",
+        "estrelas": 3
+      },
+      {
+        "name": "Famalicão",
+        "estrelas": 2.5
+      },
+      {
+        "name": "Gil Vicente FC",
+        "estrelas": 2.5
+      },
+      {
+        "name": "Estoril",
+        "estrelas": 2.5
+      },
+      {
+        "name": "Casa Pia",
+        "estrelas": 2.5
+      },
+      {
+        "name": "Rio Ave",
+        "estrelas": 2
+      },
+      {
+        "name": "Santa Clara",
+        "estrelas": 2
+      },
+      {
+        "name": "Vitória de Guimarães",
+        "estrelas": 2
+      },
+      {
+        "name": "Arouca",
+        "estrelas": 2
+      },
+      {
+        "name": "Alverca",
+        "estrelas": 2
+      },
+      {
+        "name": "Estrela da Amadora",
+        "estrelas": 2
+      },
+      {
+        "name": "Nacional da Madeira",
+        "estrelas": 2
+      },
+      {
+        "name": "Moreirense",
+        "estrelas": 2
+      },
+      {
+        "name": "Tondela",
+        "estrelas": 2
+      },
+      {
+        "name": "AVS Futebol SAD",
+        "estrelas": 2
+      }
+    ],
+    "Rep. Ireland Premier Division": [
+      {
+        "name": "Shamrock Rovers",
+        "estrelas": 1.5
+      },
+      {
+        "name": "St Patrick's Athletic",
+        "estrelas": 1
+      },
+      {
+        "name": "Derry City",
+        "estrelas": 1
+      },
+      {
+        "name": "Shelbourne",
+        "estrelas": 1
+      },
+      {
+        "name": "Bohemians",
+        "estrelas": 1
+      },
+      {
+        "name": "Sligo Rovers",
+        "estrelas": 0.5
+      },
+      {
+        "name": "Waterford",
+        "estrelas": 0.5
+      },
+      {
+        "name": "Galway United",
+        "estrelas": 0.5
+      },
+      {
+        "name": "Drogheda United",
+        "estrelas": 0.5
+      },
+      {
+        "name": "Cork City",
+        "estrelas": 0.5
+      }
+    ],
+    "Rest of World": [
+      {
+        "name": "Olympiacos",
+        "estrelas": 3.5
+      },
+      {
+        "name": "Slavia Praha",
+        "estrelas": 3
+      },
+      {
+        "name": "AEK",
+        "estrelas": 3
+      },
+      {
+        "name": "PAOK",
+        "estrelas": 3
+      },
+      {
+        "name": "Sparta Praha",
+        "estrelas": 3
+      },
+      {
+        "name": "Panathinaikos",
+        "estrelas": 3
+      },
+      {
+        "name": "Dinamo Zagreb",
+        "estrelas": 2.5
+      },
+      {
+        "name": "Dynamo Kyiv",
+        "estrelas": 2.5
+      },
+      {
+        "name": "Shakhtar Donetsk",
+        "estrelas": 2.5
+      },
+      {
+        "name": "Viktoria Plzeň",
+        "estrelas": 2.5
+      },
+      {
+        "name": "Ferencvárosi TC",
+        "estrelas": 2.5
+      },
+      {
+        "name": "Hajduk Split",
+        "estrelas": 2.5
+      },
+      {
+        "name": "APOEL Nicosia FC",
+        "estrelas": 2
+      },
+      {
+        "name": "Universidad Católica",
+        "estrelas": 2
+      },
+      {
+        "name": "Al Ain FC (UAE)",
+        "estrelas": 2
+      },
+      {
+        "name": "Qarabağ FK",
+        "estrelas": 2
+      },
+      {
+        "name": "HJK Helsinki",
+        "estrelas": 1
+      }
+    ],
+    "Romania Liga I": [
+      {
+        "name": "Universitatea Craiova",
+        "estrelas": 2
+      },
+      {
+        "name": "FC Rapid",
+        "estrelas": 2
+      },
+      {
+        "name": "FCSB",
+        "estrelas": 2
+      },
+      {
+        "name": "Universitatea Cluj",
+        "estrelas": 2
+      },
+      {
+        "name": "Dinamo București",
+        "estrelas": 2
+      },
+      {
+        "name": "CFR Cluj",
+        "estrelas": 2
+      },
+      {
+        "name": "FC Botoșani",
+        "estrelas": 1.5
+      },
+      {
+        "name": "FC Argeș",
+        "estrelas": 1.5
+      },
+      {
+        "name": "SC Oțelul Galați",
+        "estrelas": 1.5
+      },
+      {
+        "name": "Farul Constanța",
+        "estrelas": 1.5
+      },
+      {
+        "name": "Petrolul Ploiești",
+        "estrelas": 1.5
+      },
+      {
+        "name": "UTA Arad",
+        "estrelas": 1.5
+      },
+      {
+        "name": "FC Hermannstadt",
+        "estrelas": 1.5
+      },
+      {
+        "name": "Unirea Slobozia",
+        "estrelas": 1
+      },
+      {
+        "name": "Metaloglobus București",
+        "estrelas": 1
+      },
+      {
+        "name": "FK Csíkszereda Miercurea Ciuc",
+        "estrelas": 1
+      }
+    ],
+    "Saudi Pro League": [
+      {
+        "name": "Al Hilal",
+        "estrelas": 3.5
+      },
+      {
+        "name": "Al Nassr",
+        "estrelas": 3.5
+      },
+      {
+        "name": "Al Ittihad",
+        "estrelas": 3
+      },
+      {
+        "name": "Al Ahli",
+        "estrelas": 3
+      },
+      {
+        "name": "Al Qadsiah",
+        "estrelas": 3
+      },
+      {
+        "name": "NEOM SC",
+        "estrelas": 2.5
+      },
+      {
+        "name": "Al Shabab",
+        "estrelas": 2
+      },
+      {
+        "name": "Al Taawoun",
+        "estrelas": 2
+      },
+      {
+        "name": "Al Khaleej",
+        "estrelas": 2
+      },
+      {
+        "name": "Al Ettifaq",
+        "estrelas": 2
+      },
+      {
+        "name": "Al Fayha",
+        "estrelas": 1.5
+      },
+      {
+        "name": "Al Kholood",
+        "estrelas": 1.5
+      },
+      {
+        "name": "Al Riyadh",
+        "estrelas": 1.5
+      },
+      {
+        "name": "Al Okhdood",
+        "estrelas": 1.5
+      },
+      {
+        "name": "Damac FC",
+        "estrelas": 1.5
+      },
+      {
+        "name": "Al Hazem",
+        "estrelas": 1.5
+      },
+      {
+        "name": "Al Fateh",
+        "estrelas": 1.5
+      },
+      {
+        "name": "Al Najmah",
+        "estrelas": 1.5
+      }
+    ],
+    "Scotland Premiership": [
+      {
+        "name": "Celtic",
+        "estrelas": 3
+      },
+      {
+        "name": "Rangers",
+        "estrelas": 3
+      },
+      {
+        "name": "Heart of Midlothian",
+        "estrelas": 2.5
+      },
+      {
+        "name": "Aberdeen",
+        "estrelas": 2
+      },
+      {
+        "name": "Hibernian",
+        "estrelas": 2
+      },
+      {
+        "name": "Motherwell",
+        "estrelas": 1.5
+      },
+      {
+        "name": "Kilmarnock",
+        "estrelas": 1.5
+      },
+      {
+        "name": "Dundee United",
+        "estrelas": 1.5
+      },
+      {
+        "name": "Dundee FC",
+        "estrelas": 1.5
+      },
+      {
+        "name": "Livingston",
+        "estrelas": 1.5
+      },
+      {
+        "name": "St. Mirren",
+        "estrelas": 1.5
+      },
+      {
+        "name": "Falkirk",
+        "estrelas": 1
+      }
+    ],
+    "ESPANHA — La Liga EA Sports": [
+      {
+        "name": "FC Barcelona",
+        "estrelas": 5
+      },
+      {
+        "name": "Real Madrid",
+        "estrelas": 5
+      },
+      {
+        "name": "Atlético de Madrid",
+        "estrelas": 4.5
+      },
+      {
+        "name": "Athletic Club de Bilbao",
+        "estrelas": 4
+      },
+      {
+        "name": "Real Betis Balompié",
+        "estrelas": 4
+      },
+      {
+        "name": "Villarreal CF",
+        "estrelas": 4
+      },
+      {
+        "name": "Real Sociedad",
+        "estrelas": 3.5
+      },
+      {
+        "name": "CA Osasuna",
+        "estrelas": 3.5
+      },
+      {
+        "name": "Rayo Vallecano",
+        "estrelas": 3.5
+      },
+      {
+        "name": "Girona FC",
+        "estrelas": 3.5
+      },
+      {
+        "name": "RC Celta de Vigo",
+        "estrelas": 3.5
+      },
+      {
+        "name": "RCD Mallorca",
+        "estrelas": 3.5
+      },
+      {
+        "name": "Valencia CF",
+        "estrelas": 3.5
+      },
+      {
+        "name": "Getafe CF",
+        "estrelas": 3.5
+      },
+      {
+        "name": "RCD Espanyol",
+        "estrelas": 3
+      },
+      {
+        "name": "Sevilla FC",
+        "estrelas": 3
+      },
+      {
+        "name": "Deportivo Alavés",
+        "estrelas": 3
+      },
+      {
+        "name": "Elche CF",
+        "estrelas": 3
+      },
+      {
+        "name": "Levante UD",
+        "estrelas": 3
+      },
+      {
+        "name": "Real Oviedo",
+        "estrelas": 3
+      }
+    ],
+    "LALIGA HYPERMOTION": [
+      {
+        "name": "UD Las Palmas",
+        "estrelas": 2.5
+      },
+      {
+        "name": "UD Almería",
+        "estrelas": 2.5
+      },
+      {
+        "name": "RC Deportivo",
+        "estrelas": 2.5
+      },
+      {
+        "name": "Racing de Santander",
+        "estrelas": 2.5
+      },
+      {
+        "name": "Real Sporting de Gijón",
+        "estrelas": 2.5
+      },
+      {
+        "name": "Real Zaragoza",
+        "estrelas": 2
+      },
+      {
+        "name": "Real Valladolid",
+        "estrelas": 2
+      },
+      {
+        "name": "SD Eibar",
+        "estrelas": 2
+      },
+      {
+        "name": "Málaga CF",
+        "estrelas": 2
+      },
+      {
+        "name": "Córdoba CF",
+        "estrelas": 2
+      },
+      {
+        "name": "Burgos CF",
+        "estrelas": 2
+      },
+      {
+        "name": "CD Castellón",
+        "estrelas": 2
+      },
+      {
+        "name": "CD Leganés",
+        "estrelas": 2
+      },
+      {
+        "name": "Granada CF",
+        "estrelas": 2
+      },
+      {
+        "name": "Albacete Balompié",
+        "estrelas": 2
+      },
+      {
+        "name": "Cádiz CF",
+        "estrelas": 2
+      },
+      {
+        "name": "Cultural Leonesa",
+        "estrelas": 2
+      },
+      {
+        "name": "AD Ceuta",
+        "estrelas": 2
+      },
+      {
+        "name": "CD Mirandés",
+        "estrelas": 2
+      },
+      {
+        "name": "SD Huesca",
+        "estrelas": 2
+      },
+      {
+        "name": "FC Andorra",
+        "estrelas": 2
+      },
+      {
+        "name": "Real Sociedad B",
+        "estrelas": 1.5
+      }
+    ],
+    "Sweden Allsvenskan": [
+      {
+        "name": "Malmö FF",
+        "estrelas": 2
+      },
+      {
+        "name": "Hammarby IF",
+        "estrelas": 2
+      },
+      {
+        "name": "IF Elfsborg",
+        "estrelas": 2
+      },
+      {
+        "name": "Djurgårdens IF",
+        "estrelas": 2
+      },
+      {
+        "name": "BK Häcken",
+        "estrelas": 2
+      },
+      {
+        "name": "Mjällby AIF",
+        "estrelas": 2
+      },
+      {
+        "name": "IFK Göteborg",
+        "estrelas": 1.5
+      },
+      {
+        "name": "AIK",
+        "estrelas": 1.5
+      },
+      {
+        "name": "GAIS",
+        "estrelas": 1.5
+      },
+      {
+        "name": "IK Sirius",
+        "estrelas": 1.5
+      },
+      {
+        "name": "IFK Norrköping",
+        "estrelas": 1.5
+      },
+      {
+        "name": "IF Brommapojkarna",
+        "estrelas": 1.5
+      },
+      {
+        "name": "Degerfors IF",
+        "estrelas": 1.5
+      },
+      {
+        "name": "Halmstads BK",
+        "estrelas": 1
+      },
+      {
+        "name": "Östers IF",
+        "estrelas": 1
+      },
+      {
+        "name": "IFK Värnamo",
+        "estrelas": 1
+      }
+    ],
+    "Switzerland Super League": [
+      {
+        "name": "FC Basel",
+        "estrelas": 2.5
+      },
+      {
+        "name": "BSC Young Boys",
+        "estrelas": 2.5
+      },
+      {
+        "name": "FC Lugano",
+        "estrelas": 2.5
+      },
+      {
+        "name": "Servette FC",
+        "estrelas": 2
+      },
+      {
+        "name": "FC St. Gallen",
+        "estrelas": 2
+      },
+      {
+        "name": "FC Lausanne-Sport",
+        "estrelas": 2
+      },
+      {
+        "name": "FC Sion",
+        "estrelas": 2
+      },
+      {
+        "name": "FC Zürich",
+        "estrelas": 1.5
+      },
+      {
+        "name": "FC Luzern",
+        "estrelas": 1.5
+      },
+      {
+        "name": "FC Thun",
+        "estrelas": 1.5
+      },
+      {
+        "name": "Grasshopper Club Zürich",
+        "estrelas": 1.5
+      },
+      {
+        "name": "FC Winterthur",
+        "estrelas": 1.5
+      }
+    ],
+    "Turkey Süper Lig": [
+      {
+        "name": "Galatasaray",
+        "estrelas": 4
+      },
+      {
+        "name": "Fenerbahçe",
+        "estrelas": 3.5
+      },
+      {
+        "name": "Beşiktaş",
+        "estrelas": 3
+      },
+      {
+        "name": "Trabzonspor",
+        "estrelas": 3
+      },
+      {
+        "name": "Samsunspor",
+        "estrelas": 2.5
+      },
+      {
+        "name": "İstanbul Başakşehir FK",
+        "estrelas": 2.5
+      },
+      {
+        "name": "Göztepe",
+        "estrelas": 2
+      },
+      {
+        "name": "Kocaelispor",
+        "estrelas": 2
+      },
+      {
+        "name": "Konyaspor",
+        "estrelas": 2
+      },
+      {
+        "name": "Gaziantep FK",
+        "estrelas": 2
+      },
+      {
+        "name": "Kasımpaşa",
+        "estrelas": 2
+      },
+      {
+        "name": "Antalyaspor",
+        "estrelas": 2
+      },
+      {
+        "name": "Kayserispor",
+        "estrelas": 2
+      },
+      {
+        "name": "Çaykur Rizespor",
+        "estrelas": 2
+      },
+      {
+        "name": "Corendon Alanyaspor",
+        "estrelas": 2
+      },
+      {
+        "name": "Gençlerbirliği",
+        "estrelas": 2
+      },
+      {
+        "name": "Fatih Karagümrük S.K.",
+        "estrelas": 2
+      },
+      {
+        "name": "Eyüpspor",
+        "estrelas": 1.5
+      }
+    ],
+    "ESTADOS UNIDOS / CANADÁ — MLS": [
+      {
+        "name": "Inter Miami",
+        "estrelas": 2.5
+      },
+      {
+        "name": "Vancouver Whitecaps",
+        "estrelas": 2.5
+      },
+      {
+        "name": "Charlotte FC",
+        "estrelas": 2.5
+      },
+      {
+        "name": "Los Angeles FC",
+        "estrelas": 2.5
+      },
+      {
+        "name": "Columbus Crew",
+        "estrelas": 2.5
+      },
+      {
+        "name": "Los Angeles Galaxy",
+        "estrelas": 2.5
+      },
+      {
+        "name": "Houston Dynamo",
+        "estrelas": 2.5
+      },
+      {
+        "name": "Chicago Fire FC",
+        "estrelas": 2.5
+      },
+      {
+        "name": "Seattle Sounders",
+        "estrelas": 2.5
+      },
+      {
+        "name": "Atlanta United FC",
+        "estrelas": 2.5
+      },
+      {
+        "name": "Orlando City SC",
+        "estrelas": 2
+      },
+      {
+        "name": "Nashville SC",
+        "estrelas": 2
+      },
+      {
+        "name": "Austin FC",
+        "estrelas": 2
+      },
+      {
+        "name": "Real Salt Lake",
+        "estrelas": 2
+      },
+      {
+        "name": "Minnesota United FC",
+        "estrelas": 2
+      },
+      {
+        "name": "FC Cincinnati",
+        "estrelas": 2
+      },
+      {
+        "name": "New England Revolution",
+        "estrelas": 2
+      },
+      {
+        "name": "Toronto FC",
+        "estrelas": 2
+      },
+      {
+        "name": "New York City FC",
+        "estrelas": 2
+      },
+      {
+        "name": "San Diego FC",
+        "estrelas": 2
+      },
+      {
+        "name": "Colorado Rapids",
+        "estrelas": 2
+      },
+      {
+        "name": "Portland Timbers",
+        "estrelas": 2
+      },
+      {
+        "name": "St. Louis City SC",
+        "estrelas": 2
+      },
+      {
+        "name": "Philadelphia Union",
+        "estrelas": 2
+      },
+      {
+        "name": "Red Bull New York",
+        "estrelas": 2
+      },
+      {
+        "name": "FC Dallas",
+        "estrelas": 2
+      },
+      {
+        "name": "D.C. United",
+        "estrelas": 2
+      },
+      {
+        "name": "San Jose Earthquakes",
+        "estrelas": 2
+      },
+      {
+        "name": "CF Montréal",
+        "estrelas": 1.5
+      },
+      {
+        "name": "Sporting KC",
+        "estrelas": 1.5
+      }
+    ]
+  },
+  "selecoes": {
+    "Europa": [
+      {
+        "name": "France",
+        "estrelas": 5
+      },
+      {
+        "name": "Spain",
+        "estrelas": 5
+      },
+      {
+        "name": "Germany",
+        "estrelas": 4.5
+      },
+      {
+        "name": "Portugal",
+        "estrelas": 4.5
+      },
+      {
+        "name": "England",
+        "estrelas": 4.5
+      },
+      {
+        "name": "Italy",
+        "estrelas": 4.5
+      },
+      {
+        "name": "Netherlands",
+        "estrelas": 4.5
+      },
+      {
+        "name": "Croatia",
+        "estrelas": 4
+      },
+      {
+        "name": "Norway",
+        "estrelas": 4
+      },
+      {
+        "name": "Denmark",
+        "estrelas": 3.5
+      },
+      {
+        "name": "Ukraine",
+        "estrelas": 3.5
+      },
+      {
+        "name": "Czechia",
+        "estrelas": 3.5
+      },
+      {
+        "name": "Poland",
+        "estrelas": 3.5
+      },
+      {
+        "name": "Sweden",
+        "estrelas": 3.5
+      },
+      {
+        "name": "Scotland",
+        "estrelas": 3.5
+      },
+      {
+        "name": "Wales",
+        "estrelas": 3
+      },
+      {
+        "name": "Republic of Ireland",
+        "estrelas": 3
+      },
+      {
+        "name": "Hungary",
+        "estrelas": 3
+      },
+      {
+        "name": "Romania",
+        "estrelas": 3
+      },
+      {
+        "name": "Iceland",
+        "estrelas": 2.5
+      },
+      {
+        "name": "Northern Ireland",
+        "estrelas": 2.5
+      },
+      {
+        "name": "Finland",
+        "estrelas": 2.5
+      }
+    ],
+    "América do Sul": [
+      {
+        "name": "Argentina",
+        "estrelas": 4.5
+      }
+    ],
+    "América do Norte": [
+      {
+        "name": "United States",
+        "estrelas": 3.5
+      },
+      {
+        "name": "Mexico",
+        "estrelas": 3.5
+      }
+    ],
+    "África": [
+      {
+        "name": "Morocco",
+        "estrelas": 4
+      },
+      {
+        "name": "Ghana",
+        "estrelas": 3
+      }
+    ],
+    "Ásia": [
+      {
+        "name": "Qatar",
+        "estrelas": 2
+      }
+    ]
+  }
+}

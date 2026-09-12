@@ -1,0 +1,917 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Roleta - Sorteador, MD3 & Ranking</title>
+  
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            Roleta: {
+              gold: '#FFB800',
+              goldLight: '#FFE57F',
+              goldDark: '#C78F00',
+              black: '#0D0E12',
+              card: '#161820',
+              border: '#2A2E3D',
+              accent: '#00E676'
+            }
+          },
+          fontFamily: {
+            sans: ['Inter', 'sans-serif']
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Google Fonts & Lucide Icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&family=Teko:wght@600;700&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/lucide@latest"></script>
+  
+  <!-- IMPORTAÇÃO DO SOCKET.IO CLIENT (NOVO) -->
+  <script src="https://roleta-tsr-1.onrender.com/socket.io/socket.io.js"></script>
+
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="min-h-screen flex flex-col bg-[#0B0C10] text-gray-100 antialiased selection:bg-amber-500 selection:text-black">
+
+  <!-- ==================== LOBBY ==================== -->
+  <div id="lobby-screen" class="fixed inset-0 z-50 bg-[#0B0C10] flex items-center justify-center p-4">
+    <div class="glass-panel max-w-md w-full p-8 rounded-2xl space-y-6 text-center border-amber-500/30 shadow-2xl relative overflow-hidden">
+      
+      <!-- Efeito visual no topo do card -->
+      <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-amber-500 via-amber-300 to-amber-600"></div>
+
+      <h1 class="text-4xl font-black font-teko gold-gradient-text tracking-wider uppercase">Roleta</h1>
+      
+      <!-- TELA 1: HOME DO LOBBY -->
+      <div id="view-lobby-home" class="space-y-4 pt-2">
+        <p class="text-sm text-gray-400 mb-6">Entre em uma sala para acompanhar ou crie uma nova para gerenciar.</p>
+
+        <!-- [NOVO] Apelido do usuário: será usado como nome do jogador no MD3 -->
+        <div class="space-y-2 text-left">
+          <label class="text-xs font-bold uppercase text-gray-400 ml-1">Seu Apelido <span class="text-red-400">*</span></label>
+          <input type="text" id="my-nickname" required maxlength="20" placeholder="Como você quer ser chamado?" oninput="saveNicknameDraft()" class="w-full bg-[#111319] border border-white/10 rounded-xl px-4 py-3 text-sm font-bold text-amber-400 focus:outline-none focus:border-amber-500">
+          <p class="text-[11px] text-gray-500 ml-1">Esse será o seu nome de jogador na aba MD3 e no Ranking. Campo obrigatório.</p>
+        </div>
+
+        <button onclick="switchLobbyView('create')" id="btn-goto-create" disabled class="w-full py-3.5 bg-gradient-to-r from-amber-400 to-amber-600 hover:from-amber-300 hover:to-amber-500 text-black font-extrabold text-sm rounded-xl shadow-lg transition uppercase tracking-widest flex items-center justify-center gap-2 disabled:opacity-40 disabled:cursor-not-allowed disabled:hover:from-amber-400 disabled:hover:to-amber-600">
+          <i data-lucide="plus-circle" class="w-5 h-5"></i> Criar Sala
+        </button>
+        <button onclick="switchLobbyView('join')" id="btn-goto-join" disabled class="w-full py-3.5 bg-[#111319] hover:bg-[#1C202C] border border-white/10 text-white font-extrabold text-sm rounded-xl transition uppercase tracking-widest flex items-center justify-center gap-2 disabled:opacity-40 disabled:cursor-not-allowed disabled:hover:bg-[#111319]">
+          <i data-lucide="log-in" class="w-5 h-5 text-amber-400"></i> Entrar em Sala
+        </button>
+      </div>
+
+      <!-- TELA 2: FORMULÁRIO DE CRIAÇÃO -->
+      <div id="view-lobby-create" class="hidden space-y-4 pt-2">
+        <div class="flex items-center gap-2 text-white mb-4">
+          <button onclick="switchLobbyView('home')" class="text-gray-400 hover:text-amber-400"><i data-lucide="arrow-left" class="w-5 h-5"></i></button>
+          <span class="font-bold uppercase tracking-wider text-sm">Criar nova sala</span>
+        </div>
+        <div class="space-y-2 text-left">
+          <label for="game" class="text-xs font-bold uppercase text-gray-400 ml-1">Escolha um Jogo <span class="text-red-400">*</span></label>
+          <select id="game" name="game" required class="w-full bg-[#111319] border border-white/10 rounded-xl px-4 py-3 text-sm font-bold text-white focus:outline-none focus:border-amber-500">
+            <option value="" disabled selected>Selecione um jogo...</option>
+            <option value="fc26">EA SPORTS FC 26</option>
+            <option value="gogoszConmebol">gogosz Conmebol</option>
+          </select>
+          <p class="text-[11px] text-gray-500 ml-1">Define de qual base de times a sala vai sortear. Campo obrigatório.</p>
+        </div>
+        <div class="space-y-2 text-left">
+          <label class="text-xs font-bold uppercase text-gray-400 ml-1">Senha da Sala (Opcional)</label>
+          <input type="text" id="create-room-pass" placeholder="Deixe em branco para sala pública" class="w-full bg-[#111319] border border-white/10 rounded-xl px-4 py-3 text-sm font-bold text-white focus:outline-none focus:border-amber-500">
+        </div>
+        <button onclick="requestCreateRoom()" class="w-full py-3.5 bg-amber-500 hover:bg-amber-400 text-black font-extrabold text-sm rounded-xl transition uppercase tracking-widest mt-2">
+          Confirmar Criação
+        </button>
+      </div>
+
+      <!-- TELA 3: SALA CRIADA COM SUCESSO -->
+      <div id="view-lobby-success" class="hidden space-y-5 pt-2">
+        <div class="w-12 h-12 rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center mx-auto border border-emerald-500/30">
+          <i data-lucide="check" class="w-6 h-6"></i>
+        </div>
+        <div>
+          <h3 class="text-lg font-black text-white uppercase tracking-wider">Sala Criada!</h3>
+          <p class="text-xs text-gray-400 mt-1">Compartilhe o ID abaixo com seus amigos.</p>
+        </div>
+        <div class="bg-[#111319] border border-dashed border-amber-500/50 rounded-xl p-4 flex flex-col items-center gap-2">
+          <span class="text-xs font-bold uppercase text-gray-500">ID DA SALA</span>
+          <span id="created-room-id" class="text-3xl font-black text-amber-400 tracking-widest font-teko">---</span>
+        </div>
+        <div class="flex gap-2">
+          <button onclick="copyRoomId()" id="btn-copy-id" class="flex-1 py-3 bg-[#111319] hover:bg-[#1C202C] border border-white/10 text-white font-bold text-xs rounded-xl transition flex items-center justify-center gap-2">
+            <i data-lucide="copy" class="w-4 h-4 text-amber-400"></i> Copiar ID
+          </button>
+          <button onclick="enterAppFromSuccess()" class="flex-1 py-3 bg-emerald-500 hover:bg-emerald-400 text-black font-extrabold text-xs rounded-xl transition uppercase tracking-wider">
+            Entrar
+          </button>
+        </div>
+      </div>
+
+      <!-- TELA 4: FORMULÁRIO DE ENTRADA -->
+      <div id="view-lobby-join" class="hidden space-y-4 pt-2">
+        <div class="flex items-center gap-2 text-white mb-4">
+          <button onclick="switchLobbyView('home')" class="text-gray-400 hover:text-amber-400"><i data-lucide="arrow-left" class="w-5 h-5"></i></button>
+          <span class="font-bold uppercase tracking-wider text-sm">Entrar em uma sala</span>
+        </div>
+        <div id="join-error-msg" class="hidden bg-red-500/20 border border-red-500/30 text-red-400 text-xs font-bold p-3 rounded-xl text-left flex items-center gap-2">
+          <i data-lucide="alert-circle" class="w-4 h-4"></i> <span>Erro ao entrar</span>
+        </div>
+        <div class="space-y-3 text-left">
+          <div>
+            <label class="text-xs font-bold uppercase text-gray-400 ml-1">ID da Sala</label>
+            <input type="text" id="join-room-id" placeholder="Ex: Roleta-1234" class="w-full mt-1 bg-[#111319] border border-white/10 rounded-xl px-4 py-3 text-sm font-black uppercase text-amber-400 focus:outline-none focus:border-amber-500 text-center tracking-widest">
+          </div>
+          <div>
+            <label class="text-xs font-bold uppercase text-gray-400 ml-1">Senha (Se houver)</label>
+            <input type="password" id="join-room-pass" placeholder="••••••••" class="w-full mt-1 bg-[#111319] border border-white/10 rounded-xl px-4 py-3 text-sm font-bold text-white focus:outline-none focus:border-amber-500 text-center">
+          </div>
+        </div>
+        <button onclick="requestJoinRoom()" class="w-full py-3.5 bg-amber-500 hover:bg-amber-400 text-black font-extrabold text-sm rounded-xl transition uppercase tracking-widest mt-2">
+          Entrar na Sala
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Wrapper da aplicação (escondido até entrar numa sala) -->
+  <div id="app-content" class="hidden flex-1 flex-col w-full h-full">
+
+    <!-- Top Navigation Header -->
+    <header class="sticky top-0 z-40 bg-[#0D0E12]/95 border-b border-Roleta-border/60 backdrop-blur-md px-4 py-3">
+      <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-3">
+        <!-- Logo & Title -->
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-amber-400 to-amber-600 flex items-center justify-center font-extrabold text-black text-xl shadow-lg border border-amber-300">
+            R
+          </div>
+          <div>
+            <h1 class="text-2xl font-black tracking-wider uppercase font-teko leading-none gold-gradient-text">
+              Roleta
+            </h1>
+            <p class="text-xs text-gray-400">Hub de Sorteios Equilibrados, MD3 & Ranking da Galera (530+ Times)</p>
+          </div>
+        </div>
+
+        <!-- Navigation + Info da Sala + Sair -->
+        <div class="flex items-center gap-2 w-full md:w-auto">
+          <nav class="flex-1 flex items-center gap-1 bg-[#151720] p-1.5 rounded-xl border border-white/10 max-w-full min-w-0">
+            <!-- [NOVO] Ícone informativo da sala: fica fixo (não rola com as abas) -->
+            <div class="relative shrink-0">
+              <button id="btn-room-info" onclick="toggleRoomInfoPanel()" class="flex items-center justify-center w-8 h-8 rounded-lg bg-white/5 hover:bg-white/10 border border-amber-500/30 text-amber-400 font-black text-sm transition-all" title="Informações da sala">
+                i
+              </button>
+              <div id="room-info-panel" class="hidden absolute left-0 top-full mt-2 w-64 glass-panel border border-white/10 rounded-xl p-4 shadow-2xl z-50 space-y-3">
+                <div class="flex items-center gap-2">
+                  <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse"></span>
+                  <span class="text-xs font-bold text-gray-300">Sala: <span id="display-room-id" class="text-amber-400 font-black">---</span></span>
+                </div>
+                <div class="text-xs font-bold text-gray-300">Você: <span id="display-room-role" class="px-1.5 py-0.5 rounded font-black">---</span></div>
+                <div class="text-xs font-bold text-gray-300">Apelido: <span id="display-my-nickname" class="text-white font-black">---</span></div>
+                <button id="btn-send-test" onclick="sendTestToRoom()" class="hidden w-full px-3 py-1.5 bg-amber-500/20 hover:bg-amber-500/30 border border-amber-500/30 text-amber-300 text-xs font-bold rounded-lg transition">
+                  Ping Teste
+                </button>
+              </div>
+            </div>
+
+            <div class="flex items-center gap-1 overflow-x-auto">
+              <button onclick="switchTab('roulette')" id="tab-roulette" class="nav-btn flex items-center gap-2 px-3 py-1.5 rounded-lg text-sm font-semibold transition-all bg-amber-500 text-black shadow-md">
+                <i data-lucide="dices" class="w-4 h-4"></i>
+                <span>Roleta Balanceada</span>
+              </button>
+              <button onclick="switchTab('md3')" id="tab-md3" class="nav-btn flex items-center gap-2 px-3 py-1.5 rounded-lg text-sm font-semibold text-gray-400 hover:text-amber-400 transition-all">
+                <i data-lucide="swords" class="w-4 h-4"></i>
+                <span>Modo MD3</span>
+              </button>
+              <button onclick="switchTab('draft')" id="tab-draft" class="nav-btn flex items-center gap-2 px-3 py-1.5 rounded-lg text-sm font-semibold text-gray-400 hover:text-amber-400 transition-all">
+                <i data-lucide="users" class="w-4 h-4"></i>
+                <span>1v1 & Duplas</span>
+              </button>
+              <button onclick="switchTab('ranking')" id="tab-ranking" class="nav-btn flex items-center gap-2 px-3 py-1.5 rounded-lg text-sm font-semibold text-gray-400 hover:text-amber-400 transition-all">
+                <i data-lucide="trophy" class="w-4 h-4"></i>
+                <span>Ranking Geral</span>
+              </button>
+              <button onclick="switchTab('database')" id="tab-database" class="nav-btn flex items-center gap-2 px-3 py-1.5 rounded-lg text-sm font-semibold text-gray-400 hover:text-amber-400 transition-all">
+                <i data-lucide="shield" class="w-4 h-4"></i>
+                <span>Catálogo de Times</span>
+              </button>
+            </div>
+          </nav>
+
+          <!-- [NOVO] Botão Sair, sempre visível e acessível, fora da área que rola -->
+          <button onclick="leaveRoom()" class="shrink-0 flex items-center gap-1.5 px-3 py-2 bg-red-500/20 hover:bg-red-500/30 border border-red-500/30 text-red-400 text-xs font-bold rounded-lg transition" title="Sair da sala">
+            <i data-lucide="log-out" class="w-4 h-4 pointer-events-none"></i>
+            <span class="hidden sm:inline">Sair</span>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <main class="flex-1 max-w-7xl w-full mx-auto p-4 md:p-6 relative">
+
+      <!-- ==================== TAB 1: ROLETA BALANCEADA ==================== -->
+      <section id="view-roulette" class="tab-content block space-y-6">
+        
+        <!-- Banner Title -->
+        <div class="glass-panel p-5 rounded-2xl flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+          <div>
+            <span class="inline-flex items-center gap-1.5 text-xs font-bold px-2.5 py-1 rounded-full bg-amber-500/10 text-amber-400 border border-amber-500/30 uppercase tracking-wider mb-2">
+              <i data-lucide="sparkles" class="w-3.5 h-3.5"></i> Algoritmo Antipatia Evitada
+            </span>
+            <h2 class="text-3xl font-extrabold text-white tracking-tight">Sorteador & Roleta de Confrontos</h2>
+            <p class="text-sm text-gray-400 mt-1">Sorteie confrontos 100% equilibrados por estrelas, sem surras desleais tipo Real Madrid x Remadores!</p>
+          </div>
+          
+          <div class="flex items-center gap-3 bg-[#111319] p-3 rounded-xl border border-white/10 w-full md:w-auto justify-between md:justify-end">
+            <div>
+              <div class="text-xs text-gray-400">Times no Pool Ativo</div>
+              <div id="pool-count-badge" class="text-lg font-bold text-amber-400">0 equipes</div>
+            </div>
+            <button onclick="restoreAllRemovedTeams()" class="px-3 py-2 bg-amber-500/20 hover:bg-amber-500/30 text-amber-300 text-xs font-bold rounded-lg border border-amber-500/40 transition flex items-center gap-1.5">
+              <i data-lucide="rotate-ccw" class="w-4 h-4"></i> Repor Excluídos
+            </button>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+          
+          <!-- Controls & Configuration Panel -->
+          <div class="lg:col-span-4 space-y-4 glass-panel p-5 rounded-2xl">
+            <h3 class="text-lg font-bold text-white flex items-center gap-2 border-b border-white/10 pb-3">
+              <i data-lucide="sliders" class="w-5 h-5 text-amber-400"></i>
+              Regras de Balanceamento
+            </h3>
+
+            <!-- League Filter -->
+            <div>
+              <label class="block text-xs font-bold uppercase tracking-wider text-amber-400 mb-1.5">Liga / Campeonato</label>
+              <select id="league-filter" onchange="updateRoulettePoolInfo()" class="w-full bg-[#111319] border border-white/10 rounded-xl px-3.5 py-2.5 text-xs font-semibold text-white focus:outline-none focus:border-amber-500">
+                <option value="ALL">🌐 Todas as Ligas (530+ Times)</option>
+                <optgroup label="🇦🇷 Argentina">
+                  <option value="ARG_LFP">Liga Profesional de Fútbol (30)</option>
+                  <option value="ARG_PN">Primera Nacional (36)</option>
+                </optgroup>
+                <optgroup label="🇧🇴 Bolívia">
+                  <option value="BOL_DIV">División Profesional (16)</option>
+                </optgroup>
+                <optgroup label="🇧🇷 Brasil">
+                  <option value="BRA_SA">Brasileirão Série A (20)</option>
+                  <option value="BRA_SB">Brasileirão Série B (20)</option>
+                  <option value="BRA_SC">Brasileirão Série C (20)</option>
+                  <option value="BRA_SD">Brasileirão Série D (96)</option>
+                </optgroup>
+                <optgroup label="🇨🇱 Chile">
+                  <option value="CHI_PD">Primera División (16)</option>
+                </optgroup>
+                <optgroup label="🇨🇴 Colômbia">
+                  <option value="COL_LBP">Liga BetPlay DIMAYOR (20)</option>
+                </optgroup>
+                <optgroup label="🇪🇨 Equador">
+                  <option value="ECU_LPA">LigaPro Serie A (16)</option>
+                </optgroup>
+                <optgroup label="🇵🇾 Paraguai">
+                  <option value="PAR_PD">Primera División (12)</option>
+                </optgroup>
+                <optgroup label="🇵🇪 Peru">
+                  <option value="PER_L1">Liga 1 (18)</option>
+                </optgroup>
+                <optgroup label="🇺🇾 Uruguai">
+                  <option value="URU_PD">Primera División (16)</option>
+                </optgroup>
+                <optgroup label="🇻🇪 Venezuela">
+                  <option value="VEN_LV">Liga Venezuela (14)</option>
+                </optgroup>
+                <optgroup label="🇨🇷 Costa Rica">
+                  <option value="CRC_LP">Liga Promerica (12)</option>
+                </optgroup>
+                <optgroup label="🇺🇸 / 🇨🇦 EUA & Canadá">
+                  <option value="USA_MLS">MLS (30)</option>
+                </optgroup>
+                <optgroup label="🇲🇽 México">
+                  <option value="MEX_LMX">Liga MX (18)</option>
+                </optgroup>
+                <optgroup label="🇩🇪 Alemanha">
+                  <option value="GER_BL">Bundesliga (18)</option>
+                </optgroup>
+                <optgroup label="🇪🇸 Espanha">
+                  <option value="ESP_LL">La Liga EA Sports (20)</option>
+                </optgroup>
+                <optgroup label="🇫🇷 França">
+                  <option value="FRA_L1">Ligue 1 McDonald's (18)</option>
+                </optgroup>
+                <optgroup label="🏴󠁧󠁢󠁥󠁮󠁧󠁿 Inglaterra">
+                  <option value="ENG_PL">Premier League (20)</option>
+                  <option value="ENG_CH">EFL Championship (24)</option>
+                </optgroup>
+                <optgroup label="🇮🇹 Itália">
+                  <option value="ITA_SA">Serie A Enilive (20)</option>
+                </optgroup>
+              </select>
+            </div>
+
+            <!-- Mode / Matchup Type -->
+            <div>
+              <label class="block text-xs font-bold uppercase tracking-wider text-gray-400 mb-1.5">Tipo de Confronto</label>
+              <select id="balance-mode" onchange="updateRoulettePoolInfo()" class="w-full bg-[#111319] border border-white/10 rounded-xl px-3.5 py-2.5 text-xs font-semibold focus:outline-none focus:border-amber-500">
+                <option value="EXACT">⚡ Mesmo Escalão (Equilíbrio Absoluto)</option>
+                <option value="FAIR" selected>⚖️ Nível Próximo (Diferença máx: 0.5 Estrela)</option>
+                <option value="EURO_LATAM">🌎 x 🇪🇺 Europa vs América do Sul (Mesma Prateleira)</option>
+                <option value="ANY">🎲 Caos Total (Aleatório sem restrição)</option>
+              </select>
+            </div>
+
+            <!-- Tier / Star Filter -->
+            <div>
+              <label class="block text-xs font-bold uppercase tracking-wider text-gray-400 mb-1.5">Escalão das Equipes (Estrelas)</label>
+              <select id="star-filter" onchange="updateRoulettePoolInfo()" class="w-full bg-[#111319] border border-white/10 rounded-xl px-3.5 py-2.5 text-xs font-semibold focus:outline-none focus:border-amber-500">
+                <option value="ALL">⭐ Todas as Estrelas Disponíveis</option>
+                <option value="5">⭐⭐⭐⭐⭐ Elite Mundial / Gigantes (Tier 1)</option>
+                <option value="4.5">⭐⭐⭐⭐1/2 Grandes da Europa & Top Sul-Americanos (Tier 2)</option>
+                <option value="4">⭐⭐⭐⭐ Médios Europeus & Elite Brasileirão (Tier 3)</option>
+                <option value="3.5">⭐⭐⭐1/2 Série A/B & Sul-América Intermediário (Tier 4)</option>
+                <option value="3">⭐⭐⭐ Série C & Divisões Nacionais (Tier 5)</option>
+                <option value="2.5">⭐⭐1/2 Série D & Regionais (Tier 6)</option>
+              </select>
+            </div>
+
+            <!-- Regions Filter -->
+            <div>
+              <label class="block text-xs font-bold uppercase tracking-wider text-gray-400 mb-1.5">Continente / Origem</label>
+              <select id="region-filter" onchange="updateRoulettePoolInfo()" class="w-full bg-[#111319] border border-white/10 rounded-xl px-3.5 py-2.5 text-xs font-semibold focus:outline-none focus:border-amber-500">
+                <option value="ALL">🌍 Todas as Regiões (Global)</option>
+                <option value="CONMEBOL">🏆 CONMEBOL (América do Sul)</option>
+                <option value="UEFA">🇪🇺 UEFA (Europa)</option>
+                <option value="CONCACAF">🦅 CONCACAF (América do Norte e Central)</option>
+              </select>
+            </div>
+
+            <!-- Roulette Options Toggles -->
+            <div class="space-y-2.5 pt-2 border-t border-white/10">
+              <label class="flex items-center justify-between cursor-pointer p-2 rounded-xl bg-[#111319] border border-white/5 hover:border-amber-500/30 transition">
+                <div class="flex items-center gap-2">
+                  <i data-lucide="user-x" class="w-4 h-4 text-amber-400"></i>
+                  <span class="text-xs font-semibold">Remover time sorteado da roleta</span>
+                </div>
+                <input type="checkbox" id="chk-remove-drawn" class="w-4 h-4 accent-amber-500 rounded cursor-pointer" checked>
+              </label>
+
+              <label class="flex items-center justify-between cursor-pointer p-2 rounded-xl bg-[#111319] border border-white/5 hover:border-amber-500/30 transition">
+                <div class="flex items-center gap-2">
+                  <i data-lucide="volume-2" class="w-4 h-4 text-amber-400"></i>
+                  <span class="text-xs font-semibold">Efeitos sonoros do Giro</span>
+                </div>
+                <input type="checkbox" id="chk-sound" class="w-4 h-4 accent-amber-500 rounded cursor-pointer" checked>
+              </label>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="pt-2 space-y-2">
+              <button onclick="spinRoulette()" id="btn-spin" class="w-full py-3.5 rounded-xl font-black text-black bg-gradient-to-r from-amber-400 via-amber-500 to-amber-600 hover:from-amber-300 hover:to-amber-500 transition-all gold-glow text-base uppercase tracking-wider flex items-center justify-center gap-2 cursor-pointer active:scale-95">
+                <i data-lucide="play-circle" class="w-5 h-5 fill-black"></i>
+                Girar Roleta Balanceada!
+              </button>
+              <button onclick="quickDrawMatch()" class="w-full py-2.5 rounded-xl font-bold text-gray-300 bg-white/5 hover:bg-white/10 border border-white/10 transition text-xs flex items-center justify-center gap-2">
+                <i data-lucide="zap" class="w-4 h-4 text-amber-400"></i>
+                Sorteio Instantâneo sem Animação
+              </button>
+            </div>
+          </div>
+
+          <!-- Wheel Canvas & Match Card Output -->
+          <div class="lg:col-span-8 space-y-6 flex flex-col justify-between">
+            
+            <!-- Interactive Wheel Visual -->
+            <div class="glass-panel p-6 rounded-2xl flex flex-col items-center justify-center relative min-h-[380px]">
+              <div class="text-center mb-4">
+                <span class="text-xs text-amber-400 uppercase tracking-widest font-bold">Roleta Interactive Engine</span>
+                <h4 id="wheel-status-text" class="text-xl font-black text-white">Pronto para o Sorteio!</h4>
+              </div>
+
+              <!-- Canvas Wheel Box -->
+              <div class="relative flex items-center justify-center my-2">
+                <!-- Pointer Marker -->
+                <div class="absolute -top-4 z-20 w-0 h-0 border-l-[14px] border-l-transparent border-r-[14px] border-r-transparent border-t-[24px] border-t-amber-400 drop-shadow-[0_4px_10px_rgba(255,184,0,0.8)]"></div>
+                
+                <!-- Wheel Canvas -->
+                <canvas id="roulette-canvas" width="340" height="340" class="rounded-full shadow-2xl border-4 border-amber-500/40 bg-[#12141C] transition-transform duration-100"></canvas>
+                
+                <!-- Center Cap -->
+                <div class="absolute w-16 h-16 rounded-full bg-gradient-to-br from-amber-400 to-amber-600 border-4 border-black flex items-center justify-center shadow-lg font-black text-black text-xs font-teko text-center leading-none">
+                  Roleta
+                </div>
+              </div>
+            </div>
+
+            <!-- Result Match Display Box -->
+            <div id="draw-result-card" class="glass-panel p-6 rounded-2xl border-2 border-amber-500/30 relative overflow-hidden transition-all duration-300">
+              <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-amber-500 via-amber-300 to-amber-600"></div>
+
+              <div class="flex items-center justify-between border-b border-white/10 pb-3 mb-4">
+                <div class="flex items-center gap-2">
+                  <span class="w-3 h-3 rounded-full bg-emerald-500 animate-pulse"></span>
+                  <span class="text-xs font-bold uppercase tracking-wider text-gray-300">Resultado do Sorteio Balanceado</span>
+                </div>
+                <span id="result-tier-badge" class="text-xs font-bold px-2.5 py-1 rounded bg-amber-500/20 text-amber-300 border border-amber-500/30">
+                  Aguardando Giro
+                </span>
+              </div>
+
+              <!-- Teams Verses Display -->
+              <div class="grid grid-cols-1 md:grid-cols-11 gap-4 items-center">
+                
+                <!-- Team 1 (Casa) -->
+                <div class="md:col-span-5 bg-[#111319] p-4 rounded-xl border border-white/10 text-center space-y-2">
+                  <span class="text-[10px] uppercase font-bold text-gray-400 tracking-wider">Mandante / Time 1</span>
+                  <div id="res-team1-logo" class="text-3xl my-1">⚽</div>
+                  <h3 id="res-team1-name" class="text-xl font-black text-white">---</h3>
+                  <div id="res-team1-meta" class="text-xs text-amber-400 font-medium">---</div>
+                  <div id="res-team1-stars" class="text-amber-400 text-sm">⭐⭐⭐⭐⭐</div>
+                </div>
+
+                <!-- VS Badge -->
+                <div class="md:col-span-1 text-center py-2 md:py-0">
+                  <div class="w-12 h-12 rounded-full bg-amber-500 text-black font-black text-xl font-teko flex items-center justify-center mx-auto shadow-lg border-2 border-black">
+                    VS
+                  </div>
+                </div>
+
+                <!-- Team 2 (Fora) -->
+                <div class="md:col-span-5 bg-[#111319] p-4 rounded-xl border border-white/10 text-center space-y-2">
+                  <span class="text-[10px] uppercase font-bold text-gray-400 tracking-wider">Visitante / Time 2</span>
+                  <div id="res-team2-logo" class="text-3xl my-1">⚽</div>
+                  <h3 id="res-team2-name" class="text-xl font-black text-white">---</h3>
+                  <div id="res-team2-meta" class="text-xs text-amber-400 font-medium">---</div>
+                  <div id="res-team2-stars" class="text-amber-400 text-sm">⭐⭐⭐⭐⭐</div>
+                </div>
+
+              </div>
+
+              <!-- Quick Action Links -->
+              <div class="mt-5 pt-4 border-t border-white/10 flex flex-wrap items-center justify-end gap-3">
+                <button onclick="sendMatchToMD3()" id="btn-send-md3" class="px-4 py-2 bg-amber-500/20 hover:bg-amber-500/30 text-amber-300 font-bold text-xs rounded-xl border border-amber-500/40 transition flex items-center gap-1.5 opacity-50 cursor-not-allowed" disabled>
+                  <i data-lucide="swords" class="w-4 h-4"></i> Jogar este confronto no Modo MD3
+                </button>
+                <button onclick="openLogMatchModal()" id="btn-log-match" class="px-4 py-2 bg-emerald-500/20 hover:bg-emerald-500/30 text-emerald-300 font-bold text-xs rounded-xl border border-emerald-500/40 transition flex items-center gap-1.5 opacity-50 cursor-not-allowed" disabled>
+                  <i data-lucide="check-circle" class="w-4 h-4"></i> Registrar Placar no Ranking
+                </button>
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </section>
+
+      <!-- ==================== TAB 2: MODO MD3 (MELHOR DE 3) ==================== -->
+      <section id="view-md3" class="tab-content hidden space-y-6">
+        
+        <!-- MD3 Header -->
+        <div class="glass-panel p-5 rounded-2xl flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+          <div>
+            <span class="inline-flex items-center gap-1.5 text-xs font-bold px-2.5 py-1 rounded-full bg-amber-500/10 text-amber-400 border border-amber-500/30 uppercase tracking-wider mb-2">
+              <i data-lucide="crown" class="w-3.5 h-3.5"></i> Roleta Exclusiva Amigos 
+            </span>
+            <h2 class="text-3xl font-extrabold text-white tracking-tight">Modo MD3 (Melhor de 3 Jogos)</h2>
+            <p class="text-sm text-gray-400 mt-1">
+              <strong>Regra Oficial:</strong> Jogo 1 em casa, Jogo 2 fora (mando invertido). Se persistir empate em vitórias, faz o <strong>Jogo 3 Derradeiro</strong>!
+            </p>
+          </div>
+          <button id="btn-reset-md3" onclick="resetMD3Series()" class="px-4 py-2 bg-red-500/20 hover:bg-red-500/30 text-red-300 text-xs font-bold rounded-xl border border-red-500/40 transition flex items-center gap-1.5">
+            <i data-lucide="refresh-cw" class="w-4 h-4"></i> Reiniciar Série MD3
+          </button>
+        </div>
+
+        <!-- Players Header for MD3 -->
+        <div class="glass-panel p-5 rounded-2xl grid grid-cols-1 md:grid-cols-12 gap-4 items-center">
+          <div class="md:col-span-5 space-y-2">
+            <label class="text-xs font-bold uppercase text-gray-400">Jogador / Dupla A</label>
+            <!-- [NOVO] Select em vez de texto livre: o Host escolhe quem da sala ocupa essa vaga -->
+            <select onchange="handleMD3NameChange()" id="md3-player1-name" class="w-full bg-[#111319] border border-white/10 rounded-xl px-3.5 py-2.5 font-bold text-amber-400 text-lg focus:outline-none focus:border-amber-500 disabled:opacity-70">
+              <option value="Jogador A">Jogador A</option>
+            </select>
+          </div>
+          
+          <div class="md:col-span-2 text-center font-teko text-3xl font-bold text-gray-500">
+            VS
+          </div>
+
+          <div class="md:col-span-5 space-y-2">
+            <label class="text-xs font-bold uppercase text-gray-400">Jogador / Dupla B</label>
+            <select onchange="handleMD3NameChange()" id="md3-player2-name" class="w-full bg-[#111319] border border-white/10 rounded-xl px-3.5 py-2.5 font-bold text-amber-400 text-lg focus:outline-none focus:border-amber-500 disabled:opacity-70">
+              <option value="Jogador B">Jogador B</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- [NOVO] Toggle: mesmos times nos 3 jogos OU sorteio novo para cada confronto -->
+        <div class="glass-panel p-4 rounded-2xl flex flex-col md:flex-row md:items-center gap-3">
+          <label class="inline-flex items-center gap-2.5 cursor-pointer select-none">
+            <input type="checkbox" id="chk-md3-different-teams" onchange="toggleMD3DifferentTeams()" class="w-4 h-4 accent-amber-500">
+            <span class="text-sm font-bold text-gray-200">Jogar com times diferentes no MD3</span>
+          </label>
+          <span class="text-xs text-gray-500 italic md:flex-1">
+            Desmarcado: os mesmos 2 times valem para os 3 jogos. Marcado: cada confronto exige um novo sorteio (o Jogo 2 só libera depois de sortear mais 2 times, e o Jogo 3 depois de outro sorteio, se necessário).
+          </span>
+          <!-- [NOVO] Atalho: manda direto pro sorteio e já sorteia os times do próximo confronto pendente -->
+          <button id="btn-md3-draw-next" onclick="goDrawTeamsForMD3()" class="hidden px-4 py-2 bg-amber-500 hover:bg-amber-400 text-black font-extrabold text-xs rounded-xl transition flex items-center gap-1.5 whitespace-nowrap">
+            <i data-lucide="dices" class="w-4 h-4"></i> Sortear Times
+          </button>
+        </div>
+
+        <!-- Match 1, Match 2, Match 3 Cards Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          
+          <!-- GAME 1 -->
+          <div class="glass-panel p-5 rounded-2xl border-t-4 border-t-amber-500 space-y-4 relative">
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-extrabold uppercase tracking-wider text-amber-400">JOGO 1 - IDA (CASA)</span>
+              <span id="md3-g1-status" class="text-[10px] font-bold px-2 py-0.5 rounded bg-amber-500/20 text-amber-300">Pendente</span>
+            </div>
+
+            <div class="space-y-3 bg-[#111319] p-3 rounded-xl border border-white/5">
+              <div class="flex items-center justify-between text-sm">
+                <span id="md3-g1-t1-name" class="font-bold text-white">Time 1</span>
+                <span class="text-xs text-gray-400">(Casa)</span>
+              </div>
+              <div class="flex items-center justify-between text-sm">
+                <span id="md3-g1-t2-name" class="font-bold text-white">Time 2</span>
+                <span class="text-xs text-gray-400">(Fora)</span>
+              </div>
+            </div>
+
+            <div class="grid grid-cols-5 gap-2 items-center">
+              <input type="number" id="md3-g1-score1" min="0" placeholder="0" class="col-span-2 text-center text-2xl font-black bg-[#111319] border border-white/10 rounded-xl py-2.5 text-amber-400 focus:outline-none focus:border-amber-500">
+              <span class="text-center font-bold text-gray-500 text-xl">x</span>
+              <input type="number" id="md3-g1-score2" min="0" placeholder="0" class="col-span-2 text-center text-2xl font-black bg-[#111319] border border-white/10 rounded-xl py-2.5 text-amber-400 focus:outline-none focus:border-amber-500">
+            </div>
+
+            <button id="btn-save-g1" onclick="saveMD3Game(1)" class="w-full py-2 bg-amber-500 hover:bg-amber-400 text-black font-extrabold text-xs rounded-xl transition">
+              Confirmar Placar Jogo 1
+            </button>
+          </div>
+
+          <!-- GAME 2 -->
+          <div class="glass-panel p-5 rounded-2xl border-t-4 border-t-amber-500 space-y-4 relative">
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-extrabold uppercase tracking-wider text-amber-400">JOGO 2 - VOLTA (INVERSÃO)</span>
+              <span id="md3-g2-status" class="text-[10px] font-bold px-2 py-0.5 rounded bg-gray-500/20 text-gray-400">Pendente</span>
+            </div>
+
+            <div class="space-y-3 bg-[#111319] p-3 rounded-xl border border-white/5">
+              <div class="flex items-center justify-between text-sm">
+                <span id="md3-g2-t1-name" class="font-bold text-white">Time 2</span>
+                <span class="text-xs text-gray-400">(Casa)</span>
+              </div>
+              <div class="flex items-center justify-between text-sm">
+                <span id="md3-g2-t2-name" class="font-bold text-white">Time 1</span>
+                <span class="text-xs text-gray-400">(Fora)</span>
+              </div>
+            </div>
+
+            <div class="grid grid-cols-5 gap-2 items-center">
+              <input type="number" id="md3-g2-score1" min="0" placeholder="0" class="col-span-2 text-center text-2xl font-black bg-[#111319] border border-white/10 rounded-xl py-2.5 text-amber-400 focus:outline-none focus:border-amber-500">
+              <span class="text-center font-bold text-gray-500 text-xl">x</span>
+              <input type="number" id="md3-g2-score2" min="0" placeholder="0" class="col-span-2 text-center text-2xl font-black bg-[#111319] border border-white/10 rounded-xl py-2.5 text-amber-400 focus:outline-none focus:border-amber-500">
+            </div>
+
+            <button id="btn-save-g2" onclick="saveMD3Game(2)" class="w-full py-2 bg-amber-500 hover:bg-amber-400 text-black font-extrabold text-xs rounded-xl transition">
+              Confirmar Placar Jogo 2
+            </button>
+          </div>
+
+          <!-- GAME 3 (DERRADEIRO) -->
+          <div id="md3-g3-card" class="glass-panel p-5 rounded-2xl border-t-4 border-t-red-500 space-y-4 opacity-60">
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-extrabold uppercase tracking-wider text-red-400 flex items-center gap-1">
+                <i data-lucide="flame" class="w-4 h-4"></i> JOGO 3 - O DERRADEIRO
+              </span>
+              <span id="md3-g3-status" class="text-[10px] font-bold px-2 py-0.5 rounded bg-gray-500/20 text-gray-400">Só se Houver Empate</span>
+            </div>
+
+            <p class="text-xs text-gray-400 italic">Necessário se cada jogador vencer 1 jogo ou se a pontuação/saldo de gols empatar.</p>
+
+            <div class="space-y-3 bg-[#111319] p-3 rounded-xl border border-white/5">
+              <div class="flex items-center justify-between text-sm">
+                <span id="md3-g3-t1-name" class="font-bold text-white">Time 1</span>
+                <span class="text-xs text-amber-400 font-bold">Derradeiro</span>
+              </div>
+              <div class="flex items-center justify-between text-sm">
+                <span id="md3-g3-t2-name" class="font-bold text-white">Time 2</span>
+                <span class="text-xs text-amber-400 font-bold">Derradeiro</span>
+              </div>
+            </div>
+
+            <div class="grid grid-cols-5 gap-2 items-center">
+              <input type="number" id="md3-g3-score1" min="0" placeholder="0" class="col-span-2 text-center text-2xl font-black bg-[#111319] border border-white/10 rounded-xl py-2.5 text-red-400 focus:outline-none focus:border-red-500" disabled>
+              <span class="text-center font-bold text-gray-500 text-xl">x</span>
+              <input type="number" id="md3-g3-score2" min="0" placeholder="0" class="col-span-2 text-center text-2xl font-black bg-[#111319] border border-white/10 rounded-xl py-2.5 text-red-400 focus:outline-none focus:border-red-500" disabled>
+            </div>
+
+            <button onclick="saveMD3Game(3)" id="btn-save-g3" class="w-full py-2 bg-red-500 hover:bg-red-400 text-white font-extrabold text-xs rounded-xl transition opacity-50 cursor-not-allowed" disabled>
+              Confirmar Placar Derradeiro
+            </button>
+          </div>
+
+        </div>
+
+        <!-- MD3 Series Scoreboard Summary Box -->
+        <div id="md3-summary-box" class="glass-panel p-6 rounded-2xl border-2 border-amber-500/40 text-center space-y-3">
+          <span class="text-xs font-bold uppercase tracking-widest text-amber-400">Status Geral da Série MD3</span>
+          <h3 id="md3-series-winner-text" class="text-3xl font-black text-white">Série em Andamento</h3>
+          <p id="md3-series-subtext" class="text-sm text-gray-300">Preencha os placares dos jogos acima para determinar o campeão da melhor de 3.</p>
+          
+          <div class="pt-3 border-t border-white/10 flex justify-center gap-4">
+            <button onclick="applyMD3ToRanking()" id="btn-md3-ranking" class="px-6 py-2.5 bg-emerald-500 hover:bg-emerald-400 text-black font-extrabold text-sm rounded-xl transition flex items-center gap-2 opacity-50 cursor-not-allowed" disabled>
+              <i data-lucide="trophy" class="w-4 h-4"></i> Salvar Resultado no Ranking
+            </button>
+          </div>
+        </div>
+
+      </section>
+
+      <!-- ==================== TAB 3: 1V1 & DUPLAS DRAFT ==================== -->
+      <section id="view-draft" class="tab-content hidden space-y-6">
+        
+        <div class="glass-panel p-5 rounded-2xl">
+          <h2 class="text-3xl font-extrabold text-white tracking-tight">Sorteador de Jogadores & Duplas</h2>
+          <p class="text-sm text-gray-400 mt-1">Cadastre a galera da resenha para sortear confrontos 1v1 ou formar Duplas automaticamente (2v2).</p>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+          
+          <div class="lg:col-span-5 glass-panel p-5 rounded-2xl space-y-4">
+            <h3 class="text-lg font-bold text-white flex items-center gap-2 border-b border-white/10 pb-3">
+              <i data-lucide="user-plus" class="w-5 h-5 text-amber-400"></i> Lista de Amigos na Mesa
+            </h3>
+
+            <div class="flex gap-2">
+              <input type="text" id="input-player-name" placeholder="Nome do Jogador..." class="flex-1 bg-[#111319] border border-white/10 rounded-xl px-3.5 py-2 text-sm font-semibold focus:outline-none focus:border-amber-500" onkeydown="if(event.key==='Enter') addPlayerToList()">
+              <button onclick="addPlayerToList()" class="px-4 py-2 bg-amber-500 hover:bg-amber-400 text-black font-extrabold text-xs rounded-xl transition">
+                Adicionar
+              </button>
+            </div>
+
+            <div id="players-list-container" class="space-y-2 max-h-60 overflow-y-auto pr-1">
+              <!-- Populated dynamically -->
+            </div>
+
+            <div class="pt-3 border-t border-white/10 space-y-2">
+              <label class="block text-xs font-bold uppercase tracking-wider text-gray-400">Modo de Jogo</label>
+              <div class="grid grid-cols-2 gap-2">
+                <button onclick="setDraftMode('1v1')" id="btn-mode-1v1" class="py-2 px-3 rounded-xl font-bold text-xs bg-amber-500 text-black border border-amber-400 transition">
+                  🎯 Solo (1v1)
+                </button>
+                <button onclick="setDraftMode('2v2')" id="btn-mode-2v2" class="py-2 px-3 rounded-xl font-bold text-xs bg-[#111319] text-gray-300 border border-white/10 hover:border-amber-500 transition">
+                  👥 Duplas (2v2)
+                </button>
+              </div>
+            </div>
+
+            <button onclick="generateDraftMatchup()" class="w-full py-3 bg-gradient-to-r from-amber-400 to-amber-600 hover:from-amber-300 hover:to-amber-500 text-black font-extrabold text-sm rounded-xl shadow-lg transition flex items-center justify-center gap-2">
+              <i data-lucide="shuffle" class="w-4 h-4"></i> Sortear Confronto + Equipes Balanceadas
+            </button>
+          </div>
+
+          <div class="lg:col-span-7 glass-panel p-6 rounded-2xl flex flex-col justify-between space-y-6">
+            <div class="flex items-center justify-between border-b border-white/10 pb-3">
+              <h3 class="text-lg font-bold text-white flex items-center gap-2">
+                <i data-lucide="swords" class="w-5 h-5 text-amber-400"></i> Confronto Gerado
+              </h3>
+              <span id="draft-mode-badge" class="text-xs font-bold px-2.5 py-1 rounded bg-amber-500/20 text-amber-300 border border-amber-500/30">
+                Modo Solo (1v1)
+              </span>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-11 gap-4 items-center">
+              
+              <div class="md:col-span-5 bg-[#111319] p-4 rounded-xl border border-white/10 text-center space-y-2">
+                <span class="text-[10px] font-bold text-amber-400 uppercase tracking-wider">Lado A</span>
+                <h4 id="draft-p1-names" class="text-lg font-black text-white">---</h4>
+                <div class="pt-2 border-t border-white/5">
+                  <span class="text-xs text-gray-400">Time Sorteado:</span>
+                  <div id="draft-t1-name" class="text-base font-bold text-amber-300 mt-0.5">---</div>
+                  <div id="draft-t1-stars" class="text-xs text-amber-400 mt-1">⭐⭐⭐⭐⭐</div>
+                </div>
+              </div>
+
+              <div class="md:col-span-1 text-center font-teko text-2xl font-bold text-amber-400">
+                VS
+              </div>
+
+              <div class="md:col-span-5 bg-[#111319] p-4 rounded-xl border border-white/10 text-center space-y-2">
+                <span class="text-[10px] font-bold text-amber-400 uppercase tracking-wider">Lado B</span>
+                <h4 id="draft-p2-names" class="text-lg font-black text-white">---</h4>
+                <div class="pt-2 border-t border-white/5">
+                  <span class="text-xs text-gray-400">Time Sorteado:</span>
+                  <div id="draft-t2-name" class="text-base font-bold text-amber-300 mt-0.5">---</div>
+                  <div id="draft-t2-stars" class="text-xs text-amber-400 mt-1">⭐⭐⭐⭐⭐</div>
+                </div>
+              </div>
+
+            </div>
+
+            <div class="p-3 bg-amber-500/10 border border-amber-500/20 rounded-xl text-center text-xs text-amber-300">
+              💡 Dica: Os times sorteados no draft já passam pelo controle de balanceamento configurado na roleta.
+            </div>
+          </div>
+
+        </div>
+
+      </section>
+
+      <!-- ==================== TAB 4: RANKING & CLASSIFICAÇÃO ==================== -->
+      <section id="view-ranking" class="tab-content hidden space-y-6">
+        
+        <div class="glass-panel p-5 rounded-2xl flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+          <div>
+            <span class="inline-flex items-center gap-1.5 text-xs font-bold px-2.5 py-1 rounded-full bg-amber-500/10 text-amber-400 border border-amber-500/30 uppercase tracking-wider mb-2">
+              <i data-lucide="bar-chart-3" class="w-3.5 h-3.5"></i> Estatísticas Automatizadas
+            </span>
+            <h2 class="text-3xl font-extrabold text-white tracking-tight">Tabela de Classificação & Performance</h2>
+            <p class="text-sm text-gray-400 mt-1">Pontos, vitórias, saldo de gols e % de aproveitamento atualizados instantaneamente.</p>
+          </div>
+
+          <div class="flex items-center gap-2">
+            <button onclick="openLogMatchModal()" id="btn-log-match-ranking" class="px-4 py-2 bg-emerald-500 hover:bg-emerald-400 text-black font-extrabold text-xs rounded-xl transition flex items-center gap-1.5">
+              <i data-lucide="plus-circle" class="w-4 h-4"></i> Lançar Partida Avulsa
+            </button>
+            <button onclick="confirmResetRanking()" id="btn-reset-ranking" class="px-3 py-2 bg-red-500/20 hover:bg-red-500/30 text-red-300 text-xs font-bold rounded-xl border border-red-500/40 transition">
+              Zerar Tabela
+            </button>
+          </div>
+        </div>
+
+        <div class="glass-panel rounded-2xl overflow-hidden border border-white/10">
+          <div class="overflow-x-auto">
+            <table class="w-full text-left border-collapse">
+              <thead>
+                <tr class="bg-[#111319] border-b border-white/10 text-[11px] font-black uppercase tracking-wider text-amber-400">
+                  <th class="py-3.5 px-4 text-center">Pos</th>
+                  <th class="py-3.5 px-4">Jogador</th>
+                  <th class="py-3.5 px-3 text-center">PTS</th>
+                  <th class="py-3.5 px-3 text-center">J</th>
+                  <th class="py-3.5 px-3 text-center">V</th>
+                  <th class="py-3.5 px-3 text-center">E</th>
+                  <th class="py-3.5 px-3 text-center">D</th>
+                  <th class="py-3.5 px-3 text-center">GP</th>
+                  <th class="py-3.5 px-3 text-center">GC</th>
+                  <th class="py-3.5 px-3 text-center">SG</th>
+                  <th class="py-3.5 px-3 text-center">% Aprov</th>
+                  <th class="py-3.5 px-3 text-center">Títulos MD3</th>
+                </tr>
+              </thead>
+              <tbody id="ranking-tbody" class="divide-y divide-white/5 text-sm font-semibold">
+                <!-- Rendered via JS -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- [NOVO] Gerenciamento de Duplas -->
+        <div class="glass-panel p-5 rounded-2xl space-y-4">
+          <div>
+            <h3 class="text-lg font-extrabold text-white flex items-center gap-2"><i data-lucide="users" class="w-5 h-5 text-amber-400"></i> Duplas da Sala</h3>
+            <p class="text-xs text-gray-400 mt-1">Monte duplas com os participantes da sala para disputar o ranking de duplas.</p>
+          </div>
+
+          <div id="duplas-form" class="hidden grid grid-cols-1 md:grid-cols-12 gap-3 items-end">
+            <div class="md:col-span-5 space-y-1 text-left">
+              <label class="text-xs font-bold uppercase text-gray-400">Jogador 1</label>
+              <select id="dupla-member1" class="w-full bg-[#111319] border border-white/10 rounded-xl px-3 py-2.5 text-sm font-bold text-white focus:outline-none focus:border-amber-500"></select>
+            </div>
+            <div class="md:col-span-1 text-center font-teko text-2xl font-bold text-gray-500">&</div>
+            <div class="md:col-span-5 space-y-1 text-left">
+              <label class="text-xs font-bold uppercase text-gray-400">Jogador 2</label>
+              <select id="dupla-member2" class="w-full bg-[#111319] border border-white/10 rounded-xl px-3 py-2.5 text-sm font-bold text-white focus:outline-none focus:border-amber-500"></select>
+            </div>
+            <div class="md:col-span-1">
+              <button onclick="addDupla()" id="btn-add-dupla" class="w-full py-2.5 bg-amber-500 hover:bg-amber-400 text-black font-extrabold text-sm rounded-xl transition disabled:opacity-40 disabled:cursor-not-allowed">+</button>
+            </div>
+            <p id="duplas-hint" class="hidden md:col-span-12 text-[11px] text-amber-400">Você precisa de pelo menos 2 participantes na sala para montar uma dupla.</p>
+          </div>
+
+          <div id="duplas-list" class="flex flex-wrap gap-2">
+            <!-- Rendered via JS -->
+          </div>
+        </div>
+
+        <!-- [NOVO] Ranking de Duplas -->
+        <div class="glass-panel rounded-2xl overflow-hidden border border-white/10">
+          <div class="px-5 pt-4 pb-1">
+            <h3 class="text-lg font-extrabold text-white">Ranking de Duplas</h3>
+          </div>
+          <div class="overflow-x-auto">
+            <table class="w-full text-left border-collapse">
+              <thead>
+                <tr class="bg-[#111319] border-b border-white/10 text-[11px] font-black uppercase tracking-wider text-amber-400">
+                  <th class="py-3.5 px-4 text-center">Pos</th>
+                  <th class="py-3.5 px-4">Dupla</th>
+                  <th class="py-3.5 px-3 text-center">PTS</th>
+                  <th class="py-3.5 px-3 text-center">J</th>
+                  <th class="py-3.5 px-3 text-center">V</th>
+                  <th class="py-3.5 px-3 text-center">E</th>
+                  <th class="py-3.5 px-3 text-center">D</th>
+                  <th class="py-3.5 px-3 text-center">GP</th>
+                  <th class="py-3.5 px-3 text-center">GC</th>
+                  <th class="py-3.5 px-3 text-center">SG</th>
+                  <th class="py-3.5 px-3 text-center">% Aprov</th>
+                  <th class="py-3.5 px-3 text-center">Títulos MD3</th>
+                </tr>
+              </thead>
+              <tbody id="ranking-duplas-tbody" class="divide-y divide-white/5 text-sm font-semibold">
+                <!-- Rendered via JS -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+      </section>
+
+      <!-- ==================== TAB 5: DATABASE DE TIMES (GOGOSZ PATCH por enquanto) ==================== -->
+      <section id="view-database" class="tab-content hidden space-y-6">
+        
+        <div class="glass-panel p-5 rounded-2xl flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+          <div>
+            <h2 class="text-3xl font-extrabold text-white tracking-tight">Catálogo de Times do jogo</h2>
+            <p class="text-sm text-gray-400 mt-1">Conheça as 530+ equipes incluídas em todas as ligas e divisões do jogo.</p>
+          </div>
+          
+          <input type="text" id="db-search" oninput="renderDatabase()" placeholder="Buscar time, liga ou país..." class="bg-[#111319] border border-white/10 rounded-xl px-4 py-2 text-sm font-semibold focus:outline-none focus:border-amber-500 w-full md:w-72">
+        </div>
+
+        <div id="db-teams-grid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+          <!-- Rendered via JS -->
+        </div>
+
+      </section>
+
+    </main>
+
+  </div> <!-- FINAL DO APP-CONTENT -->
+
+  <!-- ==================== MODAL: REGISTRAR PARTIDA AVULSA ==================== -->
+  <div id="modal-log-match" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm hidden items-center justify-center p-4">
+    <div class="glass-panel max-w-md w-full p-6 rounded-2xl space-y-4 border border-amber-500/30">
+      <div class="flex items-center justify-between border-b border-white/10 pb-3">
+        <h3 class="text-lg font-bold text-white flex items-center gap-2">
+          <i data-lucide="check-square" class="w-5 h-5 text-amber-400"></i> Registrar Placar no Ranking
+        </h3>
+        <button onclick="closeLogMatchModal()" class="text-gray-400 hover:text-white">
+          <i data-lucide="x" class="w-5 h-5"></i>
+        </button>
+      </div>
+
+      <div class="space-y-3">
+        <label class="block text-xs font-bold uppercase text-gray-400">Mandante / Jogador 1</label>
+        <div class="grid grid-cols-3 gap-2">
+          <select id="log-p1-name" class="col-span-2 bg-[#111319] border border-white/10 rounded-xl px-3 py-2 text-sm font-bold text-white focus:outline-none focus:border-amber-500"></select>
+          <input type="number" id="log-p1-score" min="0" placeholder="Gols" class="bg-[#111319] border border-white/10 rounded-xl px-3 py-2 text-sm font-black text-amber-400 text-center">
+        </div>
+      </div>
+
+      <div class="space-y-3">
+        <label class="block text-xs font-bold uppercase text-gray-400">Visitante / Jogador 2</label>
+        <div class="grid grid-cols-3 gap-2">
+          <select id="log-p2-name" class="col-span-2 bg-[#111319] border border-white/10 rounded-xl px-3 py-2 text-sm font-bold text-white focus:outline-none focus:border-amber-500"></select>
+          <input type="number" id="log-p2-score" min="0" placeholder="Gols" class="bg-[#111319] border border-white/10 rounded-xl px-3 py-2 text-sm font-black text-amber-400 text-center">
+        </div>
+      </div>
+
+      <div class="pt-3 border-t border-white/10 flex justify-end gap-2">
+        <button onclick="closeLogMatchModal()" class="px-4 py-2 bg-white/5 hover:bg-white/10 text-gray-300 font-bold text-xs rounded-xl">
+          Cancelar
+        </button>
+        <button onclick="saveManualMatchToRanking()" class="px-5 py-2 bg-emerald-500 hover:bg-emerald-400 text-black font-extrabold text-xs rounded-xl">
+          Salvar Resultado
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== JS MODULARIZADO (ordem importa: state.js primeiro, main.js por último) ==================== -->
+  <script src="js/state.js"></script>
+  <script src="js/ui.js"></script>
+  <script src="js/database.js"></script>
+  <script src="js/roulette.js"></script>
+  <script src="js/draft.js"></script>
+  <script src="js/duplas.js"></script>
+  <script src="js/md3.js"></script>
+  <script src="js/ranking.js"></script>
+  <script src="js/room.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

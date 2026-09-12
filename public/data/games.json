@@ -1,0 +1,12 @@
+{
+  "jogos": {
+    "fc26": {
+      "nome": "EA SPORTS FC 26",
+      "arquivo": "fc26.json"
+    }, 
+    "gogoszConmebol": {
+      "nome": "gogosz CONMEBOL",
+      "arquivo": "gogoszConmebol.json"
+    }
+  }
+}
