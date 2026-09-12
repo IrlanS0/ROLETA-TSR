@@ -42,7 +42,7 @@ io.on('connection', (socket) => {
 
     // 1. Criação de Sala
     socket.on('create_room', (data) => {
-        const roomId = 'GOGOSZ-' + Math.floor(1000 + Math.random() * 9000);
+        const roomId = 'Roleta-' + Math.floor(1000 + Math.random() * 9000);
         const hostNickname = (data.nickname || 'Jogador A').toString().trim().substring(0, 20);
 
         rooms[roomId] = {
@@ -151,5 +151,5 @@ io.on('connection', (socket) => {
 const PORT = process.env.PORT || 3000;
 
 server.listen(PORT, () => {
-    console.log(`Servidor GOGOSZ rodando na porta ${PORT}`);
+    console.log(`Servidor Roleta rodando na porta ${PORT}`);
 });
